@@ -1,13 +1,9 @@
 /**
- * Navbar.tsx — Site navigation
- *
- * Mobile-first: shows a hamburger menu on small screens,
- * horizontal links on medium+ screens.
- * Uses React Router's NavLink for active-state highlighting.
+ * Navbar.tsx — Site navigation with real logo assets
  */
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { Menu, X, BookOpen } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 
 const links = [
   { to: '/', label: 'Home' },
@@ -23,25 +19,26 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `text-base font-medium transition-colors duration-200 ${
-      isActive
-        ? 'text-brand-600 border-b-2 border-brand-600'
-        : 'text-gray-700 hover:text-brand-600'
+    `text-sm font-semibold transition-colors duration-200 ${
+      isActive ? 'text-brand-500' : 'text-navy-700 hover:text-brand-500'
     }`
 
   const mobileLinkClass = ({ isActive }: { isActive: boolean }) =>
-    `block px-4 py-3 text-lg font-medium rounded-lg transition-colors ${
-      isActive ? 'bg-brand-50 text-brand-700' : 'text-gray-700 hover:bg-gray-50'
+    `block px-4 py-3 text-base font-semibold rounded-lg transition-colors ${
+      isActive ? 'bg-brand-50 text-brand-500' : 'text-navy-700 hover:bg-gray-50'
     }`
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-100">
       <nav className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
-          {/* Logo / Brand */}
-          <NavLink to="/" className="flex items-center gap-2 text-brand-700 font-bold text-lg">
-            <BookOpen className="w-6 h-6 text-brand-600" aria-hidden="true" />
-            <span>English4All Leeds</span>
+          {/* Logo */}
+          <NavLink to="/" className="flex items-center">
+            <img
+              src="/images/logo-small.png"
+              alt="English4All Leeds"
+              className="h-10 w-auto"
+            />
           </NavLink>
 
           {/* Desktop links */}
@@ -51,11 +48,17 @@ export default function Navbar() {
                 {l.label}
               </NavLink>
             ))}
+            <NavLink
+              to="/join"
+              className="bg-brand-500 hover:bg-brand-600 text-white text-sm font-bold px-4 py-2 rounded-lg transition-colors"
+            >
+              Join Now
+            </NavLink>
           </div>
 
-          {/* Mobile hamburger button */}
+          {/* Mobile hamburger */}
           <button
-            className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+            className="md:hidden p-2 rounded-lg text-navy-700 hover:bg-gray-100 transition-colors"
             onClick={() => setOpen(!open)}
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
@@ -64,7 +67,7 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile dropdown menu */}
+        {/* Mobile menu */}
         {open && (
           <div className="md:hidden pb-4 border-t border-gray-100 mt-1">
             {links.map((l) => (
@@ -78,6 +81,15 @@ export default function Navbar() {
                 {l.label}
               </NavLink>
             ))}
+            <div className="px-4 pt-2">
+              <NavLink
+                to="/join"
+                onClick={() => setOpen(false)}
+                className="block text-center bg-brand-500 hover:bg-brand-600 text-white font-bold px-4 py-3 rounded-lg transition-colors"
+              >
+                Join Now
+              </NavLink>
+            </div>
           </div>
         )}
       </nav>

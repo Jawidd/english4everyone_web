@@ -1,35 +1,29 @@
-/* Global styles — Tailwind base + custom accessibility overrides */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  /* Large base font size for readability (ESOL learners) */
   html {
     font-size: 18px;
     scroll-behavior: smooth;
   }
-
   body {
-    @apply text-gray-800 bg-white antialiased;
+    @apply text-navy-700 bg-white antialiased;
   }
-
   :focus-visible {
-    outline: 2px solid #2563eb;
+    outline: 2px solid #ec2904;
     outline-offset: 2px;
   }
 }
 
 @layer components {
-  /* Reusable prose style for Markdown-rendered content.
-     Uses plain CSS values for custom brand colours to avoid @apply limitations. */
   .prose-content h2 {
     @apply text-2xl font-bold mt-8 mb-3;
-    color: #1e3a8a;
+    color: #2c2e4b;
   }
   .prose-content h3 {
     @apply text-xl font-semibold mt-6 mb-2;
-    color: #1d4ed8;
+    color: #ec2904;
   }
   .prose-content p {
     @apply text-gray-700 leading-relaxed mb-4;
@@ -45,19 +39,19 @@
   }
   .prose-content a {
     @apply underline;
-    color: #2563eb;
+    color: #ec2904;
   }
   .prose-content a:hover {
-    color: #1e40af;
+    color: #b01c00;
   }
   .prose-content table {
     @apply w-full border-collapse mb-6;
   }
   .prose-content th {
     @apply font-semibold px-4 py-2 text-left;
-    background-color: #dbeafe;
-    color: #1e3a8a;
-    border: 1px solid #bfdbfe;
+    background-color: #fff4f2;
+    color: #2c2e4b;
+    border: 1px solid #ffc5bb;
   }
   .prose-content td {
     @apply px-4 py-2 text-gray-700;
