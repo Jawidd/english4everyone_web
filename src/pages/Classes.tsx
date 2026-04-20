@@ -1,10 +1,3 @@
-/**
- * Classes.tsx — Classes page
- *
- * Content loaded from /content/classes.md.
- * The visual class schedule cards are driven by the Markdown body,
- * but the location and intro come from frontmatter so they're easy to update.
- */
 import ReactMarkdown from 'react-markdown'
 import { MapPin } from 'lucide-react'
 import { loadPage } from '../utils/content'
@@ -15,14 +8,9 @@ const { data, body } = loadPage('classes')
 export default function Classes() {
   return (
     <>
-      <PageHero
-        title={data.title}
-        subtitle={data.intro}
-        gradient="from-green-700 to-brand-900"
-      />
+      <PageHero title={data.title} subtitle={data.intro} />
 
-      {/* Location banner */}
-      <div className="bg-accent-500 text-white py-3 px-4 text-center">
+      <div className="text-white py-3 px-4 text-center" style={{ backgroundColor: '#ec2904' }}>
         <span className="inline-flex items-center gap-2 font-semibold">
           <MapPin className="w-4 h-4" aria-hidden="true" />
           {data.location}

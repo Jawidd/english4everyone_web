@@ -1,21 +1,20 @@
 /**
- * PageHero.tsx — Reusable hero/banner section for inner pages
- * Provides consistent heading style across all non-home pages.
+ * PageHero.tsx — Reusable hero banner for inner pages
  */
 interface Props {
   title: string
   subtitle?: string
-  /** Optional Tailwind gradient class override */
-  gradient?: string
 }
 
-export default function PageHero({ title, subtitle, gradient = 'from-brand-700 to-brand-900' }: Props) {
+export default function PageHero({ title, subtitle }: Props) {
   return (
-    <section className={`bg-gradient-to-br ${gradient} text-white py-14 px-4`}>
+    <section className="py-14 px-4 text-white" style={{ background: 'linear-gradient(135deg, #2c2e4b 0%, #ec2904 100%)' }}>
       <div className="max-w-3xl mx-auto text-center">
         <h1 className="text-3xl sm:text-4xl font-extrabold leading-tight mb-3">{title}</h1>
         {subtitle && (
-          <p className="text-lg sm:text-xl text-brand-100 leading-relaxed">{subtitle}</p>
+          <p className="text-lg sm:text-xl leading-relaxed" style={{ color: 'rgba(255,255,255,0.85)' }}>
+            {subtitle}
+          </p>
         )}
       </div>
     </section>
