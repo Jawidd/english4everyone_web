@@ -1,0 +1,22 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# docker-compose.yml — LOCAL DEVELOPMENT ONLY
+#
+# Usage:
+#   docker compose up        → starts the dev server at http://localhost:5173
+#   docker compose up --build → rebuilds the image (run after adding packages)
+#
+# Volume mounts mean code changes are reflected instantly (hot reload).
+# ─────────────────────────────────────────────────────────────────────────────
+
+services:
+  web:
+    build: .
+    ports:
+      - "5173:5173"
+    volumes:
+      # Mount source code for hot-reload — changes on host reflect in container
+      - .:/app
+      # Prevent host node_modules from overwriting container's node_modules
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development

@@ -1,0 +1,88 @@
+# Decap CMS Configuration
+# ─────────────────────────────────────────────────────────────────────────────
+# This file tells the CMS:
+#   1. Where content files live (in this Git repo)
+#   2. What fields each content type has
+#   3. How to authenticate (via Netlify Identity / Git Gateway)
+#
+# Staff access the CMS at: https://your-site.com/admin
+# They log in with their Netlify Identity account.
+# When they save, it commits the Markdown file to Git → triggers a rebuild.
+# ─────────────────────────────────────────────────────────────────────────────
+
+backend:
+  # git-gateway connects Decap CMS to your Git repo via Netlify Identity
+  name: git-gateway
+  branch: main
+
+# Where uploaded images are stored in the repo
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  # ── News / Blog posts ──────────────────────────────────────────────────────
+  # Staff can add, edit, and delete news posts here.
+  # Each post becomes a .md file in /content/news/
+  - name: "news"
+    label: "News Posts"
+    folder: "content/news"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Short Summary", name: "summary", widget: "text", hint: "1–2 sentences shown on the news list page" }
+      - { label: "Image (optional)", name: "image", widget: "image", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # ── About page ─────────────────────────────────────────────────────────────
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "About"
+        name: "about"
+        file: "content/about.md"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string" }
+          - { label: "Hero Subtitle", name: "hero", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - label: "Classes"
+        name: "classes"
+        file: "content/classes.md"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string" }
+          - { label: "Intro", name: "intro", widget: "string" }
+          - { label: "Location", name: "location", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - label: "How to Join"
+        name: "join"
+        file: "content/join.md"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string" }
+          - { label: "Intro", name: "intro", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Phone", name: "phone", widget: "string" }
+          - { label: "WhatsApp", name: "whatsapp", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - label: "Contact"
+        name: "contact"
+        file: "content/contact.md"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string" }
+          - { label: "Intro", name: "intro", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Phone", name: "phone", widget: "string" }
+          - { label: "WhatsApp", name: "whatsapp", widget: "string" }
+          - { label: "Address", name: "address", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - label: "Volunteering"
+        name: "volunteering"
+        file: "content/volunteering.md"
+        fields:
+          - { label: "Page Title", name: "title", widget: "string" }
+          - { label: "Intro", name: "intro", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
