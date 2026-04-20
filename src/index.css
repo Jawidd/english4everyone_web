@@ -8,7 +8,7 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply text-navy-700 bg-white antialiased;
+    @apply text-gray-800 bg-white antialiased;
   }
   :focus-visible {
     outline: 2px solid #ec2904;
@@ -16,6 +16,46 @@
   }
 }
 
+/* ── Scroll-triggered animations ─────────────────────────────────────────────
+   Applied via the `animate-fade-up` / `animate-fade-in` classes.
+   The `in-view` class is toggled by useInView hook.
+   Default state is invisible; once in-view, animates in.
+   Uses `will-change: transform, opacity` for GPU compositing (performant).
+*/
+@layer utilities {
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    will-change: transform, opacity;
+  }
+  .fade-up.in-view {
+    animation: fadeUp 0.55s ease forwards;
+  }
+
+  .fade-in {
+    opacity: 0;
+    will-change: opacity;
+  }
+  .fade-in.in-view {
+    animation: fadeIn 0.5s ease forwards;
+  }
+
+  /* Staggered delay helpers for card grids */
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-400 { animation-delay: 0.4s; }
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* ── Prose content (Markdown rendered pages) ─────────────────────────────── */
 @layer components {
   .prose-content h2 {
     @apply text-2xl font-bold mt-8 mb-3;
