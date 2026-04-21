@@ -11,7 +11,7 @@ export default function Footer() {
 
         {/* Brand */}
         <div className="lg:col-span-1">
-          <img src="/images/logo-small.png" alt="English4All Leeds" className="h-12 w-auto mb-4 brightness-0 invert" />
+          <img src="/images/logo-large.jpg" alt="English4All Leeds" className="h-10 w-auto rounded-lg mb-4" />
           <p className="text-sm leading-relaxed" style={{ color: '#c5c7d4' }}>
             Free and paid English classes in Leeds. Everyone is welcome.
           </p>

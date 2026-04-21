@@ -35,9 +35,9 @@ export default function Navbar() {
           {/* Logo */}
           <NavLink to="/" className="flex items-center">
             <img
-              src="/images/logo-small.png"
+              src="/images/logo-large.jpg"
               alt="English4All Leeds"
-              className="h-10 w-auto"
+              className="h-10 w-auto rounded-lg"
             />
           </NavLink>
 

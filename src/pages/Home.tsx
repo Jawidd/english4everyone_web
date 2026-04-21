@@ -1,23 +1,30 @@
 /**
- * Home.tsx — Homepage
+ * Home.tsx — Homepage (redesigned for clarity)
  *
- * Improvements in this version:
- *  - Large logo displayed prominently in hero above headline
- *  - Scroll-triggered fade-up animations via useInView hook (no library)
- *  - Accordion for Classes levels, Volunteering roles, Activities
- *  - Hover effects on all cards and buttons
- *  - Floating WhatsApp button (in Layout)
+ * Design principles applied:
+ *  - First screen answers: who, what, where, how to join — in 5 seconds
+ *  - Large logo shown correctly (solid red bg — displayed as-is, no filter)
+ *  - "How to Join" CTA visible without scrolling
+ *  - Class timetable as a simple scannable card
+ *  - Contact info in contact bar AND footer
+ *  - Scroll-triggered fade-up animations (no library)
+ *  - Accordion for class levels to avoid overwhelming beginners
  */
 import { Link } from 'react-router-dom'
-import { Phone, Mail, MessageCircle, MapPin, ArrowRight, Clock, Award, Users, Coffee, Heart, Star } from 'lucide-react'
+import {
+  Phone, Mail, MessageCircle, MapPin, ArrowRight,
+  Clock, Award, Users, Heart, Star, BookOpen, Handshake
+} from 'lucide-react'
 import { loadAllNews } from '../utils/content'
 import { useInView } from '../hooks/useInView'
 import Accordion from '../components/Accordion'
 
-const news = loadAllNews().slice(0, 2)
+const news = loadAllNews().slice(0, 3)
 
-// ── Animated section wrapper — fades up when scrolled into view ───────────────
-function Reveal({ children, className = '', delay = '' }: { children: React.ReactNode; className?: string; delay?: string }) {
+// ── Scroll-reveal wrapper ─────────────────────────────────────────────────────
+function Reveal({ children, className = '', delay = '' }: {
+  children: React.ReactNode; className?: string; delay?: string
+}) {
   const { ref, inView } = useInView()
   return (
     <div ref={ref} className={`fade-up ${inView ? 'in-view' : ''} ${delay} ${className}`}>
@@ -29,29 +36,20 @@ function Reveal({ children, className = '', delay = '' }: { children: React.Reac
 // ── Section wrapper ───────────────────────────────────────────────────────────
 function Section({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
-    <section className={`py-16 px-4 sm:px-6 ${className}`}>
-      <div className="max-w-6xl mx-auto">{children}</div>
+    <section className={`py-14 px-4 sm:px-6 ${className}`}>
+      <div className="max-w-5xl mx-auto">{children}</div>
     </section>
   )
 }
 
-// ── Section heading ───────────────────────────────────────────────────────────
-function SectionHeading({ label, title, subtitle }: { label?: string; title: string; subtitle?: string }) {
+// ── Section label + heading ───────────────────────────────────────────────────
+function Heading({ label, title, center = false }: { label?: string; title: string; center?: boolean }) {
   return (
-    <div className="mb-10">
-      {label && <p className="text-sm font-bold uppercase tracking-widest mb-2" style={{ color: '#ec2904' }}>{label}</p>}
-      <h2 className="text-2xl sm:text-3xl font-extrabold" style={{ color: '#2c2e4b' }}>{title}</h2>
-      {subtitle && <p className="mt-2 text-gray-500 text-lg">{subtitle}</p>}
-    </div>
-  )
-}
-
-// ── Class level row ───────────────────────────────────────────────────────────
-function LevelRow({ level, desc }: { level: string; desc: string }) {
-  return (
-    <div className="flex items-center justify-between px-4 py-2.5 rounded-lg transition-colors hover:opacity-90" style={{ backgroundColor: '#fff4f2' }}>
-      <span className="font-semibold" style={{ color: '#2c2e4b' }}>{level}</span>
-      <span className="text-sm text-gray-500">{desc}</span>
+    <div className={`mb-8 ${center ? 'text-center' : ''}`}>
+      {label && (
+        <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#ec2904' }}>{label}</p>
+      )}
+      <h2 className="text-2xl sm:text-3xl font-extrabold leading-tight" style={{ color: '#2c2e4b' }}>{title}</h2>
     </div>
   )
 }
@@ -59,397 +57,422 @@ function LevelRow({ level, desc }: { level: string; desc: string }) {
 export default function Home() {
   return (
     <>
-      {/* ── 1. HERO ──────────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden" style={{ backgroundColor: '#2c2e4b' }}>
-        {/* Subtle background texture */}
-        <div className="absolute inset-0 pointer-events-none opacity-5" aria-hidden="true"
-          style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, #ec2904 0%, transparent 60%), radial-gradient(circle at 80% 20%, #ec2904 0%, transparent 50%)' }} />
+      {/* ════════════════════════════════════════════════════════════════════════
+          1. HERO — answers WHO / WHAT / WHERE / WHAT TO DO in one screen
+          Logo displayed as-is (solid red background, white text inside)
+          ════════════════════════════════════════════════════════════════════════ */}
+      <section style={{ backgroundColor: '#2c2e4b' }}>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
 
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-
-          {/* Left: logo + text */}
-          <div className="text-white">
-            {/* Large logo — primary brand identity */}
-            <div className="mb-8">
-              <img
-                src="/images/logo-large.png"
-                alt="English4All Leeds"
-                className="h-24 sm:h-28 w-auto object-contain"
-                style={{ filter: 'brightness(0) invert(1)' }}
-              />
-            </div>
-
-            <div className="inline-flex items-center gap-2 text-sm font-semibold px-4 py-1.5 rounded-full mb-5"
-              style={{ backgroundColor: 'rgba(236,41,4,0.2)', color: '#ff9a8a' }}>
-              <Star className="w-4 h-4" aria-hidden="true" />
-              Free classes every Saturday
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-5">
-              Free and paid<br />
-              <span style={{ color: '#ec2904' }}>English classes</span><br />
-              in Leeds
-            </h1>
-
-            <p className="text-xl leading-relaxed mb-8" style={{ color: 'rgba(255,255,255,0.8)' }}>
-              Learn English. Meet people. Build confidence.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Link
-                to="/join"
-                className="inline-flex items-center justify-center gap-2 font-bold text-lg px-7 py-4 rounded-xl shadow-lg text-white transition-all duration-200 hover:scale-105 hover:brightness-110"
-                style={{ backgroundColor: '#ec2904' }}
-              >
-                How to Join <ArrowRight className="w-5 h-5" aria-hidden="true" />
-              </Link>
-              <Link
-                to="/classes"
-                className="inline-flex items-center justify-center gap-2 font-semibold text-lg px-7 py-4 rounded-xl border-2 text-white transition-all duration-200 hover:bg-white/10"
-                style={{ borderColor: 'rgba(255,255,255,0.3)' }}
-              >
-                View Classes
-              </Link>
-            </div>
+          {/* Logo — shown as a natural image, no filter, rounded for polish */}
+          <div className="mb-8">
+            <img
+              src="/images/logo-large.jpg"
+              alt="English4All Leeds"
+              className="h-20 sm:h-24 w-auto rounded-xl shadow-lg"
+            />
           </div>
 
-          {/* Right: student photo */}
-          <div className="relative">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            {/* Left: headline + CTAs */}
+            <div className="text-white">
+              <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-4">
+                Free English<br />
+                classes in Leeds
+              </h1>
+              <p className="text-lg sm:text-xl mb-3" style={{ color: 'rgba(255,255,255,0.85)' }}>
+                For adults who want to learn English.
+              </p>
+              <p className="text-base mb-8" style={{ color: 'rgba(255,255,255,0.65)' }}>
+                All levels welcome · Every Saturday · Free to join
+              </p>
+
+              {/* Primary CTAs — both visible without scrolling */}
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link
+                  to="/join"
+                  className="inline-flex items-center justify-center gap-2 font-bold text-lg px-7 py-4 rounded-xl text-white shadow-lg transition-all duration-200 hover:scale-105 hover:brightness-110"
+                  style={{ backgroundColor: '#ec2904' }}
+                >
+                  How to Join <ArrowRight className="w-5 h-5" aria-hidden="true" />
+                </Link>
+                <Link
+                  to="/classes"
+                  className="inline-flex items-center justify-center gap-2 font-semibold text-lg px-7 py-4 rounded-xl text-white border-2 transition-all duration-200 hover:bg-white/10"
+                  style={{ borderColor: 'rgba(255,255,255,0.3)' }}
+                >
+                  View Classes
+                </Link>
+              </div>
+            </div>
+
+            {/* Right: student photo */}
             <div className="rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
               <img
                 src="/images/students.png"
-                alt="Students learning English together at English4All Leeds"
+                alt="Students learning English at English4All Leeds"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
               />
-            </div>
-            {/* Floating badge */}
-            <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl px-5 py-3 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: '#fff4f2' }}>
-                <Users className="w-5 h-5" style={{ color: '#ec2904' }} aria-hidden="true" />
-              </div>
-              <div>
-                <p className="font-extrabold text-lg leading-none" style={{ color: '#2c2e4b' }}>6 Classes</p>
-                <p className="text-xs text-gray-500">Every Saturday</p>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── 2. QUICK CONTACT BAR ─────────────────────────────────────────────── */}
+      {/* ════════════════════════════════════════════════════════════════════════
+          2. CONTACT BAR — always visible, repeated in footer too
+          ════════════════════════════════════════════════════════════════════════ */}
       <div style={{ backgroundColor: '#ec2904' }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-white text-sm font-semibold">
-          <a href="tel:+447535867376" className="flex items-center gap-2 transition-opacity hover:opacity-80">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-white text-sm font-semibold">
+          <a href="tel:+447535867376" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <Phone className="w-4 h-4" aria-hidden="true" /> 07535 867376
           </a>
-          <a href="mailto:enquiries@english4allinleeds.com" className="flex items-center gap-2 transition-opacity hover:opacity-80">
+          <a href="mailto:enquiries@english4allinleeds.com" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
             <Mail className="w-4 h-4" aria-hidden="true" /> enquiries@english4allinleeds.com
           </a>
-          <a href="https://wa.me/447535867376" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-            <MessageCircle className="w-4 h-4" aria-hidden="true" /> WhatsApp us
+          <a href="https://wa.me/447535867376" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <MessageCircle className="w-4 h-4" aria-hidden="true" /> WhatsApp
           </a>
         </div>
       </div>
 
-      {/* ── 3. WHO WE ARE ────────────────────────────────────────────────────── */}
-      <Section>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <Reveal>
-            <SectionHeading label="About us" title="English4All in Leeds" />
-            <p className="text-gray-600 leading-relaxed mb-6 text-lg">
-              We are a registered charity. We offer free and paid English lessons for adults in Leeds.
-              Our classes are for speakers of other languages — all levels, all backgrounds.
-            </p>
-            <ul className="space-y-3">
-              {[
-                'Volunteer-led by qualified ESOL teachers',
-                'Welcoming and friendly environment',
-                'All levels from ABC to Advanced',
-                'Free Saturday classes every week',
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <span className="mt-1 w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: '#fff4f2' }}>
-                    <span className="w-2 h-2 rounded-full" style={{ backgroundColor: '#ec2904' }} aria-hidden="true" />
-                  </span>
-                  <span className="text-gray-700">{item}</span>
-                </li>
-              ))}
-            </ul>
-            <Link to="/about" className="inline-flex items-center gap-2 font-semibold mt-6 transition-opacity hover:opacity-80" style={{ color: '#ec2904' }}>
-              Learn more about us <ArrowRight className="w-4 h-4" aria-hidden="true" />
-            </Link>
-          </Reveal>
-
-          {/* Stats grid */}
-          <div className="grid grid-cols-2 gap-4">
-            {[
-              { icon: <Clock className="w-6 h-6" style={{ color: '#ec2904' }} />, value: '6', label: 'Classes every Saturday', delay: '' },
-              { icon: <Users className="w-6 h-6" style={{ color: '#ec2904' }} />, value: 'All', label: 'Levels welcome', delay: 'delay-100' },
-              { icon: <Award className="w-6 h-6" style={{ color: '#ec2904' }} />, value: 'Free', label: 'Saturday classes', delay: 'delay-200' },
-              { icon: <Heart className="w-6 h-6" style={{ color: '#ec2904' }} />, value: '100%', label: 'Volunteer-led', delay: 'delay-300' },
-            ].map((s) => (
-              <Reveal key={s.label} delay={s.delay}>
-                <div className="rounded-2xl p-6 border text-center transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
-                  style={{ borderColor: '#ffc5bb', backgroundColor: '#fff4f2' }}>
-                  <div className="flex justify-center mb-2">{s.icon}</div>
-                  <p className="text-3xl font-extrabold" style={{ color: '#2c2e4b' }}>{s.value}</p>
-                  <p className="text-sm text-gray-500 mt-1">{s.label}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* ── 4. CLASSES ───────────────────────────────────────────────────────── */}
-      <Section className="bg-gray-50">
-        <Reveal>
-          <SectionHeading label="What we offer" title="English Classes" subtitle="Choose the class that is right for you." />
-        </Reveal>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-
-          {/* Free classes with accordion for levels */}
-          <Reveal>
-            <div className="bg-white rounded-2xl shadow-sm border overflow-hidden h-full" style={{ borderColor: '#ffc5bb' }}>
-              <div className="px-6 py-4 text-white" style={{ backgroundColor: '#ec2904' }}>
-                <p className="text-xs font-bold uppercase tracking-widest opacity-80 mb-1">Every Saturday</p>
-                <h3 className="text-xl font-extrabold">Free ESOL Classes</h3>
-                <p className="text-sm opacity-90 mt-1">6 free 2-hour classes · Qualified ESOL teachers</p>
-              </div>
-              <div className="p-6">
-                <Accordion items={[
-                  {
-                    title: '🌅 Morning · 9:00 – 11:00',
-                    content: (
-                      <div className="space-y-2 pt-1">
-                        <LevelRow level="ABC" desc="Absolute Beginner" />
-                        <LevelRow level="Beginner" desc="Some English" />
-                        <LevelRow level="Elementary" desc="Basic English" />
-                      </div>
-                    ),
-                  },
-                  {
-                    title: '☀️ Afternoon · 11:15 – 13:15',
-                    content: (
-                      <div className="space-y-2 pt-1">
-                        <LevelRow level="Pre-Intermediate" desc="Getting better" />
-                        <LevelRow level="Intermediate" desc="Good English" />
-                        <LevelRow level="Advanced" desc="Very good English" />
-                      </div>
-                    ),
-                  },
-                ]} />
-                <div className="flex items-center gap-2 text-sm text-gray-500 mt-4 pt-4 border-t border-gray-100">
-                  <MapPin className="w-4 h-4 shrink-0" aria-hidden="true" />
-                  The Arches, 56–58 Brussels St, Leeds
-                </div>
-              </div>
-              <div className="px-6 pb-6">
-                <Link to="/classes" className="inline-flex items-center gap-2 font-semibold transition-opacity hover:opacity-80" style={{ color: '#ec2904' }}>
-                  Learn more <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                </Link>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Paid classes */}
-          <Reveal delay="delay-100">
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden h-full">
-              <div className="px-6 py-4 text-white" style={{ backgroundColor: '#2c2e4b' }}>
-                <p className="text-xs font-bold uppercase tracking-widest opacity-60 mb-1">Weekdays</p>
-                <h3 className="text-xl font-extrabold">Paid Classes</h3>
-                <p className="text-sm opacity-80 mt-1">Competitive rates · Structured learning</p>
-              </div>
-              <div className="p-6">
-                <p className="text-gray-600 leading-relaxed mb-5">
-                  Our paid classes give you more structure and support. They are great if you want to improve quickly.
-                </p>
-                <ul className="space-y-3">
-                  {[
-                    { icon: <Award className="w-5 h-5" style={{ color: '#ec2904' }} />, text: 'Level assessment before you start' },
-                    { icon: <Star className="w-5 h-5" style={{ color: '#ec2904' }} />, text: 'Homework to practise at home' },
-                    { icon: <Heart className="w-5 h-5" style={{ color: '#ec2904' }} />, text: 'Certificates when you finish' },
-                  ].map((item) => (
-                    <li key={item.text} className="flex items-start gap-3">
-                      <span className="shrink-0 mt-0.5">{item.icon}</span>
-                      <span className="text-gray-700">{item.text}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="px-6 pb-6">
-                <Link to="/classes" className="inline-flex items-center gap-2 font-semibold transition-colors" style={{ color: '#2c2e4b' }}>
-                  Learn more <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                </Link>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </Section>
-
-      {/* ── 5. COFFEE & CONVERSATION ─────────────────────────────────────────── */}
+      {/* ════════════════════════════════════════════════════════════════════════
+          3. WHAT WE OFFER — 3 clear pillars, scannable in seconds
+          ════════════════════════════════════════════════════════════════════════ */}
       <Section>
         <Reveal>
-          <div className="rounded-2xl p-8 sm:p-12 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center" style={{ backgroundColor: '#fff4f2' }}>
-            <div>
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5" style={{ backgroundColor: '#ffc5bb' }}>
-                <Coffee className="w-7 h-7" style={{ color: '#ec2904' }} aria-hidden="true" />
-              </div>
-              <SectionHeading label="After class" title="Coffee & Conversation" />
-              <p className="text-gray-600 leading-relaxed mb-4">
-                After class, stay for a free cup of tea or coffee. Talk with other students and teachers.
-                It is a great way to practise your English in a relaxed setting.
-              </p>
-              <ul className="space-y-2 mb-6">
-                {['Free tea and coffee', 'Friendly, relaxed atmosphere', 'Practise speaking English', 'Make new friends'].map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-gray-700">
-                    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: '#ec2904' }} aria-hidden="true" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <Link to="/contact" className="inline-flex items-center gap-2 font-semibold transition-opacity hover:opacity-80" style={{ color: '#ec2904' }}>
-                Learn more <ArrowRight className="w-4 h-4" aria-hidden="true" />
-              </Link>
-            </div>
-            <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-              <img
-                src="/images/students.png"
-                alt="Students enjoying coffee and conversation after class"
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-              />
-            </div>
-          </div>
+          <Heading label="What we offer" title="English classes for everyone in Leeds" />
         </Reveal>
-      </Section>
-
-      {/* ── 6. TESTIMONIAL ───────────────────────────────────────────────────── */}
-      <Section className="bg-gray-50">
-        <Reveal>
-          <div className="max-w-2xl mx-auto text-center">
-            <div className="flex justify-center gap-1 mb-6">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-5 h-5 fill-current" style={{ color: '#ec2904' }} aria-hidden="true" />
-              ))}
-            </div>
-            <blockquote className="text-2xl sm:text-3xl font-semibold leading-relaxed mb-6" style={{ color: '#2c2e4b' }}>
-              "I like English4All. I found new friends, I improved my English, I am happier."
-            </blockquote>
-            <p className="font-semibold text-gray-500">— Maria, Student</p>
-          </div>
-        </Reveal>
-      </Section>
-
-      {/* ── 7. VOLUNTEERING ──────────────────────────────────────────────────── */}
-      <Section>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          <Reveal>
-            <SectionHeading label="Get involved" title="Volunteer With Us" subtitle="Share your skills. Help your community." />
-            <p className="text-gray-600 leading-relaxed mb-6">
-              We are always looking for volunteers. You do not need formal teaching experience — we will train you.
-              Volunteering is a great way to give back and gain new skills.
-            </p>
-            <Accordion multi items={[
-              { title: '📖 Teaching', content: 'Teach or assist in our Saturday classes. We will train you. You need 2 hours on a Saturday morning or afternoon.' },
-              { title: '📋 Admin & Events', content: 'Help with organising classes, welcoming students, and running events. Great for people who like to stay organised.' },
-              { title: '📣 Marketing', content: 'Help with social media, communications, and spreading the word about English4All Leeds.' },
-              { title: '💰 Fundraising', content: 'Help us raise money so we can keep our classes free. Any experience is welcome.' },
-            ]} />
-            <Link to="/contact" className="inline-flex items-center gap-2 font-bold text-white px-6 py-3 rounded-xl mt-6 transition-all hover:opacity-90 hover:scale-105"
-              style={{ backgroundColor: '#ec2904' }}>
-              Contact us <ArrowRight className="w-4 h-4" aria-hidden="true" />
-            </Link>
-          </Reveal>
-
-          <Reveal delay="delay-100">
-            <Link to="/volunteering" className="block rounded-2xl overflow-hidden shadow-md aspect-[4/3] group">
-              <img
-                src="/images/students.png"
-                alt="Volunteers teaching at English4All Leeds"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-            </Link>
-          </Reveal>
-        </div>
-      </Section>
-
-      {/* ── 8. ACTIVITIES ────────────────────────────────────────────────────── */}
-      <Section className="bg-gray-50">
-        <Reveal>
-          <SectionHeading label="Community" title="Activities & Events" subtitle="We do more than just classes." />
-        </Reveal>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
           {[
-            { emoji: '☕', label: 'Coffee Gatherings', delay: '' },
-            { emoji: '🎬', label: 'Film Club', delay: 'delay-100' },
-            { emoji: '📚', label: 'Book Club', delay: 'delay-200' },
-            { emoji: '🚶', label: 'Walks & Trips', delay: 'delay-300' },
-            { emoji: '🍽️', label: 'Social Meals', delay: 'delay-400' },
-          ].map((a) => (
-            <Reveal key={a.label} delay={a.delay}>
-              <div className="bg-white rounded-2xl p-5 text-center shadow-sm border border-gray-100 transition-all duration-200 hover:shadow-md hover:-translate-y-1 cursor-default">
-                <div className="text-3xl mb-2">{a.emoji}</div>
-                <p className="text-sm font-semibold" style={{ color: '#2c2e4b' }}>{a.label}</p>
+            {
+              icon: <BookOpen className="w-7 h-7" style={{ color: '#ec2904' }} />,
+              title: 'Free Saturday Classes',
+              desc: '6 classes every Saturday. All levels. Qualified ESOL teachers. No cost.',
+              delay: '',
+            },
+            {
+              icon: <Award className="w-7 h-7" style={{ color: '#ec2904' }} />,
+              title: 'Paid Classes',
+              desc: 'Structured weekday classes with assessment, homework, and certificates.',
+              delay: 'delay-100',
+            },
+            {
+              icon: <Users className="w-7 h-7" style={{ color: '#ec2904' }} />,
+              title: 'Community Activities',
+              desc: 'Coffee mornings, film club, book club, walks, and social events.',
+              delay: 'delay-200',
+            },
+          ].map((card) => (
+            <Reveal key={card.title} delay={card.delay}>
+              <div className="bg-white rounded-2xl p-6 border transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
+                style={{ borderColor: '#ffc5bb' }}>
+                <div className="mb-4 w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#fff4f2' }}>
+                  {card.icon}
+                </div>
+                <h3 className="font-bold text-lg mb-2" style={{ color: '#2c2e4b' }}>{card.title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">{card.desc}</p>
               </div>
             </Reveal>
           ))}
         </div>
-        <Reveal>
-          <div className="text-center">
-            <Link to="/contact" className="inline-flex items-center gap-2 font-semibold transition-opacity hover:opacity-80" style={{ color: '#ec2904' }}>
-              Contact us to find out more <ArrowRight className="w-4 h-4" aria-hidden="true" />
+      </Section>
+
+      {/* ════════════════════════════════════════════════════════════════════════
+          4. SATURDAY TIMETABLE — the most important info, shown as a clear card
+             Class levels in an accordion so beginners aren't overwhelmed
+          ════════════════════════════════════════════════════════════════════════ */}
+      <Section className="bg-gray-50">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+
+          {/* Timetable card */}
+          <Reveal>
+            <Heading label="Free classes" title="Saturday Timetable" />
+            <div className="bg-white rounded-2xl shadow-sm overflow-hidden border" style={{ borderColor: '#ffc5bb' }}>
+
+              {/* Morning */}
+              <div className="p-5 border-b" style={{ borderColor: '#ffeee9' }}>
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#fff4f2' }}>
+                    <Clock className="w-4 h-4" style={{ color: '#ec2904' }} aria-hidden="true" />
+                  </div>
+                  <div>
+                    <p className="font-extrabold" style={{ color: '#2c2e4b' }}>Morning</p>
+                    <p className="text-sm text-gray-500">9:00am – 11:00am</p>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  {[
+                    { level: 'ABC', tag: 'Absolute Beginner' },
+                    { level: 'Beginner', tag: 'Some English' },
+                    { level: 'Elementary', tag: 'Basic English' },
+                  ].map((c) => (
+                    <div key={c.level} className="flex items-center justify-between px-4 py-2.5 rounded-lg" style={{ backgroundColor: '#fff4f2' }}>
+                      <span className="font-semibold text-sm" style={{ color: '#2c2e4b' }}>{c.level}</span>
+                      <span className="text-xs text-gray-500 bg-white px-2 py-1 rounded-full border border-gray-100">{c.tag}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Afternoon */}
+              <div className="p-5">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#fff4f2' }}>
+                    <Clock className="w-4 h-4" style={{ color: '#ec2904' }} aria-hidden="true" />
+                  </div>
+                  <div>
+                    <p className="font-extrabold" style={{ color: '#2c2e4b' }}>Afternoon</p>
+                    <p className="text-sm text-gray-500">11:15am – 1:15pm</p>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  {[
+                    { level: 'Pre-Intermediate', tag: 'Getting better' },
+                    { level: 'Intermediate', tag: 'Good English' },
+                    { level: 'Advanced', tag: 'Very good English' },
+                  ].map((c) => (
+                    <div key={c.level} className="flex items-center justify-between px-4 py-2.5 rounded-lg" style={{ backgroundColor: '#fff4f2' }}>
+                      <span className="font-semibold text-sm" style={{ color: '#2c2e4b' }}>{c.level}</span>
+                      <span className="text-xs text-gray-500 bg-white px-2 py-1 rounded-full border border-gray-100">{c.tag}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Location */}
+              <div className="px-5 py-4 border-t flex items-center gap-2 text-sm text-gray-500" style={{ borderColor: '#ffeee9', backgroundColor: '#fffaf9' }}>
+                <MapPin className="w-4 h-4 shrink-0" style={{ color: '#ec2904' }} aria-hidden="true" />
+                <span>The Arches, 56–58 Brussels St, Leeds</span>
+              </div>
+            </div>
+
+            <div className="mt-4">
+              <Link to="/classes" className="inline-flex items-center gap-2 font-semibold text-sm transition-opacity hover:opacity-80" style={{ color: '#ec2904' }}>
+                Full class details <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </Link>
+            </div>
+          </Reveal>
+
+          {/* Paid classes + How to join */}
+          <div className="space-y-5">
+            <Reveal delay="delay-100">
+              <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#2c2e4b' }}>
+                    <Award className="w-5 h-5 text-white" aria-hidden="true" />
+                  </div>
+                  <div>
+                    <p className="font-extrabold" style={{ color: '#2c2e4b' }}>Paid Classes</p>
+                    <p className="text-sm text-gray-500">Competitive rates</p>
+                  </div>
+                </div>
+                <ul className="space-y-2 text-sm text-gray-600">
+                  {['Level assessment before you start', 'Homework to practise at home', 'Certificates when you finish'].map((t) => (
+                    <li key={t} className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: '#ec2904' }} aria-hidden="true" />
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+                <Link to="/classes" className="inline-flex items-center gap-2 font-semibold text-sm mt-4 transition-opacity hover:opacity-80" style={{ color: '#2c2e4b' }}>
+                  Learn more <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                </Link>
+              </div>
+            </Reveal>
+
+            {/* How to join — 3 steps, very simple */}
+            <Reveal delay="delay-200">
+              <div className="rounded-2xl p-6 text-white" style={{ background: 'linear-gradient(135deg, #2c2e4b 0%, #ec2904 100%)' }}>
+                <p className="text-xs font-bold uppercase tracking-widest mb-4 opacity-70">3 easy steps</p>
+                <div className="space-y-3 mb-5">
+                  {[
+                    { n: '1', t: 'Contact us', d: 'Email, call, or WhatsApp' },
+                    { n: '2', t: 'Come to class', d: 'Saturday at The Arches' },
+                    { n: '3', t: 'Start learning', d: 'We find the right level for you' },
+                  ].map((s) => (
+                    <div key={s.n} className="flex items-center gap-3">
+                      <span className="w-7 h-7 rounded-full flex items-center justify-center font-extrabold text-sm shrink-0"
+                        style={{ backgroundColor: 'rgba(255,255,255,0.2)' }}>
+                        {s.n}
+                      </span>
+                      <div>
+                        <p className="font-semibold text-sm leading-none">{s.t}</p>
+                        <p className="text-xs opacity-70 mt-0.5">{s.d}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <Link
+                  to="/join"
+                  className="inline-flex items-center gap-2 bg-white font-bold text-sm px-5 py-2.5 rounded-xl transition-all hover:scale-105"
+                  style={{ color: '#ec2904' }}
+                >
+                  How to Join <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                </Link>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </Section>
+
+      {/* ════════════════════════════════════════════════════════════════════════
+          5. ABOUT — short, friendly, trustworthy
+          ════════════════════════════════════════════════════════════════════════ */}
+      <Section>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <Reveal>
+            <Heading label="About us" title="A friendly charity in Leeds" />
+            <p className="text-gray-600 leading-relaxed mb-5 text-lg">
+              English4All Leeds is a registered charity. We help adults learn English.
+              Our teachers are volunteers. Our Saturday classes are free.
+            </p>
+            <div className="grid grid-cols-2 gap-3 mb-6">
+              {[
+                { value: '6', label: 'Free classes every Saturday' },
+                { value: 'All', label: 'Levels from ABC to Advanced' },
+                { value: 'Free', label: 'No cost to join' },
+                { value: '100%', label: 'Volunteer-led' },
+              ].map((s) => (
+                <div key={s.label} className="rounded-xl p-4 border text-center" style={{ borderColor: '#ffc5bb', backgroundColor: '#fff4f2' }}>
+                  <p className="text-2xl font-extrabold" style={{ color: '#2c2e4b' }}>{s.value}</p>
+                  <p className="text-xs text-gray-500 mt-1 leading-snug">{s.label}</p>
+                </div>
+              ))}
+            </div>
+            <Link to="/about" className="inline-flex items-center gap-2 font-semibold text-sm transition-opacity hover:opacity-80" style={{ color: '#ec2904' }}>
+              About us <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </Link>
+          </Reveal>
+
+          <Reveal delay="delay-100">
+            <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
+              <img
+                src="/images/students.png"
+                alt="Students at English4All Leeds"
+                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* ════════════════════════════════════════════════════════════════════════
+          6. TESTIMONIAL
+          ════════════════════════════════════════════════════════════════════════ */}
+      <Section className="bg-gray-50">
+        <Reveal>
+          <div className="max-w-xl mx-auto text-center">
+            <div className="flex justify-center gap-1 mb-5">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-5 h-5 fill-current" style={{ color: '#ec2904' }} aria-hidden="true" />
+              ))}
+            </div>
+            <blockquote className="text-xl sm:text-2xl font-semibold leading-relaxed mb-4" style={{ color: '#2c2e4b' }}>
+              "I like English4All. I found new friends, I improved my English, I am happier."
+            </blockquote>
+            <p className="text-sm font-semibold text-gray-400">— Maria, Student</p>
           </div>
         </Reveal>
       </Section>
 
-      {/* ── Latest news ──────────────────────────────────────────────────────── */}
-      {news.length > 0 && (
-        <Section>
+      {/* ════════════════════════════════════════════════════════════════════════
+          7. VOLUNTEER — clear callout, accordion for roles
+          ════════════════════════════════════════════════════════════════════════ */}
+      <Section>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
           <Reveal>
-            <SectionHeading label="Latest" title="News" />
+            <Heading label="Get involved" title="Volunteer with us" />
+            <p className="text-gray-600 leading-relaxed mb-6">
+              We always need volunteers. You do not need teaching experience — we will train you.
+            </p>
+            <Accordion multi items={[
+              { title: '📖 Teaching', content: 'Teach or assist in Saturday classes. We will train you. You need 2 hours on a Saturday.' },
+              { title: '📋 Admin & Events', content: 'Help organise classes, welcome students, and run events.' },
+              { title: '📣 Marketing', content: 'Help with social media and communications.' },
+              { title: '💰 Fundraising', content: 'Help us raise money to keep classes free.' },
+            ]} />
+            <Link to="/contact"
+              className="inline-flex items-center gap-2 font-bold text-white px-6 py-3 rounded-xl mt-6 transition-all hover:opacity-90 hover:scale-105"
+              style={{ backgroundColor: '#ec2904' }}>
+              <Handshake className="w-4 h-4" aria-hidden="true" /> Contact us
+            </Link>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+          {/* Activities */}
+          <Reveal delay="delay-100">
+            <Heading label="Community" title="Activities & events" />
+            <p className="text-gray-600 leading-relaxed mb-5">We do more than just classes.</p>
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { emoji: '☕', label: 'Coffee Gatherings' },
+                { emoji: '🎬', label: 'Film Club' },
+                { emoji: '📚', label: 'Book Club' },
+                { emoji: '🚶', label: 'Walks & Trips' },
+                { emoji: '🍽️', label: 'Social Meals' },
+                { emoji: '🤝', label: 'Social Events' },
+              ].map((a) => (
+                <div key={a.label}
+                  className="bg-white rounded-xl p-4 flex items-center gap-3 border border-gray-100 shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-0.5">
+                  <span className="text-2xl">{a.emoji}</span>
+                  <span className="text-sm font-semibold" style={{ color: '#2c2e4b' }}>{a.label}</span>
+                </div>
+              ))}
+            </div>
+            <Link to="/contact" className="inline-flex items-center gap-2 font-semibold text-sm mt-5 transition-opacity hover:opacity-80" style={{ color: '#ec2904' }}>
+              Find out more <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            </Link>
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* ════════════════════════════════════════════════════════════════════════
+          8. NEWS — clean card list, easy for staff to update via CMS
+          ════════════════════════════════════════════════════════════════════════ */}
+      {news.length > 0 && (
+        <Section className="bg-gray-50">
+          <Reveal>
+            <div className="flex items-end justify-between mb-8">
+              <Heading label="Latest" title="News" />
+              <Link to="/news" className="text-sm font-semibold transition-opacity hover:opacity-80 mb-8" style={{ color: '#ec2904' }}>
+                See all →
+              </Link>
+            </div>
+          </Reveal>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
             {news.map((post, i) => (
-              <Reveal key={post.slug} delay={i === 1 ? 'delay-100' : ''}>
+              <Reveal key={post.slug} delay={i === 0 ? '' : i === 1 ? 'delay-100' : 'delay-200'}>
                 <Link
                   to={`/news/${post.slug}`}
-                  className="block bg-white border border-gray-100 rounded-2xl p-6 shadow-sm transition-all duration-200 hover:shadow-lg hover:-translate-y-1 group"
+                  className="block bg-white rounded-2xl p-5 border border-gray-100 shadow-sm transition-all duration-200 hover:shadow-lg hover:-translate-y-1 group h-full"
                 >
                   <p className="text-xs text-gray-400 mb-2">
                     {new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
                   </p>
-                  <h3 className="text-lg font-bold mb-2 transition-colors group-hover:opacity-80" style={{ color: '#2c2e4b' }}>
+                  <h3 className="font-bold mb-2 leading-snug transition-opacity group-hover:opacity-70" style={{ color: '#2c2e4b' }}>
                     {post.title}
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{post.summary}</p>
-                  <span className="inline-flex items-center gap-1 text-sm font-semibold mt-4" style={{ color: '#ec2904' }}>
+                  <p className="text-gray-500 text-sm leading-relaxed line-clamp-3">{post.summary}</p>
+                  <span className="inline-flex items-center gap-1 text-xs font-semibold mt-3" style={{ color: '#ec2904' }}>
                     Read more <ArrowRight className="w-3 h-3" aria-hidden="true" />
                   </span>
                 </Link>
               </Reveal>
             ))}
           </div>
-          <Reveal>
-            <div className="text-center mt-8">
-              <Link to="/news" className="font-semibold transition-opacity hover:opacity-80" style={{ color: '#ec2904' }}>
-                See all news →
-              </Link>
-            </div>
-          </Reveal>
         </Section>
       )}
 
-      {/* ── 9. FINAL CTA ─────────────────────────────────────────────────────── */}
-      <section className="py-20 px-4 text-white text-center" style={{ background: 'linear-gradient(135deg, #2c2e4b 0%, #ec2904 100%)' }}>
+      {/* ════════════════════════════════════════════════════════════════════════
+          9. FINAL CTA
+          ════════════════════════════════════════════════════════════════════════ */}
+      <section className="py-16 px-4 text-white text-center" style={{ background: 'linear-gradient(135deg, #2c2e4b 0%, #ec2904 100%)' }}>
         <Reveal>
-          <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-extrabold mb-4">Join English4All today</h2>
-            <p className="text-xl mb-10" style={{ color: 'rgba(255,255,255,0.8)' }}>
-              It is free. It is friendly. Everyone is welcome.
+          <div className="max-w-xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl font-extrabold mb-3">Join English4All today</h2>
+            <p className="text-lg mb-8" style={{ color: 'rgba(255,255,255,0.8)' }}>
+              Free. Friendly. Everyone is welcome.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 to="/join"
                 className="inline-flex items-center justify-center gap-2 bg-white font-bold text-lg px-8 py-4 rounded-xl shadow transition-all hover:scale-105"
