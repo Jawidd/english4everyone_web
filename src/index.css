@@ -23,6 +23,11 @@
    Uses `will-change: transform, opacity` for GPU compositing (performant).
 */
 @layer utilities {
+  /* Section background — darker gray for clear mobile separation */
+  .section-alt {
+    background-color: #e8e9ed;
+  }
+
   .fade-up {
     opacity: 0;
     transform: translateY(24px);
