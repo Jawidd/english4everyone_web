@@ -37,7 +37,9 @@ interface Props {
 
 export default function SocialLinks({ variant = 'icon', theme = 'light' }: Props) {
   return (
-    <div className="flex items-center gap-3">
+    // On mobile with variant='full', wrap to new lines and centre
+    // justify-center keeps items centred when used in the hero or section
+    <div className={`flex items-center gap-3 ${variant === 'full' ? 'flex-wrap justify-center' : ''}`}>
       {socials.map((s) => (
         <a
           key={s.label}
