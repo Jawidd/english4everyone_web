@@ -10,14 +10,11 @@
 const ACTIVITY_FIELDS = `
   _id,
   title,
-  "slug": slug.current,
   date,
   category,
   summary,
-  thumbnail,
   photos,
-  tags,
-  body
+  tags
 `
 
 /** All published activities, newest first */
@@ -27,16 +24,3 @@ export const ALL_ACTIVITIES_QUERY = `
   }
 `
 
-/** Single activity by slug */
-export const ACTIVITY_BY_SLUG_QUERY = `
-  *[_type == "activity" && slug.current == $slug][0] {
-    ${ACTIVITY_FIELDS}
-  }
-`
-
-/** Activities filtered by category */
-export const ACTIVITIES_BY_CATEGORY_QUERY = `
-  *[_type == "activity" && category == $category] | order(date desc) {
-    ${ACTIVITY_FIELDS}
-  }
-`

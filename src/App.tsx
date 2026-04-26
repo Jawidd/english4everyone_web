@@ -9,7 +9,6 @@ import NewsPost from './pages/NewsPost'
 import Contact from './pages/Contact'
 import Volunteering from './pages/Volunteering'
 import Activities from './pages/Activities'
-import ActivityDetail from './pages/ActivityDetail'
 
 export default function App() {
   return (
@@ -26,7 +25,6 @@ export default function App() {
           <Route path="/volunteering" element={<Volunteering />} />
           {/* Activity feed — CMS-backed via Sanity */}
           <Route path="/activities" element={<Activities />} />
-          <Route path="/activities/:slug" element={<ActivityDetail />} />
         </Route>
       </Routes>
     </BrowserRouter>

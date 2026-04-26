@@ -20,13 +20,6 @@ export const activity = defineType({
       validation: (r) => r.required(),
     }),
     defineField({
-      name: 'slug',
-      title: 'Slug (URL)',
-      type: 'slug',
-      options: { source: 'title', maxLength: 96 },
-      validation: (r) => r.required(),
-    }),
-    defineField({
       name: 'date',
       title: 'Date',
       type: 'date',
@@ -56,14 +49,8 @@ export const activity = defineType({
       title: 'Short Summary',
       type: 'text',
       rows: 2,
-      description: '1–2 sentences shown on the activity list page',
+      description: '1–2 sentences shown on the activity feed',
       validation: (r) => r.required().max(200),
-    }),
-    defineField({
-      name: 'thumbnail',
-      title: 'Thumbnail Image',
-      type: 'image',
-      options: { hotspot: true },
     }),
     defineField({
       name: 'photos',
@@ -78,39 +65,32 @@ export const activity = defineType({
       description: 'Up to 6 photos — auto-compressed to max 1600px before upload',
     }),
     defineField({
-      name: 'body',
-      title: 'Full Description',
-      type: 'array',
-      of: [{ type: 'block' }], // Portable Text — rich text editor
-    }),
-    defineField({
       name: 'tags',
       title: 'Tags',
       type: 'array',
       of: [{ type: 'string' }],
       options: { layout: 'tags' },
-      description: 'Optional tags for filtering (e.g. outdoor, food, learning)',
+      description: 'Optional tags e.g. outdoor, food, learning',
     }),
   ],
 
-  // Preview in Studio list view
+  // Preview in Studio list view — uses first photo as thumbnail
   preview: {
     select: {
       title: 'title',
       date: 'date',
       category: 'category',
-      media: 'thumbnail',
+      photo0: 'photos.0',
     },
-    prepare({ title, date, category, media }) {
+    prepare({ title, date, category, photo0 }) {
       return {
         title,
         subtitle: `${date ?? ''} · ${category ?? ''}`,
-        media,
+        media: photo0,
       }
     },
   },
 
-  // Default sort: newest first in Studio
   orderings: [
     {
       title: 'Date (newest first)',
