@@ -24,6 +24,14 @@
    Uses `will-change: transform, opacity` for GPU compositing (performant).
 */
 @layer utilities {
+  /* Hide scrollbar for year nav on mobile */
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
   /* Section background — darker gray for clear mobile separation */
   .section-alt {
     background-color: #e8e9ed;
