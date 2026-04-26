@@ -23,21 +23,24 @@ export default function Navbar() {
 
         {/* Main row */}
         <div className="flex items-center justify-between h-16">
-          {/* Logo — desktop only */}
-          <NavLink to="/" onClick={() => setOpen(false)} className="hidden md:block">
-            <img src="/images/logo-large.jpg" alt="English4All Leeds" className="h-10 w-auto rounded-lg" />
-          </NavLink>
-
-          {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-5 ml-auto">
-            {NAV_LINKS.map((l) => (
-              <NavLink key={l.to} to={l.to} className={desktopClass} end={l.to === '/'}>{l.label}</NavLink>
-            ))}
-            <NavLink to="/join"
-              className="bg-brand-500 hover:bg-brand-600 text-white text-sm font-bold px-4 py-2 rounded-lg transition-colors">
-              Join Now
+          {/* Logo and Desktop links grouped on the left */}
+          <div className="hidden md:flex items-center gap-8">
+            <NavLink to="/" onClick={() => setOpen(false)}>
+              <img src="/images/logo-large.jpg" alt="English4All Leeds" className="h-10 w-auto rounded-lg" />
             </NavLink>
+            <div className="flex items-center gap-5">
+              {NAV_LINKS.map((l) => (
+                <NavLink key={l.to} to={l.to} className={desktopClass} end={l.to === '/'}>{l.label}</NavLink>
+              ))}
+                    {/* Join Now button on the right */}
+          <NavLink to="/join"
+            className="hidden md:block bg-brand-500 hover:bg-brand-600 text-white text-sm font-bold px-4 py-2 rounded-lg transition-colors">
+            Join Now
+          </NavLink>
+            </div>
           </div>
+
+    
 
           {/* Mobile: quick links flush left + More flush right */}
           <div className="md:hidden flex items-center justify-between w-full">
