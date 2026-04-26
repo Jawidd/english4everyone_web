@@ -48,10 +48,10 @@ services:
     volumes:
       - ./studio:/studio
       - /studio/node_modules
-      - sanity-auth:/root/.config/sanity  # persists login token between runs
+    environment:
+      - SANITY_AUTH_TOKEN=${SANITY_AUTH_TOKEN}
     command: sh -c "npm install && npm run deploy"
     profiles:
-      - deploy  # only runs when explicitly called, not with `docker compose up`
+      - deploy
 
-volumes:
-  sanity-auth:  # named volume to persist Sanity CLI auth token
+volumes: {}
