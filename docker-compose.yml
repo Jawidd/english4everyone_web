@@ -54,28 +54,4 @@ services:
     profiles:
       - deploy
 
-  # ── Sanity Studio → S3 + CloudFront (one-shot) ─────────────────────────────
-  # Builds the Studio and uploads to S3 for fast CloudFront delivery.
-  #
-  # Run with:
-  #   docker compose --profile deploy-s3 run --rm studio-deploy-s3
-  studio-deploy-s3:
-    build:
-      context: .
-      dockerfile: Dockerfile.studio-build
-    volumes:
-      - ./studio/dist:/studio/dist
-      - ~/.aws:/root/.aws:ro
-    environment:
-      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION:-eu-west-2}
-      - STUDIO_BUCKET=${STUDIO_BUCKET}
-      - STUDIO_DISTRIBUTION_ID=${STUDIO_DISTRIBUTION_ID}
-    entrypoint: sh -c
-    command: >
-      "apk add --no-cache aws-cli &&
-       aws s3 sync /studio/dist s3://$$STUDIO_BUCKET --delete &&
-       aws cloudfront create-invalidation --distribution-id $$STUDIO_DISTRIBUTION_ID --paths '/*'"
-    profiles:
-      - deploy-s3
-
 volumes: {}
