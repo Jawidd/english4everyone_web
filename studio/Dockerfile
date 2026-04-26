@@ -2,7 +2,7 @@
 # Runs the Sanity Studio on port 3333
 # Access at http://localhost:3333
 
-FROM node:20-alpine
+FROM node:22-alpine
 
 WORKDIR /studio
 
