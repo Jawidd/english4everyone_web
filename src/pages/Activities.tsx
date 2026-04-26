@@ -1,13 +1,5 @@
-/**
- * Activities.tsx — Activity feed with year navigation
- *
- * - Shows a sticky year pill nav at the top
- * - Defaults to the most recent year on load
- * - Clicking a year switches to that year's feed
- * - Feed is social-media style (single column, full-width posts)
- */
-import { useState } from 'react'
-import { Loader2 } from 'lucide-react'
+import { useState, useEffect, useCallback } from 'react'
+import { Loader2, ChevronLeft, ChevronRight, ArrowUp } from 'lucide-react'
 import PageHero from '../components/PageHero'
 import ActivityCard from '../components/activity/ActivityCard'
 import { useActivities } from '../hooks/useActivities'
@@ -16,10 +8,28 @@ import { BRAND } from '../config'
 export default function Activities() {
   const { groups, loading, error } = useActivities()
   const [selectedYear, setSelectedYear] = useState<number | null>(null)
+  const [showBackToTop, setShowBackToTop] = useState(false)
 
-  // Default to the latest year once data loads
+  // groups is newest-first; years for nav shown oldest→newest (left→right)
+  const years = [...groups.map((g) => g.year)].reverse()
   const activeYear = selectedYear ?? groups[0]?.year ?? null
   const activeGroup = groups.find((g) => g.year === activeYear)
+
+  // For prev/next: in chronological order, prev = older, next = newer
+  const chronoIndex = years.indexOf(activeYear!)
+  const olderYear = chronoIndex > 0 ? years[chronoIndex - 1] : null
+  const newerYear = chronoIndex < years.length - 1 ? years[chronoIndex + 1] : null
+
+  const switchYear = useCallback((year: number) => {
+    setSelectedYear(year)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
+  useEffect(() => {
+    const onScroll = () => setShowBackToTop(window.scrollY > 400)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
     <>
@@ -28,15 +38,14 @@ export default function Activities() {
         subtitle="Community gatherings, trips, social events, and more."
       />
 
-      <section className="max-w-2xl mx-auto px-4 sm:px-6 py-10">
-
-        {/* Year nav */}
-        {!loading && !error && groups.length > 0 && (
-          <div className="flex flex-wrap gap-2 justify-center mb-10">
-            {groups.map(({ year }) => (
+      {/* Sticky year nav — oldest left, newest right */}
+      {!loading && !error && groups.length > 0 && (
+        <div className="sticky top-0 z-20 bg-white/95 backdrop-blur border-b border-gray-100 shadow-sm">
+          <div className="max-w-2xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap gap-2 justify-center">
+            {years.map((year) => (
               <button
                 key={year}
-                onClick={() => setSelectedYear(year)}
+                onClick={() => switchYear(year)}
                 className="px-4 py-1.5 rounded-full text-sm font-semibold border transition-all"
                 style={
                   year === activeYear
@@ -44,13 +53,15 @@ export default function Activities() {
                     : { backgroundColor: '#fff', color: BRAND.navy, borderColor: '#e5e7eb' }
                 }
               >
-              {year}
+                {year}
               </button>
             ))}
           </div>
-        )}
+        </div>
+      )}
 
-        {/* Loading */}
+      <section className="max-w-2xl mx-auto px-4 sm:px-6 py-10">
+
         {loading && (
           <div className="flex items-center justify-center py-24 gap-3 text-gray-400">
             <Loader2 className="w-6 h-6 animate-spin" aria-hidden="true" />
@@ -58,7 +69,6 @@ export default function Activities() {
           </div>
         )}
 
-        {/* Error */}
         {error && (
           <div className="text-center py-24">
             <p className="text-gray-500 mb-2">Could not load activities.</p>
@@ -66,20 +76,61 @@ export default function Activities() {
           </div>
         )}
 
-        {/* Empty */}
         {!loading && !error && groups.length === 0 && (
           <div className="text-center py-24 text-gray-400">
             <p className="text-lg">No activities yet. Check back soon!</p>
           </div>
         )}
 
-        {/* Feed for selected year */}
         {!loading && !error && activeGroup && (
-          <div className="flex flex-col gap-6">
-            {activeGroup.activities.map((activity) => (
-              <ActivityCard key={activity._id} activity={activity} />
-            ))}
-          </div>
+          <>
+            {/* Year heading */}
+            <div className="flex items-center gap-3 mb-8">
+              <h2 className="text-2xl font-extrabold" style={{ color: BRAND.navy }}>
+                {activeYear}
+              </h2>
+              <div className="flex-1 h-px bg-gray-200" />
+              <span className="text-sm text-gray-400">
+                {activeGroup.activities.length}{' '}
+                {activeGroup.activities.length === 1 ? 'activity' : 'activities'}
+              </span>
+            </div>
+
+            {/* Feed */}
+            <div className="flex flex-col gap-6">
+              {activeGroup.activities.map((activity) => (
+                <ActivityCard key={activity._id} activity={activity} />
+              ))}
+            </div>
+
+            {/* Prev / Next year */}
+            <div className="flex items-center justify-between mt-12 pt-6 border-t border-gray-100">
+              <div>
+                {olderYear && (
+                  <button
+                    onClick={() => switchYear(olderYear)}
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold transition-opacity hover:opacity-70"
+                    style={{ color: BRAND.navy }}
+                  >
+                    <ChevronLeft className="w-4 h-4" aria-hidden="true" />
+                    {olderYear}
+                  </button>
+                )}
+              </div>
+              <div>
+                {newerYear && (
+                  <button
+                    onClick={() => switchYear(newerYear)}
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold transition-opacity hover:opacity-70"
+                    style={{ color: BRAND.navy }}
+                  >
+                    {newerYear}
+                    <ChevronRight className="w-4 h-4" aria-hidden="true" />
+                  </button>
+                )}
+              </div>
+            </div>
+          </>
         )}
 
         {/* CTA */}
@@ -103,6 +154,18 @@ export default function Activities() {
           </div>
         )}
       </section>
+
+      {/* Back to top */}
+      {showBackToTop && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="fixed bottom-6 right-6 z-30 w-10 h-10 rounded-full shadow-lg flex items-center justify-center text-white transition-opacity hover:opacity-80"
+          style={{ backgroundColor: BRAND.navy }}
+          aria-label="Back to top"
+        >
+          <ArrowUp className="w-4 h-4" aria-hidden="true" />
+        </button>
+      )}
     </>
   )
 }
