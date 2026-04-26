@@ -69,8 +69,9 @@ export interface Activity {
   category: string
   summary: string
   thumbnail?: SanityImage
+  photos?: SanityImage[]
   tags?: string[]
-  body?: unknown[] // Portable Text blocks — rendered by @portabletext/react
+  body?: unknown[]
 }
 
 /** Activities grouped by calendar year, newest year first */

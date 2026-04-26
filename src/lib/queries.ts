@@ -15,6 +15,7 @@ const ACTIVITY_FIELDS = `
   category,
   summary,
   thumbnail,
+  photos,
   tags,
   body
 `
