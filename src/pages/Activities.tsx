@@ -41,12 +41,12 @@ export default function Activities() {
       {/* Sticky year nav — newest left, oldest right */}
       {!loading && !error && groups.length > 0 && (
         <div className="sticky top-16 z-20 border-b border-gray-200 shadow-sm" style={{ backgroundColor: '#f0f1f5' }}>
-          <div className="max-w-2xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap gap-2 justify-center">
+          <div className="max-w-2xl mx-auto px-4 sm:px-6 py-3 flex gap-2 overflow-x-auto scrollbar-none" style={{ WebkitOverflowScrolling: 'touch' }}>
             {years.map((year) => (
               <button
                 key={year}
                 onClick={() => switchYear(year)}
-                className="px-4 py-1.5 rounded-full text-sm font-semibold border transition-all"
+                className="flex-shrink-0 px-4 py-1.5 rounded-full text-sm font-semibold border transition-all"
                 style={
                   year === activeYear
                     ? { backgroundColor: BRAND.primary, color: '#fff', borderColor: BRAND.primary }
