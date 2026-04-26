@@ -12,8 +12,9 @@ import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 export const sanityClient = createClient({
   projectId: 'weiash2x',
   dataset: 'production',
-  apiVersion: '2024-01-01', // pinned — never breaks on API updates
-  useCdn: true,             // CDN for fast reads of published content
+  apiVersion: '2024-01-01',
+  useCdn: true,
+  token: import.meta.env.VITE_SANITY_WEBSITE_TOKEN,
 })
 
 const builder = imageUrlBuilder(sanityClient)
