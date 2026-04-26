@@ -33,7 +33,7 @@ function PhotoCarousel({ images, title }: CarouselProps) {
       {/* Main image */}
       <div className="relative bg-gray-200 aspect-[4/3] overflow-hidden select-none">
         <div
-          className="flex h-full transition-transform duration-300 ease-in-out"
+          className="flex h-full w-full transition-transform duration-300 ease-in-out"
           style={{ transform: `translateX(-${index * 100}%)` }}
         >
           {images.map((img, i) => (
@@ -41,7 +41,7 @@ function PhotoCarousel({ images, title }: CarouselProps) {
               key={i}
               src={mainUrl(img)}
               alt={`${title} — photo ${i + 1}`}
-              className="w-full h-full object-cover flex-shrink-0"
+              className="w-full h-full object-cover flex-shrink-0 object-center"
               loading="lazy"
             />
           ))}

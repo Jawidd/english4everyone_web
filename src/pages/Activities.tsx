@@ -10,15 +10,15 @@ export default function Activities() {
   const [selectedYear, setSelectedYear] = useState<number | null>(null)
   const [showBackToTop, setShowBackToTop] = useState(false)
 
-  // groups is newest-first; years for nav shown oldest→newest (left→right)
-  const years = [...groups.map((g) => g.year)].reverse()
+  // groups is newest-first; display newest left → oldest right
+  const years = groups.map((g) => g.year) // newest first = left to right
   const activeYear = selectedYear ?? groups[0]?.year ?? null
   const activeGroup = groups.find((g) => g.year === activeYear)
 
-  // For prev/next: in chronological order, prev = older, next = newer
-  const chronoIndex = years.indexOf(activeYear!)
-  const olderYear = chronoIndex > 0 ? years[chronoIndex - 1] : null
-  const newerYear = chronoIndex < years.length - 1 ? years[chronoIndex + 1] : null
+  // newerYear = left (← ), olderYear = right (→)
+  const idx = years.indexOf(activeYear!)
+  const newerYear = idx > 0 ? years[idx - 1] : null          // left arrow
+  const olderYear = idx < years.length - 1 ? years[idx + 1] : null // right arrow
 
   const switchYear = useCallback((year: number) => {
     setSelectedYear(year)
@@ -38,9 +38,9 @@ export default function Activities() {
         subtitle="Community gatherings, trips, social events, and more."
       />
 
-      {/* Sticky year nav — oldest left, newest right */}
+      {/* Sticky year nav — newest left, oldest right */}
       {!loading && !error && groups.length > 0 && (
-        <div className="sticky top-0 z-20 border-b border-gray-200 shadow-sm" style={{ backgroundColor: '#f0f1f5' }}>
+        <div className="sticky top-16 z-20 border-b border-gray-200 shadow-sm" style={{ backgroundColor: '#f0f1f5' }}>
           <div className="max-w-2xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap gap-2 justify-center">
             {years.map((year) => (
               <button
@@ -103,20 +103,8 @@ export default function Activities() {
               ))}
             </div>
 
-            {/* Prev / Next year */}
+            {/* Prev (newer ←) / Next (older →) */}
             <div className="flex items-center justify-between mt-12 pt-6 border-t border-gray-100">
-              <div>
-                {olderYear && (
-                  <button
-                    onClick={() => switchYear(olderYear)}
-                    className="inline-flex items-center gap-1.5 text-sm font-semibold transition-opacity hover:opacity-70"
-                    style={{ color: BRAND.navy }}
-                  >
-                    <ChevronLeft className="w-4 h-4" aria-hidden="true" />
-                    {olderYear}
-                  </button>
-                )}
-              </div>
               <div>
                 {newerYear && (
                   <button
@@ -124,7 +112,19 @@ export default function Activities() {
                     className="inline-flex items-center gap-1.5 text-sm font-semibold transition-opacity hover:opacity-70"
                     style={{ color: BRAND.navy }}
                   >
+                    <ChevronLeft className="w-4 h-4" aria-hidden="true" />
                     {newerYear}
+                  </button>
+                )}
+              </div>
+              <div>
+                {olderYear && (
+                  <button
+                    onClick={() => switchYear(olderYear)}
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold transition-opacity hover:opacity-70"
+                    style={{ color: BRAND.navy }}
+                  >
+                    {olderYear}
                     <ChevronRight className="w-4 h-4" aria-hidden="true" />
                   </button>
                 )}
