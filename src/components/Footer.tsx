@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Mail, Phone, MapPin, MessageCircle } from 'lucide-react'
 import SocialLinks from './SocialLinks'
-import { BRAND, CONTACT, NAV_LINKS } from '../config'
+import { BRAND, CONTACT, NAV_LINKS, VERSION, COPYRIGHT } from '../config'
 
 export default function Footer() {
   return (
@@ -73,8 +73,9 @@ export default function Footer() {
       </div>
 
       <div className="border-t py-4 text-center text-xs" style={{ borderColor: '#2d3050', color: '#6b6e8a' }}>
-        © {new Date().getFullYear()} {CONTACT.charity.registeredName}. Registered Charity No. {CONTACT.charity.number} (England & Wales).
-        Registered office: {CONTACT.address.full}.
+        <p>
+          © {COPYRIGHT.year} {COPYRIGHT.organization}. Registered Charity No. {COPYRIGHT.registrationNumber} ({COPYRIGHT.jurisdiction}). Registered office: {COPYRIGHT.registeredOffice}. <span style={{ color: '#4a4d66' }}>{VERSION.displayVersion}</span>
+        </p>
       </div>
     </footer>
   )
