@@ -12,6 +12,7 @@ export const NAV_LINKS: NavLink[] = [
   { to: '/classes', label: 'Classes' },
   { to: '/join', label: 'How to Join' },
   { to: '/news', label: 'News' },
+  { to: '/activities', label: 'Activities' },
   { to: '/volunteering', label: 'Volunteer' },
   { to: '/contact', label: 'Contact' },
 ]

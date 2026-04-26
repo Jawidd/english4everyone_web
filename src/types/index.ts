@@ -50,3 +50,31 @@ export interface ClassSession {
   time: string
   levels: ClassLevel[]
 }
+
+// ── Sanity Activity Feed ──────────────────────────────────────────────────────
+
+/** Raw Sanity image reference (passed to urlFor()) */
+export interface SanityImage {
+  _type: 'image'
+  asset: { _ref: string; _type: 'reference' }
+  hotspot?: { x: number; y: number; height: number; width: number }
+}
+
+/** A single activity entry fetched from Sanity */
+export interface Activity {
+  _id: string
+  title: string
+  slug: string
+  date: string
+  category: string
+  summary: string
+  thumbnail?: SanityImage
+  tags?: string[]
+  body?: unknown[] // Portable Text blocks — rendered by @portabletext/react
+}
+
+/** Activities grouped by calendar year, newest year first */
+export interface ActivityYearGroup {
+  year: number
+  activities: Activity[]
+}

@@ -1,22 +1,57 @@
-# ─────────────────────────────────────────────────────────────────────────────
-# docker-compose.yml — LOCAL DEVELOPMENT ONLY
+# docker-compose.yml
+#
+# Services:
+#   web            → React app at http://localhost:5173  (hot reload)
+#   studio         → Sanity Studio at http://localhost:3333  (local dev)
+#   studio-deploy  → One-shot: deploys Studio to sanity.studio hosting
 #
 # Usage:
-#   docker compose up        → starts the dev server at http://localhost:5173
-#   docker compose up --build → rebuilds the image (run after adding packages)
-#
-# Volume mounts mean code changes are reflected instantly (hot reload).
-# ─────────────────────────────────────────────────────────────────────────────
+#   docker compose up web              → React app only
+#   docker compose up studio --build   → Sanity Studio locally
+#   docker compose run --rm studio-deploy → Deploy Studio to sanity.studio
 
 services:
+  # ── React app ──────────────────────────────────────────────────────────────
   web:
     build: .
     ports:
       - "5173:5173"
     volumes:
-      # Mount source code for hot-reload — changes on host reflect in container
       - .:/app
-      # Prevent host node_modules from overwriting container's node_modules
       - /app/node_modules
     environment:
       - NODE_ENV=development
+
+  # ── Sanity Studio (local dev) ───────────────────────────────────────────────
+  # Access at http://localhost:3333 while this is running.
+  studio:
+    build: ./studio
+    ports:
+      - "3333:3333"
+    volumes:
+      - ./studio:/studio
+      - /studio/node_modules
+    environment:
+      - NODE_ENV=development
+
+  # ── Sanity Studio deploy (one-shot) ────────────────────────────────────────
+  # Deploys the Studio to Sanity's free hosting at:
+  #   https://english4all-leeds.sanity.studio
+  #
+  # Run with:
+  #   docker compose run --rm studio-deploy
+  #
+  # You will be prompted to log in via browser the first time.
+  # After that, auth token is cached in the volume below.
+  studio-deploy:
+    build: ./studio
+    volumes:
+      - ./studio:/studio
+      - /studio/node_modules
+      - sanity-auth:/root/.config/sanity  # persists login token between runs
+    command: sh -c "npm install && npm run deploy"
+    profiles:
+      - deploy  # only runs when explicitly called, not with `docker compose up`
+
+volumes:
+  sanity-auth:  # named volume to persist Sanity CLI auth token
