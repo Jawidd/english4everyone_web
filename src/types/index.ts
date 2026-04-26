@@ -64,14 +64,11 @@ export interface SanityImage {
 export interface Activity {
   _id: string
   title: string
-  slug: string
   date: string
   category: string
   summary: string
-  thumbnail?: SanityImage
   photos?: SanityImage[]
   tags?: string[]
-  body?: unknown[]
 }
 
 /** Activities grouped by calendar year, newest year first */

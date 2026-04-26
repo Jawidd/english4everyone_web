@@ -40,7 +40,7 @@ export default function Activities() {
 
       {/* Sticky year nav — oldest left, newest right */}
       {!loading && !error && groups.length > 0 && (
-        <div className="sticky top-0 z-20 bg-white/95 backdrop-blur border-b border-gray-100 shadow-sm">
+        <div className="sticky top-0 z-20 border-b border-gray-200 shadow-sm" style={{ backgroundColor: '#f0f1f5' }}>
           <div className="max-w-2xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap gap-2 justify-center">
             {years.map((year) => (
               <button
@@ -50,7 +50,7 @@ export default function Activities() {
                 style={
                   year === activeYear
                     ? { backgroundColor: BRAND.primary, color: '#fff', borderColor: BRAND.primary }
-                    : { backgroundColor: '#fff', color: BRAND.navy, borderColor: '#e5e7eb' }
+                    : { backgroundColor: '#fff', color: BRAND.navy, borderColor: '#d1d5db' }
                 }
               >
                 {year}
