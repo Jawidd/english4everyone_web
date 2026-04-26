@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { X, ChevronDown } from 'lucide-react'
 import { NAV_LINKS } from '../config'
 
 // Links shown inline on mobile — most important ones
@@ -24,12 +23,13 @@ export default function Navbar() {
 
         {/* Main row */}
         <div className="flex items-center justify-between h-16">
-          <NavLink to="/" onClick={() => setOpen(false)}>
+          {/* Logo — desktop only */}
+          <NavLink to="/" onClick={() => setOpen(false)} className="hidden md:block">
             <img src="/images/logo-large.jpg" alt="English4All Leeds" className="h-10 w-auto rounded-lg" />
           </NavLink>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-5 ml-auto">
             {NAV_LINKS.map((l) => (
               <NavLink key={l.to} to={l.to} className={desktopClass} end={l.to === '/'}>{l.label}</NavLink>
             ))}
@@ -39,32 +39,30 @@ export default function Navbar() {
             </NavLink>
           </div>
 
-          {/* Mobile: quick links + More button */}
-          <div className="md:hidden flex items-center gap-1">
-            {quickLinks.map((l) => (
-              <NavLink
-                key={l.to}
-                to={l.to}
-                end={l.to === '/'}
-                onClick={() => setOpen(false)}
-                className={({ isActive }) =>
-                  `px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-colors ${isActive ? 'text-brand-500 bg-brand-50' : 'text-navy-700 hover:bg-gray-100'}`
-                }
-              >
-                {l.label}
-              </NavLink>
-            ))}
+          {/* Mobile: quick links flush left + More flush right */}
+          <div className="md:hidden flex items-center justify-between w-full">
+            <div className="flex items-center gap-1">
+              {quickLinks.map((l) => (
+                <NavLink
+                  key={l.to}
+                  to={l.to}
+                  end={l.to === '/'}
+                  onClick={() => setOpen(false)}
+                  className={({ isActive }) =>
+                    `px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-colors ${isActive ? 'text-brand-500 bg-brand-50' : 'text-navy-700 hover:bg-gray-100'}`
+                  }
+                >
+                  {l.label}
+                </NavLink>
+              ))}
+            </div>
             <button
               onClick={() => setOpen(!open)}
-              className="flex items-center gap-0.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold text-navy-700 hover:bg-gray-100 transition-colors"
+              className="px-2.5 py-1.5 rounded-lg text-xs font-semibold text-navy-700 hover:bg-gray-100 transition-colors"
               aria-label={open ? 'Close menu' : 'More pages'}
               aria-expanded={open}
             >
-              {open ? (
-                <><X className="w-4 h-4" aria-hidden="true" /> Close</>
-              ) : (
-                <>More <ChevronDown className="w-3.5 h-3.5" aria-hidden="true" /></>
-              )}
+              {open ? 'Close' : 'More'}
             </button>
           </div>
         </div>

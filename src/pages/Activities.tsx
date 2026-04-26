@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { Loader2, ChevronLeft, ChevronRight, ArrowUp } from 'lucide-react'
+import { Loader2, ChevronLeft, ChevronRight } from 'lucide-react'
 import PageHero from '../components/PageHero'
 import ActivityCard from '../components/activity/ActivityCard'
 import { useActivities } from '../hooks/useActivities'
@@ -8,7 +8,6 @@ import { BRAND } from '../config'
 export default function Activities() {
   const { groups, loading, error } = useActivities()
   const [selectedYear, setSelectedYear] = useState<number | null>(null)
-  const [showBackToTop, setShowBackToTop] = useState(false)
 
   // groups is newest-first; display newest left → oldest right
   const years = groups.map((g) => g.year) // newest first = left to right
@@ -23,12 +22,6 @@ export default function Activities() {
   const switchYear = useCallback((year: number) => {
     setSelectedYear(year)
     window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [])
-
-  useEffect(() => {
-    const onScroll = () => setShowBackToTop(window.scrollY > 400)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   return (
@@ -155,17 +148,6 @@ export default function Activities() {
         )}
       </section>
 
-      {/* Back to top */}
-      {showBackToTop && (
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-6 right-6 z-30 w-10 h-10 rounded-full shadow-lg flex items-center justify-center text-white transition-opacity hover:opacity-80"
-          style={{ backgroundColor: BRAND.navy }}
-          aria-label="Back to top"
-        >
-          <ArrowUp className="w-4 h-4" aria-hidden="true" />
-        </button>
-      )}
     </>
   )
 }
