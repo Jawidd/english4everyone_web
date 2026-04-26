@@ -1,0 +1,108 @@
+/**
+ * activity.ts — Sanity schema for Activity Feed entries
+ *
+ * Each activity is a community event, social gathering, trip, or class event.
+ * Staff create/edit these in Sanity Studio at localhost:3333 or sanity.studio.
+ * The React app fetches them via GROQ query — no rebuild needed on content change.
+ */
+import { defineField, defineType } from 'sanity'
+
+export const activity = defineType({
+  name: 'activity',
+  title: 'Activity',
+  type: 'document',
+  fields: [
+    defineField({
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+      validation: (r) => r.required(),
+    }),
+    defineField({
+      name: 'slug',
+      title: 'Slug (URL)',
+      type: 'slug',
+      options: { source: 'title', maxLength: 96 },
+      validation: (r) => r.required(),
+    }),
+    defineField({
+      name: 'date',
+      title: 'Date',
+      type: 'date',
+      options: { dateFormat: 'YYYY-MM-DD' },
+      validation: (r) => r.required(),
+    }),
+    defineField({
+      name: 'category',
+      title: 'Category',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Coffee & Conversation', value: 'coffee' },
+          { title: 'Social Events', value: 'social' },
+          { title: 'Trips & Walks', value: 'trips' },
+          { title: 'Film Club', value: 'film' },
+          { title: 'Book Club', value: 'book' },
+          { title: 'Classes', value: 'classes' },
+          { title: 'Other', value: 'other' },
+        ],
+        layout: 'radio',
+      },
+      validation: (r) => r.required(),
+    }),
+    defineField({
+      name: 'summary',
+      title: 'Short Summary',
+      type: 'text',
+      rows: 2,
+      description: '1–2 sentences shown on the activity list page',
+      validation: (r) => r.required().max(200),
+    }),
+    defineField({
+      name: 'thumbnail',
+      title: 'Thumbnail Image',
+      type: 'image',
+      options: { hotspot: true }, // allows focal point selection for cropping
+    }),
+    defineField({
+      name: 'body',
+      title: 'Full Description',
+      type: 'array',
+      of: [{ type: 'block' }], // Portable Text — rich text editor
+    }),
+    defineField({
+      name: 'tags',
+      title: 'Tags',
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: { layout: 'tags' },
+      description: 'Optional tags for filtering (e.g. outdoor, food, learning)',
+    }),
+  ],
+
+  // Preview in Studio list view
+  preview: {
+    select: {
+      title: 'title',
+      date: 'date',
+      category: 'category',
+      media: 'thumbnail',
+    },
+    prepare({ title, date, category, media }) {
+      return {
+        title,
+        subtitle: `${date ?? ''} · ${category ?? ''}`,
+        media,
+      }
+    },
+  },
+
+  // Default sort: newest first in Studio
+  orderings: [
+    {
+      title: 'Date (newest first)',
+      name: 'dateDesc',
+      by: [{ field: 'date', direction: 'desc' }],
+    },
+  ],
+})

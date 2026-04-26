@@ -1,0 +1,4 @@
+# Studio-specific ignores
+node_modules
+dist
+.sanity
