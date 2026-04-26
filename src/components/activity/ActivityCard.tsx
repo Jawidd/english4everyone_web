@@ -26,6 +26,8 @@ function thumbUrl(img: SanityImage) {
   return urlFor(img).width(120).height(80).fit('crop').auto('format').url()
 }
 
+interface CarouselProps { images: SanityImage[]; title: string }
+
 function PhotoCarousel({ images, title }: CarouselProps) {
   const [index, setIndex] = useState(0)
   const prev = () => setIndex((i) => (i - 1 + images.length) % images.length)
