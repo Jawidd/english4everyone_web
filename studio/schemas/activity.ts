@@ -6,7 +6,7 @@
  * The React app fetches them via GROQ query — no rebuild needed on content change.
  */
 import { defineField, defineType } from 'sanity'
-import { CompressedImageInput } from '../components/CompressedImageInput'
+import { CompressedPhotosInput } from '../components/CompressedPhotosInput'
 
 export const activity = defineType({
   name: 'activity',
@@ -56,13 +56,10 @@ export const activity = defineType({
       name: 'photos',
       title: 'Photos (up to 6)',
       type: 'array',
-      of: [{
-        type: 'image',
-        options: { hotspot: true },
-        components: { input: CompressedImageInput },
-      }],
+      of: [{ type: 'image', options: { hotspot: true } }],
       validation: (r) => r.max(6),
       description: 'Up to 6 photos — auto-compressed to max 1600px before upload',
+      components: { input: CompressedPhotosInput },
     }),
     defineField({
       name: 'tags',
