@@ -13,8 +13,7 @@ const ACTIVITY_FIELDS = `
   date,
   category,
   summary,
-  photos,
-  tags
+  photos
 `
 
 /** All published activities, newest first */

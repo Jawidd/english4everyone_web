@@ -107,7 +107,7 @@ function PhotoCarousel({ images, title }: CarouselProps) {
 interface Props { activity: Activity }
 
 export default function ActivityCard({ activity }: Props) {
-  const { title, date, category, summary, photos, tags } = activity
+  const { title, date, category, summary, photos } = activity
   const images: SanityImage[] = photos ?? []
 
   const formattedDate = new Date(date).toLocaleDateString('en-GB', {
@@ -137,13 +137,6 @@ export default function ActivityCard({ activity }: Props) {
 
       <div className="px-5 pt-3 pb-5">
         <p className="text-gray-600 text-sm leading-relaxed">{summary}</p>
-        {tags && tags.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 mt-3">
-            {tags.map((tag) => (
-              <span key={tag} className="text-xs px-2 py-0.5 rounded-full bg-gray-200 text-gray-500">#{tag}</span>
-            ))}
-          </div>
-        )}
       </div>
     </article>
   )
