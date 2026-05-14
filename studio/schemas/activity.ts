@@ -32,6 +32,7 @@ export const activity = defineType({
       type: 'string',
       options: {
         list: [
+          { title: 'No Category', value: '' },
           { title: 'Coffee & Conversation', value: 'coffee' },
           { title: 'Social Events', value: 'social' },
           { title: 'Trips & Walks', value: 'trips' },
@@ -40,9 +41,9 @@ export const activity = defineType({
           { title: 'Classes', value: 'classes' },
           { title: 'Other', value: 'other' },
         ],
-        layout: 'radio',
+        layout: 'dropdown', // More compact than radio buttons
       },
-      validation: (r) => r.required(),
+      // Removed validation requirement - now optional
     }),
     defineField({
       name: 'summary',
@@ -60,14 +61,6 @@ export const activity = defineType({
       validation: (r) => r.max(6),
       description: 'Up to 6 photos — auto-compressed to max 1600px before upload',
       components: { input: CompressedPhotosInput },
-    }),
-    defineField({
-      name: 'tags',
-      title: 'Tags',
-      type: 'array',
-      of: [{ type: 'string' }],
-      options: { layout: 'tags' },
-      description: 'Optional tags e.g. outdoor, food, learning',
     }),
   ],
 

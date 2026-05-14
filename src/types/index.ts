@@ -65,10 +65,9 @@ export interface Activity {
   _id: string
   title: string
   date: string
-  category: string
+  category?: string // Now optional
   summary: string
   photos?: SanityImage[]
-  tags?: string[]
 }
 
 /** Activities grouped by calendar year, newest year first */
