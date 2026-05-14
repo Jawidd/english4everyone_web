@@ -128,24 +128,21 @@ npm run preview
 
 ## Sanity Studio (CMS)
 
-### Local development
+### Local development (Docker)
 
 ```bash
-cd studio
-npm install
-npm run dev
+./studio-dev.sh
 ```
 
 Studio will be available at **http://localhost:3333**
 
-### Deploy Studio
+### Deploy Studio (Docker)
 
 ```bash
-cd studio
-npm run deploy
+./deploy-studio.sh
 ```
 
-This deploys the Studio to Sanity's hosted platform.
+This deploys the optimized Studio to Sanity's hosted platform using Docker.
 
 ---
 
