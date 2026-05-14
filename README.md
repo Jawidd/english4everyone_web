@@ -8,29 +8,27 @@ Free and paid English classes in Leeds. Modern, mobile-first, CMS-powered websit
 
 ### Why CMS-based (no backend)?
 
-This site uses a **Git-based CMS** (Decap CMS) with **static hosting** (AWS S3 + CloudFront). Here's why:
+This site uses **Sanity.io CMS** with **static hosting** (Cloudflare Pages). Here's why:
 
 - **No server to maintain** — no crashes, no security patches, no bills for idle compute
-- **Non-technical staff can edit content** — via a simple web UI at `/admin`
-- **Fast and cheap** — static files served from a CDN cost pennies per month
-- **Secure** — no database, no API, no attack surface
+- **Non-technical staff can edit content** — via Sanity Studio web interface
+- **Fast and cheap** — static files served from Cloudflare's global CDN for free
+- **Secure** — no database to manage, minimal attack surface
 
 ### How content flows through the system
 
 ```
-Staff edits content in Decap CMS (/admin)
+Staff edits content in Sanity Studio
         ↓
-CMS commits Markdown file to Git (e.g. /content/news/my-post.md)
+Content stored in Sanity's hosted database
         ↓
-CI/CD pipeline runs `npm run build`
+React app fetches content via Sanity API at build time
         ↓
-Vite reads all .md files at build time (import.meta.glob)
+Vite builds static site with content baked in
         ↓
-gray-matter parses frontmatter + body from each file
+Static files deployed to Cloudflare Pages
         ↓
-React components render the content as HTML
-        ↓
-Static files uploaded to S3 → served via CloudFront CDN
+Served globally via Cloudflare CDN
 ```
 
 ### Tech stack
@@ -40,11 +38,10 @@ Static files uploaded to S3 → served via CloudFront CDN
 | Frontend | React + TypeScript | Type-safe, component-based |
 | Styling | Tailwind CSS | Utility-first, mobile-first |
 | Routing | React Router v6 | Client-side SPA routing |
-| Content | Markdown files in `/content/` | Human-readable, Git-tracked |
-| CMS | Decap CMS | Simple UI, no backend needed |
+| CMS | Sanity.io | Powerful, flexible, hosted CMS |
 | Build | Vite | Fast builds, native ESM |
-| Hosting | AWS S3 + CloudFront | Static, cheap, global CDN |
-| Local dev | Docker + docker-compose | Consistent environment |
+| Hosting | Cloudflare Pages | Static, free, global CDN |
+| Local dev | npm scripts | Simple and fast |
 
 ---
 
@@ -52,18 +49,20 @@ Static files uploaded to S3 → served via CloudFront CDN
 
 ```
 english4all-leeds/
-├── content/                  ← ALL editable content lives here
+├── content/                  ← Static content files (markdown)
 │   ├── about.md
 │   ├── classes.md
 │   ├── join.md
 │   ├── contact.md
 │   ├── volunteering.md
-│   └── news/                 ← One .md file per news post
+│   └── news/                 ← News posts
 │       └── *.md
+├── studio/                   ← Sanity Studio (CMS interface)
+│   ├── schemas/              ← Content type definitions
+│   └── sanity.config.ts      ← Studio configuration
 ├── public/
-│   └── admin/
-│       ├── index.html        ← Decap CMS admin panel
-│       └── config.yml        ← CMS field definitions
+│   ├── images/               ← Static images
+│   └── admin/                ← Legacy CMS files (can be removed)
 ├── src/
 │   ├── components/           ← Shared UI components
 │   │   ├── Layout.tsx        ← Nav + Footer wrapper
@@ -80,159 +79,147 @@ english4all-leeds/
 │   │   ├── NewsPost.tsx
 │   │   ├── Contact.tsx
 │   │   └── Volunteering.tsx
+│   ├── lib/
+│   │   ├── sanity.ts         ← Sanity client configuration
+│   │   └── queries.ts        ← Sanity GROQ queries
 │   ├── utils/
-│   │   └── content.ts        ← Loads and parses Markdown files
+│   │   └── content.ts        ← Content loading utilities
 │   ├── App.tsx               ← Router setup
 │   ├── main.tsx              ← Entry point
 │   └── index.css             ← Tailwind + global styles
-├── infrastructure/
-│   └── cloudformation.yml    ← S3 + CloudFront stack
-├── Dockerfile                ← Local dev only
-├── docker-compose.yml        ← Local dev only
-└── deploy.sh                 ← Deploy script
+└── vite.config.ts            ← Build configuration
 ```
 
 ---
 
-## Local Development (Docker)
+## Local Development
 
 ### Prerequisites
 
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed
+- [Node.js 18+](https://nodejs.org/) installed
+- npm (comes with Node.js)
 
 ### Start the dev server
-
-```bash
-docker compose up
-```
-
-The site will be available at **http://localhost:5173**
-
-Code changes are reflected instantly (hot reload) — no need to restart the container.
-
-### First time / after adding packages
-
-```bash
-docker compose up --build
-```
-
-### Stop
-
-```bash
-docker compose down
-```
-
----
-
-## Running Without Docker
-
-If you have Node.js 18+ installed:
 
 ```bash
 npm install
 npm run dev
 ```
 
----
+The site will be available at **http://localhost:5173**
 
-## CMS Usage (For Staff)
+Code changes are reflected instantly (hot reload).
 
-### Accessing the CMS
+### Build for production
 
-Go to: `https://your-site.com/admin`
+```bash
+npm run build
+```
 
-Log in with your Netlify Identity account. Contact your site administrator if you don't have an account.
+This creates a `dist/` folder with the static files ready for deployment.
 
-### Adding a news post
+### Preview production build
 
-1. Click **"News Posts"** in the left sidebar
-2. Click **"New News Post"**
-3. Fill in:
-   - **Title** — the headline
-   - **Date** — when it happened
-   - **Short Summary** — 1–2 sentences (shown on the news list page)
-   - **Image** — optional photo
-   - **Body** — the full article (use the rich text editor)
-4. Click **"Publish"**
-
-The site will automatically rebuild and the post will appear within a few minutes.
-
-### Editing a page (About, Classes, etc.)
-
-1. Click **"Pages"** in the left sidebar
-2. Click the page you want to edit (e.g. "About")
-3. Edit the text fields
-4. Click **"Publish"**
-
-### Updating contact details
-
-Contact details (email, phone, WhatsApp) are stored in the frontmatter of:
-- `content/join.md` — shown on the Join page
-- `content/contact.md` — shown on the Contact page
-
-Edit these via the CMS under **Pages → How to Join** or **Pages → Contact**.
+```bash
+npm run preview
+```
 
 ---
 
-## Deployment
+## Sanity Studio (CMS)
 
-### One-time setup: Deploy AWS infrastructure
-
-```bash
-# Deploy the CloudFormation stack (creates S3 bucket + CloudFront)
-aws cloudformation deploy \
-  --template-file infrastructure/cloudformation.yml \
-  --stack-name english4all-leeds \
-  --capabilities CAPABILITY_IAM
-
-# Get the outputs (bucket name + CloudFront URL)
-aws cloudformation describe-stacks \
-  --stack-name english4all-leeds \
-  --query "Stacks[0].Outputs"
-```
-
-### Deploy the site
+### Local development
 
 ```bash
-# Build and upload to S3 (replace with your actual values from CloudFormation outputs)
-./deploy.sh english4all-leeds-website-123456789 E1ABCDEF123456
+cd studio
+npm install
+npm run dev
 ```
 
-### Automated deployment (recommended)
+Studio will be available at **http://localhost:3333**
 
-For automatic deploys on every Git push, connect your repo to **Netlify** (free tier):
+### Deploy Studio
+
+```bash
+cd studio
+npm run deploy
+```
+
+This deploys the Studio to Sanity's hosted platform.
+
+---
+
+## Deployment to Cloudflare Pages
+
+### Automatic deployment (recommended)
 
 1. Push this repo to GitHub
-2. Go to [netlify.com](https://netlify.com) → "Add new site" → "Import from Git"
-3. Set build command: `npm run build`
-4. Set publish directory: `dist`
-5. Enable **Netlify Identity** (for CMS login)
-6. Enable **Git Gateway** (for CMS to commit changes)
+2. Go to [Cloudflare Pages](https://pages.cloudflare.com/)
+3. Connect your GitHub repository
+4. Set build settings:
+   - **Build command**: `npm run build`
+   - **Build output directory**: `dist`
+   - **Node.js version**: `18` or higher
+5. Deploy!
 
-Netlify will automatically rebuild and deploy on every commit.
+Cloudflare Pages will automatically rebuild and deploy on every commit to your main branch.
+
+### Manual deployment
+
+```bash
+# Build the site
+npm run build
+
+# Install Wrangler CLI (Cloudflare's CLI tool)
+npm install -g wrangler
+
+# Deploy to Cloudflare Pages
+wrangler pages deploy dist
+```
 
 ---
 
-## CMS Setup (Decap CMS + Netlify Identity)
+## Content Management
 
-If hosting on Netlify:
+### Accessing Sanity Studio
 
-1. Go to **Site settings → Identity → Enable Identity**
-2. Under **Registration**, set to **Invite only**
-3. Go to **Site settings → Identity → Services → Git Gateway → Enable**
-4. Invite staff members via **Identity → Invite users**
+The CMS is available at your deployed Studio URL (e.g., `https://your-project.sanity.studio`) or locally at `http://localhost:3333` when running the Studio in development mode.
 
-Staff will receive an email to set their password, then can log in at `/admin`.
+### Adding activities
+
+1. Go to Sanity Studio
+2. Click **"Activities"** in the sidebar
+3. Click **"Create new Activity"**
+4. Fill in the activity details
+5. Click **"Publish"**
+
+The website will automatically fetch the new content on the next build/deployment.
+
+### Managing content
+
+All content is managed through Sanity Studio. The website fetches content from Sanity's API during the build process, so changes will appear after the next deployment.
+
+---
+
+## Environment Variables
+
+Create a `.env` file in the root directory with:
+
+```env
+VITE_SANITY_WEBSITE_TOKEN=your_sanity_read_token
+```
+
+This token allows the website to fetch content from Sanity. Get it from your Sanity project settings.
 
 ---
 
 ## Adding a New Page
 
-1. Create the content file: `content/my-page.md`
-2. Add a new page component: `src/pages/MyPage.tsx`
-3. Add the route in `src/App.tsx`
-4. Add the link in `src/components/Navbar.tsx`
-5. Add the CMS collection in `public/admin/config.yml`
+1. Create the content file: `content/my-page.md` (if using static content)
+2. Or add a new content type in Sanity Studio schemas
+3. Add a new page component: `src/pages/MyPage.tsx`
+4. Add the route in `src/App.tsx`
+5. Add the link in `src/components/Navbar.tsx`
 
 ---
 
