@@ -146,13 +146,13 @@
   },
 
   "navigation": [
-    { "to": "/",            "label": "Home" },
-    { "to": "/activities",  "label": "Activity Feed" },
-    { "to": "/about",       "label": "About" },
-    { "to": "/classes",     "label": "Classes" },
-    { "to": "/join",        "label": "How to Join" },
-    { "to": "/news",        "label": "News" },
-    { "to": "/volunteering","label": "Volunteer" },
-    { "to": "/contact",     "label": "Contact" }
+    { "to": "/",            "label": "Home",          "enabled": true },
+    { "to": "/activities",  "label": "Activity Feed", "enabled": true },
+    { "to": "/about",       "label": "About",         "enabled": true },
+    { "to": "/classes",     "label": "Classes",       "enabled": true },
+    { "to": "/join",        "label": "How to Join",   "enabled": true },
+    { "to": "/news",        "label": "News",          "enabled": true },
+    { "to": "/volunteering","label": "Volunteer",     "enabled": true },
+    { "to": "/contact",     "label": "Contact",       "enabled": true }
   ]
 }
