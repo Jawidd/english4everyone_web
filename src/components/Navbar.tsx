@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { NAV_LINKS } from '../config'
 
-// Links shown inline on mobile — most important ones
-const MOBILE_QUICK = ['/', '/activities', '/classes']
+// First 4 tabs shown inline on mobile — edit site.json navigation order to change these
+const MOBILE_QUICK = ['/', '/classes', '/activities', '/arc-social']
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
