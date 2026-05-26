@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import About from './pages/About'
@@ -9,6 +9,9 @@ import NewsPost from './pages/NewsPost'
 import Contact from './pages/Contact'
 import Volunteering from './pages/Volunteering'
 import Activities from './pages/Activities'
+import site from '../site.json'
+
+const enabled = (path: string) => site.navigation.find((n) => n.to === path)?.enabled !== false
 
 export default function App() {
   return (
@@ -16,15 +19,14 @@ export default function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/classes" element={<Classes />} />
-          <Route path="/join" element={<Join />} />
-          <Route path="/news" element={<News />} />
-          <Route path="/news/:slug" element={<NewsPost />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/volunteering" element={<Volunteering />} />
-          {/* Activity feed — CMS-backed via Sanity */}
-          <Route path="/activities" element={<Activities />} />
+          <Route path="/about"        element={enabled('/about')        ? <About />        : <Navigate to="/" replace />} />
+          <Route path="/classes"      element={enabled('/classes')      ? <Classes />      : <Navigate to="/" replace />} />
+          <Route path="/join"         element={enabled('/join')         ? <Join />         : <Navigate to="/" replace />} />
+          <Route path="/news"         element={enabled('/news')         ? <News />         : <Navigate to="/" replace />} />
+          <Route path="/news/:slug"   element={enabled('/news')         ? <NewsPost />     : <Navigate to="/" replace />} />
+          <Route path="/contact"      element={enabled('/contact')      ? <Contact />      : <Navigate to="/" replace />} />
+          <Route path="/volunteering" element={enabled('/volunteering') ? <Volunteering /> : <Navigate to="/" replace />} />
+          <Route path="/activities"   element={enabled('/activities')   ? <Activities />   : <Navigate to="/" replace />} />
         </Route>
       </Routes>
     </BrowserRouter>
