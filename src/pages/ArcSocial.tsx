@@ -18,35 +18,33 @@ export default function ArcSocial() {
   return (
     <>
       {/* ── HERO ── */}
-      <section className="relative min-h-[340px] flex items-end overflow-hidden">
-        <img
-          src="/images/arc-cover.jpg"
-          alt="The Arches Social"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.25) 60%, transparent 100%)' }} />
-        <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 pb-10 pt-24 flex items-end gap-6">
-          <img
-            src="/images/arc-logo.png"
-            alt="The Arches Social logo"
-            className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl shadow-xl object-contain bg-white p-1 shrink-0"
-          />
-          <div className="text-white">
-            <p className="text-xs font-bold uppercase tracking-widest mb-1 opacity-70">{arcSocial.tagline}</p>
-            <h1 className="text-3xl sm:text-4xl font-extrabold leading-tight">{arcSocial.heading}</h1>
+      <section style={{ backgroundColor: BRAND.navy }}>
+        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row min-h-[480px]">
+
+          {/* Photo — left column on desktop, top on mobile */}
+          <div className="relative lg:w-1/2 h-64 lg:h-auto overflow-hidden">
+            <img
+              src="/images/arc-cover.jpg"
+              alt="The Arches Social community"
+              className="absolute inset-0 w-full h-full object-cover object-top"
+            />
+          </div>
+
+          {/* Info — right column on desktop, below photo on mobile */}
+          <div className="lg:w-1/2 flex flex-col justify-center px-8 py-12 lg:px-16 text-white">
+            <img
+              src="/images/arc-logo.png"
+              alt="The Arches Social logo"
+              className="w-20 h-20 rounded-2xl shadow-lg object-contain bg-white p-1.5 mb-8"
+            />
+            <p className="text-xs font-bold uppercase tracking-widest mb-3 opacity-60">{arcSocial.tagline}</p>
+            <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-5">{arcSocial.heading}</h1>
+            <p className="text-lg leading-relaxed" style={{ color: 'rgba(255,255,255,0.75)' }}>
+              {arcSocial.description}
+            </p>
           </div>
         </div>
       </section>
-
-      {/* ── ABOUT ── */}
-      <Section className="bg-white">
-        <Reveal>
-          <div className="max-w-2xl">
-            <Heading label="About" title="Bringing Leeds together" />
-            <p className="text-gray-600 leading-relaxed text-lg">{arcSocial.description}</p>
-          </div>
-        </Reveal>
-      </Section>
 
       {/* ── UPCOMING EVENTS ── */}
       <Section className="section-alt">
