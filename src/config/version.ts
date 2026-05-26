@@ -1,8 +1,5 @@
-/**
- * src/config/version.ts
- *
- * Application version and copyright information.
- */
+import site from '../../site.json'
+
 export const VERSION = {
   major: 0,
   minor: 3,
@@ -15,8 +12,8 @@ export const VERSION = {
 
 export const COPYRIGHT = {
   year: new Date().getFullYear(),
-  organization: 'English4All in Leeds',
-  registrationNumber: '1175775',
-  jurisdiction: 'England & Wales',
-  registeredOffice: 'The Arches, 56–58 Brussels St, Leeds, LS9 8AB',
+  organization:       site.org.name,
+  registrationNumber: site.org.charityNumber,
+  jurisdiction:       site.org.jurisdiction,
+  registeredOffice:   `${site.contact.address.line1}, ${site.contact.address.line2}, ${site.contact.address.city}, ${site.contact.address.postcode}`,
 } as const;

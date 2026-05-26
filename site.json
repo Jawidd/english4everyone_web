@@ -1,0 +1,158 @@
+{
+  "_readme": "This file controls all editable content on the website. Change anything here and it will update on the site after the next deploy. Do NOT remove any keys — only change the values.",
+
+  "org": {
+    "name": "English4All in Leeds",
+    "charityNumber": "1175775",
+    "vat": "460246413",
+    "principal": "Nick Conibear",
+    "jurisdiction": "England & Wales"
+  },
+
+  "contact": {
+    "phoneDisplay": "07535 867376",
+    "phone": "+44 7535 867376",
+    "phoneTel": "+447535867376",
+    "whatsapp": "+447535867376",
+    "email": "enquiries@english4allinleeds.com",
+    "address": {
+      "line1": "The Arches",
+      "line2": "56–58 Brussels St",
+      "city": "Leeds",
+      "postcode": "LS9 8AB"
+    }
+  },
+
+  "social": {
+    "facebook": "https://www.facebook.com/English4AllLeeds/",
+    "youtube": "https://www.youtube.com/channel/UCFXjqe8_5wYpkB9JexyiLrA?view_as=subscriber",
+    "instagram": "https://www.instagram.com/e4a_online/"
+  },
+
+  "hero": {
+    "announcement": "New students & volunteers — join free, message WhatsApp",
+    "headingLine1": "Free English",
+    "headingLine2": "classes in Leeds",
+    "subheading": "Free and paid English lessons for adult speakers of other languages.",
+    "tagline": "All levels welcome · Every Saturday · Free to join"
+  },
+
+  "stats": [
+    { "value": "6",    "label": "Free classes every Saturday" },
+    { "value": "All",  "label": "Levels from ABC to Advanced" },
+    { "value": "Free", "label": "No cost to join Saturday classes" },
+    { "value": "100%", "label": "Volunteer-led organisation" }
+  ],
+
+  "testimonials": [
+    {
+      "quote": "I like English4All. I found new friends, I improved my English, I am happier.",
+      "author": "Maria",
+      "source": "Student Feedback Survey",
+      "date": "March 2018"
+    }
+  ],
+
+  "coffeeSection": {
+    "label": "Every Saturday after class",
+    "title": "Coffee & Conversation",
+    "description": "Every week after class we serve hot and cold drinks. Bring your own drinks for a small table charge. Improve your English, improve your confidence — you might even make some new friends!",
+    "benefits": [
+      "Free hot and cold drinks after class",
+      "Relaxed, friendly atmosphere",
+      "Practise speaking English naturally",
+      "Build confidence and friendships"
+    ]
+  },
+
+  "aboutSection": {
+    "label": "About us",
+    "title": "A friendly charity in Leeds",
+    "description": "English4All in Leeds is a registered charity offering free and paid English lessons for adult speakers of other languages. Our volunteer teachers are qualified ESOL professionals who give their time to help people learn English and build confidence."
+  },
+
+  "howToJoinSteps": [
+    { "title": "Contact us",    "detail": "Email, call, or WhatsApp" },
+    { "title": "Come to class", "detail": "Saturday at The Arches, Leeds" },
+    { "title": "Start learning","detail": "We find the right level for you" }
+  ],
+
+  "volunteeringSection": {
+    "label": "Get involved",
+    "title": "Volunteering opportunities",
+    "description": "Do you have TEFL or ESOL experience? Professional skills in management, marketing, HR, or photography? We welcome anyone who wants to contribute to social cohesion or gain charity experience.",
+    "roles": [
+      {
+        "title": "📖 Teaching & Classroom Assistant",
+        "content": "Teach or assist in Saturday ESOL classes. TEFL/ESOL experience welcome but not essential. Just 2 hours on a Saturday."
+      },
+      {
+        "title": "📋 Admin, HR & Governance",
+        "content": "Help with organising classes, managing volunteers, charitable governance, and administration."
+      },
+      {
+        "title": "📣 Marketing, Photography & Web",
+        "content": "Help with social media, communications, photography, and website updates."
+      },
+      {
+        "title": "💰 Fundraising & Finance",
+        "content": "Help us raise funds and manage accounts so we can keep Saturday classes free for everyone."
+      }
+    ]
+  },
+
+  "activitiesSection": {
+    "label": "Community",
+    "title": "Weekly & monthly activities",
+    "description": "We do much more than just classes. Join us for:",
+    "items": [
+      { "emoji": "☕", "label": "Coffee Gatherings" },
+      { "emoji": "🎬", "label": "Film Club" },
+      { "emoji": "📚", "label": "Book Club" },
+      { "emoji": "🚶", "label": "Country Walks" },
+      { "emoji": "⛺", "label": "Lake District Camping" },
+      { "emoji": "🎵", "label": "Songwriting Socials" },
+      { "emoji": "🍽️", "label": "End-of-Year Meals" },
+      { "emoji": "🎉", "label": "Birthday Celebrations" }
+    ]
+  },
+
+  "classes": {
+    "sessions": [
+      {
+        "label": "Morning",
+        "time": "9:00am – 11:00am",
+        "levels": [
+          { "level": "ABC",         "tag": "Absolute Beginner" },
+          { "level": "Beginner",    "tag": "Some English" },
+          { "level": "Elementary",  "tag": "Basic English" }
+        ]
+      },
+      {
+        "label": "Afternoon",
+        "time": "11:15am – 1:15pm",
+        "levels": [
+          { "level": "Pre-Intermediate", "tag": "Getting better" },
+          { "level": "Intermediate",     "tag": "Good English" },
+          { "level": "Advanced",         "tag": "Very good English" }
+        ]
+      }
+    ],
+    "paidFeatures": [
+      "Level assessment before you start",
+      "Regular homework to practise at home",
+      "End-of-course certificates"
+    ]
+  },
+
+  "navigation": [
+    { "to": "/",            "label": "Home" },
+    { "to": "/activities",  "label": "Activity Feed" },
+    { "to": "/about",       "label": "About" },
+    { "to": "/classes",     "label": "Classes" },
+    { "to": "/join",        "label": "How to Join" },
+    { "to": "/news",        "label": "News" },
+    { "to": "/volunteering","label": "Volunteer" },
+    { "to": "/contact",     "label": "Contact" }
+  ]
+}

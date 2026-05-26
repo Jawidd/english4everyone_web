@@ -1,28 +1,26 @@
-/**
- * src/config/contact.ts
- *
- * All contact details in one place.
- * Used by ContactCard, FloatingContact, Footer, and Home sections.
- * Staff-facing details (phone, email, address) are updated here only.
- */
+import site from '../../site.json'
+
+const c = site.contact
+const o = site.org
+
 export const CONTACT = {
-  phone: '+44 7535 867376',
-  phoneDisplay: '07535 867376',
-  phoneTel: '+447535867376',
-  email: 'enquiries@english4allinleeds.com',
-  whatsapp: '+447535867376',
-  whatsappUrl: 'https://wa.me/447535867376',
+  phone:        c.phone,
+  phoneDisplay: c.phoneDisplay,
+  phoneTel:     c.phoneTel,
+  email:        c.email,
+  whatsapp:     c.whatsapp,
+  whatsappUrl:  `https://wa.me/${c.whatsapp.replace(/\D/g, '')}`,
   address: {
-    line1: 'The Arches',
-    line2: '56–58 Brussels St',
-    city: 'Leeds',
-    postcode: 'LS9 8AB',
-    full: 'The Arches, 56–58 Brussels St, Leeds, LS9 8AB',
+    line1:    c.address.line1,
+    line2:    c.address.line2,
+    city:     c.address.city,
+    postcode: c.address.postcode,
+    full:     `${c.address.line1}, ${c.address.line2}, ${c.address.city}, ${c.address.postcode}`,
   },
   charity: {
-    number: '1175775',
-    vat: '460246413',
-    principal: 'Nick Conibear',
-    registeredName: 'English4All in Leeds',
+    number:         o.charityNumber,
+    vat:            o.vat,
+    principal:      o.principal,
+    registeredName: o.name,
   },
 } as const
