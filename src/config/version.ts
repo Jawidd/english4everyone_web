@@ -5,9 +5,9 @@
  */
 export const VERSION = {
   major: 0,
-  minor: 1,
+  minor: 3,
   patch: 0,
-  version: '0.2.0',
+  version: '0.3.0',
   get displayVersion() {
     return `v${this.version}`;
   },
