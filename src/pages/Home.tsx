@@ -4,7 +4,7 @@ import { loadAllNews } from '../utils/content'
 import { Section, Heading, Reveal } from '../components/ui'
 import Accordion from '../components/Accordion'
 import SocialLinks from '../components/SocialLinks'
-import { BRAND, CONTACT, CLASS_SESSIONS, PAID_CLASS_FEATURES, ACTIVITIES } from '../config'
+import { BRAND, CONTACT, CLASS_SESSIONS, PAID_CLASS_FEATURES, ACTIVITIES, SITE } from '../config'
 
 const news = loadAllNews().slice(0, 3)
 
@@ -21,16 +21,16 @@ export default function Home() {
             <div className="text-white">
               <div className="inline-flex items-center gap-2 text-xs font-bold px-3 py-1.5 rounded-full mb-5"
                 style={{ backgroundColor: 'rgba(236,41,4,0.25)', color: '#ffaa90' }}>
-                New students &amp; volunteers — join free, message WhatsApp
+                {SITE.hero.announcement}
               </div>
               <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-4">
-                Free English<br /><span style={{ color: BRAND.primary }}>classes in Leeds</span>
+                {SITE.hero.headingLine1}<br /><span style={{ color: BRAND.primary }}>{SITE.hero.headingLine2}</span>
               </h1>
               <p className="text-lg mb-2" style={{ color: 'rgba(255,255,255,0.85)' }}>
-                Free and paid English lessons for adult speakers of other languages.
+                {SITE.hero.subheading}
               </p>
               <p className="text-sm mb-6" style={{ color: 'rgba(255,255,255,0.55)' }}>
-                All levels welcome · Every Saturday · Free to join
+                {SITE.hero.tagline}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 mb-6">
                 <Link to="/join"
@@ -139,17 +139,13 @@ export default function Home() {
               <div className="rounded-2xl p-6 text-white" style={{ background: `linear-gradient(135deg, ${BRAND.navy} 0%, ${BRAND.primary} 100%)` }}>
                 <p className="text-xs font-bold uppercase tracking-widest mb-4 opacity-70">3 easy steps</p>
                 <div className="space-y-3 mb-5">
-                  {[
-                    { n: '1', t: 'Contact us', d: 'Email, call, or WhatsApp' },
-                    { n: '2', t: 'Come to class', d: `Saturday at ${CONTACT.address.line1}, Leeds` },
-                    { n: '3', t: 'Start learning', d: 'We find the right level for you' },
-                  ].map((s) => (
-                    <div key={s.n} className="flex items-center gap-3">
+                  {SITE.howToJoinSteps.map((s, i) => (
+                    <div key={i} className="flex items-center gap-3">
                       <span className="w-7 h-7 rounded-full flex items-center justify-center font-extrabold text-sm shrink-0"
-                        style={{ backgroundColor: 'rgba(255,255,255,0.2)' }}>{s.n}</span>
+                        style={{ backgroundColor: 'rgba(255,255,255,0.2)' }}>{i + 1}</span>
                       <div>
-                        <p className="font-semibold text-sm leading-none">{s.t}</p>
-                        <p className="text-xs opacity-70 mt-0.5">{s.d}</p>
+                        <p className="font-semibold text-sm leading-none">{s.title}</p>
+                        <p className="text-xs opacity-70 mt-0.5">{s.detail}</p>
                       </div>
                     </div>
                   ))}
@@ -177,13 +173,12 @@ export default function Home() {
             <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style={{ backgroundColor: BRAND.softBg }}>
               <Coffee className="w-6 h-6" style={{ color: BRAND.primary }} aria-hidden="true" />
             </div>
-            <Heading label="Every Saturday after class" title="Coffee & Conversation" />
+            <Heading label={SITE.coffeeSection.label} title={SITE.coffeeSection.title} />
             <p className="text-gray-600 leading-relaxed mb-4">
-              Every week after class we serve hot and cold drinks. Bring your own drinks for a small table charge.
-              Improve your English, improve your confidence — you might even make some new friends!
+              {SITE.coffeeSection.description}
             </p>
             <ul className="space-y-2 mb-5">
-              {['Free hot and cold drinks after class', 'Relaxed, friendly atmosphere', 'Practise speaking English naturally', 'Build confidence and friendships'].map((item) => (
+              {SITE.coffeeSection.benefits.map((item) => (
                 <li key={item} className="flex items-center gap-2 text-sm text-gray-700">
                   <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: BRAND.primary }} aria-hidden="true" />
                   {item}
@@ -191,8 +186,8 @@ export default function Home() {
               ))}
             </ul>
             <blockquote className="border-l-4 pl-4 italic text-gray-500 text-sm mb-5" style={{ borderColor: BRAND.primary }}>
-              "I like English4All. I found new friends, I improved my English, I am happier."
-              <footer className="mt-1 not-italic font-semibold text-xs text-gray-400">— Maria, Student Feedback Survey</footer>
+              "{SITE.testimonials[0].quote}"
+              <footer className="mt-1 not-italic font-semibold text-xs text-gray-400">— {SITE.testimonials[0].author}, {SITE.testimonials[0].source}</footer>
             </blockquote>
             <Link to="/contact" className="inline-flex items-center gap-2 font-semibold text-sm hover:opacity-80 transition-opacity" style={{ color: BRAND.primary }}>
               Learn more <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -205,18 +200,12 @@ export default function Home() {
       <Section className="section-alt">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <Reveal>
-            <Heading label="About us" title="A friendly charity in Leeds" />
+            <Heading label={SITE.aboutSection.label} title={SITE.aboutSection.title} />
             <p className="text-gray-600 leading-relaxed mb-5">
-              English4All in Leeds is a registered charity offering free and paid English lessons for adult speakers of other languages.
-              Our volunteer teachers are qualified ESOL professionals who give their time to help people learn English and build confidence.
+              {SITE.aboutSection.description}
             </p>
             <div className="grid grid-cols-2 gap-3 mb-5">
-              {[
-                { value: '6', label: 'Free classes every Saturday' },
-                { value: 'All', label: 'Levels from ABC to Advanced' },
-                { value: 'Free', label: 'No cost to join Saturday classes' },
-                { value: '100%', label: 'Volunteer-led organisation' },
-              ].map((s) => (
+              {SITE.stats.map((s) => (
                 <div key={s.label} className="rounded-xl p-4 border text-center bg-white" style={{ borderColor: BRAND.softBorder }}>
                   <p className="text-2xl font-extrabold" style={{ color: BRAND.navy }}>{s.value}</p>
                   <p className="text-xs text-gray-500 mt-1 leading-snug">{s.label}</p>
@@ -244,9 +233,9 @@ export default function Home() {
               {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 fill-current" style={{ color: BRAND.primary }} aria-hidden="true" />)}
             </div>
             <blockquote className="text-xl sm:text-2xl font-semibold leading-relaxed mb-4" style={{ color: BRAND.navy }}>
-              "I like English4All. I found new friends, I improved my English, I am happier."
+              "{SITE.testimonials[0].quote}"
             </blockquote>
-            <p className="text-sm font-semibold text-gray-400">— Maria, Student Feedback Survey, March 2018</p>
+            <p className="text-sm font-semibold text-gray-400">— {SITE.testimonials[0].author}, {SITE.testimonials[0].source}, {SITE.testimonials[0].date}</p>
           </div>
         </Reveal>
       </Section>
@@ -255,17 +244,11 @@ export default function Home() {
       <Section className="section-alt">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
           <Reveal>
-            <Heading label="Get involved" title="Volunteering opportunities" />
+            <Heading label={SITE.volunteeringSection.label} title={SITE.volunteeringSection.title} />
             <p className="text-gray-600 leading-relaxed mb-4">
-              Do you have TEFL or ESOL experience? Professional skills in management, marketing, HR, or photography?
-              We welcome anyone who wants to contribute to social cohesion or gain charity experience.
+              {SITE.volunteeringSection.description}
             </p>
-            <Accordion multi items={[
-              { title: '📖 Teaching & Classroom Assistant', content: 'Teach or assist in Saturday ESOL classes. TEFL/ESOL experience welcome but not essential. Just 2 hours on a Saturday.' },
-              { title: '📋 Admin, HR & Governance', content: 'Help with organising classes, managing volunteers, charitable governance, and administration.' },
-              { title: '📣 Marketing, Photography & Web', content: 'Help with social media, communications, photography, and website updates.' },
-              { title: '💰 Fundraising & Finance', content: 'Help us raise funds and manage accounts so we can keep Saturday classes free for everyone.' },
-            ]} />
+            <Accordion multi items={SITE.volunteeringSection.roles} />
             <Link to="/contact"
               className="inline-flex items-center gap-2 font-bold text-white px-6 py-3 rounded-xl mt-6 transition-all hover:opacity-90 hover:scale-105"
               style={{ backgroundColor: BRAND.primary }}>
@@ -274,8 +257,8 @@ export default function Home() {
           </Reveal>
 
           <Reveal delay="delay-100">
-            <Heading label="Community" title="Weekly & monthly activities" />
-            <p className="text-gray-600 leading-relaxed mb-5">We do much more than just classes. Join us for:</p>
+            <Heading label={SITE.activitiesSection.label} title={SITE.activitiesSection.title} />
+            <p className="text-gray-600 leading-relaxed mb-5">{SITE.activitiesSection.description}</p>
             <div className="grid grid-cols-2 gap-3">
               {ACTIVITIES.map((a) => (
                 <div key={a.label} className="bg-white rounded-xl p-3 flex items-center gap-3 border border-gray-200 shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-0.5">
@@ -338,7 +321,7 @@ export default function Home() {
             <h2 className="text-3xl sm:text-4xl font-extrabold mb-3">Join English4All today</h2>
             <p className="text-lg mb-2" style={{ color: 'rgba(255,255,255,0.8)' }}>Free. Friendly. Everyone is welcome.</p>
             <p className="text-sm mb-8" style={{ color: 'rgba(255,255,255,0.55)' }}>
-              New students &amp; volunteers — message WhatsApp {CONTACT.whatsapp}
+              {SITE.hero.announcement}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link to="/join"
