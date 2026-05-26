@@ -1,12 +1,20 @@
-import { ExternalLink, Calendar } from 'lucide-react'
+import { ExternalLink, Calendar, Loader2 } from 'lucide-react'
 import { Section, Heading, Reveal } from '../components/ui'
 import { BRAND, SITE } from '../config'
+import { useArcEvents } from '../hooks/useArcEvents'
+import { urlFor } from '../lib/sanity'
 
 const { arcSocial } = SITE
 
-const realEvents = arcSocial.events.filter((e) => e.enabled !== false)
+function formatDate(dateStr: string) {
+  return new Date(dateStr).toLocaleDateString('en-GB', {
+    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
+  })
+}
 
 export default function ArcSocial() {
+  const { events, loading, error } = useArcEvents()
+
   return (
     <>
       {/* ── HERO ── */}
@@ -46,22 +54,30 @@ export default function ArcSocial() {
           <Heading label="What's on" title={arcSocial.upcomingEventsHeading} />
         </Reveal>
 
-        {realEvents.length === 0 ? (
+        {loading && (
+          <div className="flex justify-center py-16">
+            <Loader2 className="w-8 h-8 animate-spin text-gray-300" />
+          </div>
+        )}
+
+        {!loading && (error || events.length === 0) && (
           <Reveal>
             <div className="rounded-2xl border-2 border-dashed border-gray-300 bg-white p-12 text-center">
               <Calendar className="w-10 h-10 mx-auto mb-4 text-gray-300" />
               <p className="text-gray-400 font-medium">{arcSocial.noEventsMessage}</p>
             </div>
           </Reveal>
-        ) : (
+        )}
+
+        {!loading && events.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {realEvents.map((event, i) => (
-              <Reveal key={i}>
+            {events.map((event) => (
+              <Reveal key={event._id}>
                 <article className="bg-white rounded-2xl overflow-hidden shadow-sm border flex flex-col" style={{ borderColor: BRAND.softBorder }}>
                   {event.poster ? (
                     <div className="aspect-[3/4] overflow-hidden bg-gray-100">
                       <img
-                        src={event.poster}
+                        src={urlFor(event.poster).width(600).fit('max').url()}
                         alt={`${event.title} poster`}
                         className="w-full h-full object-cover"
                       />
@@ -74,7 +90,7 @@ export default function ArcSocial() {
                   )}
                   <div className="p-5 flex flex-col flex-1">
                     <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: BRAND.primary }}>
-                      {event.date}
+                      {formatDate(event.date)}
                     </p>
                     <h3 className="text-lg font-extrabold mb-2 leading-snug" style={{ color: BRAND.navy }}>
                       {event.title}

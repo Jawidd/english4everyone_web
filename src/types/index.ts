@@ -75,3 +75,15 @@ export interface ActivityYearGroup {
   year: number
   activities: Activity[]
 }
+
+// ── Arc Social Events ─────────────────────────────────────────────────────────
+
+/** A single Arc Social event fetched from Sanity */
+export interface ArcEvent {
+  _id: string
+  title: string
+  date: string
+  description?: string
+  poster?: SanityImage
+  ticketUrl?: string
+}

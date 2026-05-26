@@ -39,12 +39,10 @@ export default function Navbar() {
           </NavLink>
             </div>
           </div>
-==
-    
 
           {/* Mobile: quick links flush left + More flush right */}
           <div className="md:hidden flex items-center justify-between w-full">
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-0.5">
               {quickLinks.map((l) => (
                 <NavLink
                   key={l.to}
@@ -52,7 +50,7 @@ export default function Navbar() {
                   end={l.to === '/'}
                   onClick={() => setOpen(false)}
                   className={({ isActive }) =>
-                    `px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-colors ${isActive ? 'text-brand-500 bg-brand-50' : 'text-navy-700 hover:bg-gray-100'}`
+                    `px-1.5 py-1.5 rounded-lg text-[10px] font-semibold whitespace-nowrap transition-colors ${isActive ? 'text-brand-500 bg-brand-50' : 'text-navy-700 hover:bg-gray-100'}`
                   }
                 >
                   {l.label}

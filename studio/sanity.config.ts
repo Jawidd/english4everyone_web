@@ -23,6 +23,13 @@ export default defineConfig({
                   .title('Activities')
                   .defaultOrdering([{ field: 'date', direction: 'desc' }])
               ),
+            S.listItem()
+              .title('Arc Social Events')
+              .child(
+                S.documentTypeList('arcEvent')
+                  .title('Arc Social Events')
+                  .defaultOrdering([{ field: 'date', direction: 'asc' }])
+              ),
           ]),
     }),
     // Removed visionTool to reduce bundle size and improve performance

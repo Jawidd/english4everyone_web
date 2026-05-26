@@ -23,3 +23,15 @@ export const ALL_ACTIVITIES_QUERY = `
   }
 `
 
+/** Arc Social upcoming events — soonest first */
+export const ARC_EVENTS_QUERY = `
+  *[_type == "arcEvent"] | order(date asc) {
+    _id,
+    title,
+    date,
+    description,
+    poster,
+    ticketUrl
+  }
+`
+
