@@ -9,6 +9,7 @@ import NewsPost from './pages/NewsPost'
 import Contact from './pages/Contact'
 import Volunteering from './pages/Volunteering'
 import Activities from './pages/Activities'
+import ArcSocial from './pages/ArcSocial'
 import site from '../site.json'
 
 const enabled = (path: string) => site.navigation.find((n) => n.to === path)?.enabled !== false
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="/contact"      element={enabled('/contact')      ? <Contact />      : <Navigate to="/" replace />} />
           <Route path="/volunteering" element={enabled('/volunteering') ? <Volunteering /> : <Navigate to="/" replace />} />
           <Route path="/activities"   element={enabled('/activities')   ? <Activities />   : <Navigate to="/" replace />} />
+          <Route path="/arc-social"   element={enabled('/arc-social')   ? <ArcSocial />    : <Navigate to="/" replace />} />
         </Route>
       </Routes>
     </BrowserRouter>

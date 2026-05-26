@@ -147,12 +147,31 @@
 
   "navigation": [
     { "to": "/",            "label": "Home",          "enabled": true },
-    { "to": "/activities",  "label": "Activity Feed", "enabled": true },
-    { "to": "/about",       "label": "About",         "enabled": true },
     { "to": "/classes",     "label": "Classes",       "enabled": true },
+    { "to": "/activities",  "label": "Activity Feed", "enabled": true },
+    { "to": "/arc-social",  "label": "Arc Social",    "enabled": true },
+    { "to": "/about",       "label": "About",         "enabled": true },
     { "to": "/join",        "label": "How to Join",   "enabled": true },
     { "to": "/news",        "label": "News",          "enabled": true },
     { "to": "/volunteering","label": "Volunteer",     "enabled": true },
     { "to": "/contact",     "label": "Contact",       "enabled": true }
-  ]
+  ],
+
+  "arcSocial": {
+    "tagline": "Sister project",
+    "heading": "The Arches Social",
+    "description": "The Arches Social is a new community interest company dedicated to bringing Leeds together. Based at The Arches on Brussels Street, we host events, gatherings, and community activities open to everyone.",
+    "upcomingEventsHeading": "Upcoming Events",
+    "noEventsMessage": "No upcoming events right now — check back soon or follow us on social media for updates.",
+    "events": [
+      {
+        "enabled": false,
+        "title": "Example Event — Edit Me",
+        "date": "Saturday 5 July 2026",
+        "description": "A short sentence or two about the event. What is it, who is it for?",
+        "poster": "",
+        "ticketUrl": ""
+      }
+    ]
+  }
 }
