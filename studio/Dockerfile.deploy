@@ -2,17 +2,15 @@ FROM node:22-alpine
 
 WORKDIR /studio
 
-# Copy package files
 COPY package.json ./
-
-# Install dependencies
 RUN npm install
 
-# Copy all studio files
 COPY . .
 
-# Build the studio
+# Build the studio before deploying
 RUN npm run build
 
-# Deploy command
+# SANITY_AUTH_TOKEN must be passed at runtime:
+#   docker run -e SANITY_AUTH_TOKEN=<your_token> <image>
+# Get your token: https://sanity.io/manage → project → API → Tokens → Add token (Deploy Studio)
 CMD ["npm", "run", "deploy"]

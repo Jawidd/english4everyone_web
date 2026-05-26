@@ -15,8 +15,9 @@ export function useArcEvents(): UseArcEventsResult {
   const [error, setError] = useState<Error | null>(null)
 
   useEffect(() => {
+    const today = new Date().toISOString().slice(0, 10)
     sanityClient
-      .fetch<ArcEvent[]>(ARC_EVENTS_QUERY)
+      .fetch<ArcEvent[]>(ARC_EVENTS_QUERY, { today })
       .then(setEvents)
       .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
       .finally(() => setLoading(false))

@@ -83,6 +83,7 @@ export interface ArcEvent {
   _id: string
   title: string
   date: string
+  expiryDate?: string
   description?: string
   poster?: SanityImage
   ticketUrl?: string

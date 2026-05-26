@@ -23,12 +23,13 @@ export const ALL_ACTIVITIES_QUERY = `
   }
 `
 
-/** Arc Social upcoming events — soonest first */
+/** Arc Social events — soonest first, hidden after expiryDate */
 export const ARC_EVENTS_QUERY = `
-  *[_type == "arcEvent"] | order(date asc) {
+  *[_type == "arcEvent" && (!defined(expiryDate) || expiryDate >= $today)] | order(date asc) {
     _id,
     title,
     date,
+    expiryDate,
     description,
     poster,
     ticketUrl

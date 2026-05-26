@@ -38,18 +38,29 @@ export const arcEvent = defineType({
       type: 'url',
       description: 'Link to the ticket website (leave empty if free or no booking needed)',
     }),
+    defineField({
+      name: 'expiryDate',
+      title: 'Hide After Date',
+      type: 'date',
+      options: { dateFormat: 'YYYY-MM-DD' },
+      description: 'The event will stop appearing on the website after this date. Leave empty to keep it visible forever.',
+    }),
   ],
 
   preview: {
     select: {
       title: 'title',
       date: 'date',
+      expiryDate: 'expiryDate',
       poster: 'poster',
     },
-    prepare({ title, date, poster }) {
+    prepare({ title, date, expiryDate, poster }) {
+      const fmt = (d: string) => new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
+      const today = new Date().toISOString().slice(0, 10)
+      const expired = expiryDate && expiryDate < today
       return {
-        title,
-        subtitle: date ? new Date(date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : 'No date set',
+        title: expired ? `⏱ ${title}` : title,
+        subtitle: [date ? fmt(date) : 'No date', expiryDate ? `· hides after ${fmt(expiryDate)}` : ''].filter(Boolean).join(' '),
         media: poster,
       }
     },
