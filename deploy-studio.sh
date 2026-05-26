@@ -1,41 +1,20 @@
 #!/usr/bin/env bash
 set -e
 
-echo "🚀 Deploying Sanity Studio using Docker..."
+# Load SANITY_DEPLOY_STUDIO_TOKEN from .env if not already set
+if [ -f .env ]; then
+  export $(grep -v '^#' .env | grep 'SANITY_DEPLOY_STUDIO_TOKEN' | xargs)
+fi
 
-# Create a temporary deployment Dockerfile
-cat > studio/Dockerfile.deploy << 'EOF'
-FROM node:22-alpine
+if [ -z "$SANITY_DEPLOY_STUDIO_TOKEN" ]; then
+  echo "Error: SANITY_DEPLOY_STUDIO_TOKEN is not set in .env"
+  exit 1
+fi
 
-WORKDIR /studio
-
-# Copy package files
-COPY package.json ./
-
-# Install dependencies
-RUN npm install
-
-# Copy all studio files
-COPY . .
-
-# Build the studio
-RUN npm run build
-
-# Deploy command
-CMD ["npm", "run", "deploy"]
-EOF
-
-# Build the deployment image
-echo "🔨 Building deployment Docker image..."
+echo "Building deployment Docker image..."
 docker build -f studio/Dockerfile.deploy -t english4all-studio-deploy ./studio
 
-# Run the deployment
-echo "☁️  Deploying to Sanity hosting..."
-docker run --rm english4all-studio-deploy
+echo "Deploying to Sanity hosting..."
+docker run --rm -e SANITY_AUTH_TOKEN="$SANITY_DEPLOY_STUDIO_TOKEN" english4all-studio-deploy
 
-# Clean up
-echo "🧹 Cleaning up..."
-rm -f studio/Dockerfile.deploy
-
-echo "✅ Studio deployed successfully!"
-echo "🌐 Access your studio at: https://english4all-leeds.sanity.studio"
+echo "Done — studio live at: https://english4all-leeds.sanity.studio"
