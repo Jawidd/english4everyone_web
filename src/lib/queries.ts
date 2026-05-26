@@ -23,9 +23,9 @@ export const ALL_ACTIVITIES_QUERY = `
   }
 `
 
-/** Arc Social events — soonest first, hidden after expiryDate */
+/** Arc Social events — soonest first, hidden after expiryDate (defaults to event date) */
 export const ARC_EVENTS_QUERY = `
-  *[_type == "arcEvent" && (!defined(expiryDate) || expiryDate >= $today)] | order(date asc) {
+  *[_type == "arcEvent" && (expiryDate >= $today || (!defined(expiryDate) && date >= $today))] | order(date asc) {
     _id,
     title,
     date,
