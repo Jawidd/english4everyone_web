@@ -20,14 +20,14 @@ export default function ArcSocial() {
       {/* ── HERO ── */}
       <section className="relative min-h-[340px] flex items-end overflow-hidden">
         <img
-          src="/arc-cover.jpg"
+          src="/images/arc-cover.jpg"
           alt="The Arches Social"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.25) 60%, transparent 100%)' }} />
         <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 pb-10 pt-24 flex items-end gap-6">
           <img
-            src="/arc-logo.png"
+            src="/images/arc-logo.png"
             alt="The Arches Social logo"
             className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl shadow-xl object-contain bg-white p-1 shrink-0"
           />
