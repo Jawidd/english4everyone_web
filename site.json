@@ -1,39 +1,66 @@
 {
-  "_readme": "This file controls all editable content on the website. Change anything here and it will update on the site after the next deploy. Do NOT remove any keys — only change the values.",
+  "NOTE_how_to_edit": "INSTRUCTIONS: Edit the values in double quotes after each colon. Keys that start with NOTE_ are instructions for you — do not change them. Do NOT remove any keys.",
 
   "org": {
+    "NOTE_section": "Organisation's legal details — shown in the footer at the bottom of every page.",
+    "NOTE_name": "The official registered charity name. Shown on: Footer copyright line, Footer legal text.",
     "name": "English4All in Leeds",
+    "NOTE_charityNumber": "Your Charity Commission registration number. Shown on: Footer legal text.",
     "charityNumber": "1175775",
+    "NOTE_vat": "VAT number. Shown on: Footer legal text.",
     "vat": "460246413",
+    "NOTE_principal": "Name of the principal contact. Shown on: Footer ('Main contact: ... (Principal)').",
     "principal": "Nick Conibear",
+    "NOTE_jurisdiction": "Legal jurisdiction. Shown on: Footer legal text.",
     "jurisdiction": "England & Wales"
   },
 
   "contact": {
-    "phoneDisplay": "07535 867376",
-    "phone": "+44 7535 867376",
-    "phoneTel": "+447535867376",
-    "whatsapp": "+447535867376",
+    "NOTE_section": "All contact details. There are two phone numbers — one for general enquiries and one for the principal. They are currently the same number. Change each independently if they ever differ.",
+
+    "NOTE_phoneGeneral": "General enquiry number — used for WhatsApp buttons and phone links. Shown on: Home page hero, Home page bottom CTA, Footer, Classes page, FloatingContact button. Format must include country code: +44 7535 867376",
+    "phoneGeneral": "+44 7535 867376",
+
+    "NOTE_phonePrincipal": "Principal's direct number — stored separately so it can differ from the general number. Shown on: Volunteer page contact card. If same as general, enter the same number.",
+    "phonePrincipal": "+44 7535 867376",
+
+    "NOTE_email": "Main enquiry email address. Shown on: Home page hero contact bar, Footer, Volunteer page contact card.",
     "email": "enquiries@english4allinleeds.com",
+
     "address": {
+      "NOTE_section": "Physical venue address — shown on: Footer, Contact page, Classes page, Home page 'How to Join' step 2.",
+      "NOTE_line1": "Building or venue name. Also appears in the 'How to Join' steps on the Home page — if you change the venue, update 'howToJoinSteps' step 2 below as well.",
       "line1": "The Arches",
+      "NOTE_line2": "Street address. Shown on: Footer, Contact page, Classes page.",
       "line2": "56–58 Brussels St",
+      "NOTE_city": "City name. Shown on: Footer, Contact page, Classes page.",
       "city": "Leeds",
+      "NOTE_postcode": "Postcode. Shown on: Footer, Contact page, Classes page.",
       "postcode": "LS9 8AB"
     }
   },
 
   "social": {
+    "NOTE_section": "Social media profile links — the icon buttons shown in: Home page hero, Home page 'Stay connected' section, Footer.",
+    "NOTE_facebook": "Paste the full Facebook page URL from your browser.",
     "facebook": "https://www.facebook.com/English4AllLeeds/",
+    "NOTE_youtube": "Paste the full YouTube channel URL from your browser.",
     "youtube": "https://www.youtube.com/channel/UCFXjqe8_5wYpkB9JexyiLrA?view_as=subscriber",
+    "NOTE_instagram": "Paste the full Instagram profile URL from your browser.",
     "instagram": "https://www.instagram.com/e4a_online/"
   },
 
   "hero": {
+    "NOTE_section": "The big banner at the very top of the Home page.",
+    "NOTE_announcement": "The small red pill badge in the hero. Also reused as the text above the 'Join Today' button at the bottom of the Home page.",
     "announcement": "New students & volunteers — join free, message WhatsApp",
+    "NOTE_headingLine1": "First line of the large heading on the Home page (shown in white).",
     "headingLine1": "Free English",
+    "NOTE_headingLine2": "Second line of the large heading (shown in red).",
     "headingLine2": "classes in Leeds",
+    "NOTE_subheading": "Medium-sized sentence below the main heading.",
     "subheading": "Free and paid English lessons for adult speakers of other languages.",
+    "NOTE_tagline": "Small grey line below the subheading.",
     "tagline": "All levels welcome · Every Saturday · Free to join"
   },
 
@@ -43,6 +70,7 @@
     { "value": "Free", "label": "No cost to join Saturday classes" },
     { "value": "100%", "label": "Volunteer-led organisation" }
   ],
+  "NOTE_stats": "The four highlight boxes in the About section on the Home page. 'value' is the large word/number shown in bold, 'label' is the small description below it.",
 
   "testimonials": [
     {
@@ -52,11 +80,17 @@
       "date": "March 2018"
     }
   ],
+  "NOTE_testimonials": "Shown on the Home page in two places: as a small side-quote in the Coffee section, and as a large centred quote block. Only the first item in the list is shown. To change the quote, edit the first block.",
 
   "coffeeSection": {
+    "NOTE_section": "The 'Coffee & Conversation' section on the Home page — the block with a photo on the left and text on the right.",
+    "NOTE_label": "Small red uppercase label above the title. Shown on: Home page Coffee section.",
     "label": "Every Saturday after class",
+    "NOTE_title": "Main heading of the Coffee section. Shown on: Home page Coffee section.",
     "title": "Coffee & Conversation",
+    "NOTE_description": "Paragraph of text in the Coffee section. Shown on: Home page.",
     "description": "Every week after class we serve hot and cold drinks. Bring your own drinks for a small table charge. Improve your English, improve your confidence — you might even make some new friends!",
+    "NOTE_benefits": "The bullet-point list in the Coffee section. Add or remove lines inside the [ ]. Shown on: Home page.",
     "benefits": [
       "Free hot and cold drinks after class",
       "Relaxed, friendly atmosphere",
@@ -66,8 +100,12 @@
   },
 
   "aboutSection": {
+    "NOTE_section": "The 'About us' section on the Home page.",
+    "NOTE_label": "Small red uppercase label above the title. Shown on: Home page About section.",
     "label": "About us",
+    "NOTE_title": "Main heading of the About section. Shown on: Home page.",
     "title": "A friendly charity in Leeds",
+    "NOTE_description": "Paragraph of text describing the organisation. Shown on: Home page About section.",
     "description": "English4All in Leeds is a registered charity offering free and paid English lessons for adult speakers of other languages. Our volunteer teachers are qualified ESOL professionals who give their time to help people learn English and build confidence."
   },
 
@@ -76,11 +114,17 @@
     { "title": "Come to class", "detail": "Saturday at The Arches, Leeds" },
     { "title": "Start learning","detail": "We find the right level for you" }
   ],
+  "NOTE_howToJoinSteps": "The three numbered steps in the 'How to Join' card on the Home page. 'title' is the bold step name, 'detail' is the small description. Shown on: Home page. NOTE — step 2 contains the venue name; if you change the address above, update step 2 'detail' here as well.",
 
   "volunteeringSection": {
+    "NOTE_section": "The volunteering section on the Home page — heading, intro text, and the expandable accordion panels.",
+    "NOTE_label": "Small red uppercase label above the title. Shown on: Home page.",
     "label": "Get involved",
+    "NOTE_title": "Main heading. Shown on: Home page volunteering section.",
     "title": "Volunteering opportunities",
+    "NOTE_description": "Paragraph above the accordion panels. Shown on: Home page.",
     "description": "Do you have TEFL or ESOL experience? Professional skills in management, marketing, HR, or photography? We welcome anyone who wants to contribute to social cohesion or gain charity experience.",
+    "NOTE_roles": "Each item is one expandable panel in the accordion. 'title' is the clickable heading, 'content' is the text inside. Shown on: Home page. Add or remove items inside the [ ].",
     "roles": [
       {
         "title": "📖 Teaching & Classroom Assistant",
@@ -102,9 +146,14 @@
   },
 
   "activitiesSection": {
+    "NOTE_section": "The community activities grid on the Home page — bottom-right column alongside volunteering.",
+    "NOTE_label": "Small red uppercase label above the title. Shown on: Home page.",
     "label": "Community",
+    "NOTE_title": "Main heading. Shown on: Home page activities grid.",
     "title": "Weekly & monthly activities",
+    "NOTE_description": "Short intro line above the activity tiles. Shown on: Home page.",
     "description": "We do much more than just classes. Join us for:",
+    "NOTE_items": "Each item is one tile in the activities grid. Change 'emoji' and 'label'. Add or remove items inside the [ ]. Shown on: Home page.",
     "items": [
       { "emoji": "☕", "label": "Coffee Gatherings" },
       { "emoji": "🎬", "label": "Film Club" },
@@ -118,6 +167,8 @@
   },
 
   "classes": {
+    "NOTE_section": "Saturday class timetable — shown on the Home page timetable and the Classes page.",
+    "NOTE_sessions": "Each session is a time block (Morning / Afternoon). Change 'time' to update when classes run. Change 'level' and 'tag' to rename the class levels. Shown on: Home page, Classes page.",
     "sessions": [
       {
         "label": "Morning",
@@ -138,6 +189,7 @@
         ]
       }
     ],
+    "NOTE_paidFeatures": "Bullet-point list on the Classes page under 'Paid Classes'. Add or remove items inside the [ ]. Shown on: Classes page only.",
     "paidFeatures": [
       "Level assessment before you start",
       "Regular homework to practise at home",
@@ -145,33 +197,32 @@
     ]
   },
 
-  "navigation": [
-    { "to": "/",            "label": "Home",          "enabled": true },
-    { "to": "/classes",     "label": "Classes",       "enabled": true },
-    { "to": "/activities",  "label": "Activity Feed", "enabled": true },
-    { "to": "/arc-social",  "label": "Arc Social",    "enabled": true },
-    { "to": "/about",       "label": "About",         "enabled": true },
-    { "to": "/join",        "label": "How to Join",   "enabled": true },
-    { "to": "/news",        "label": "News",          "enabled": true },
-    { "to": "/volunteering","label": "Volunteer",     "enabled": true },
-    { "to": "/contact",     "label": "Contact",       "enabled": true }
-  ],
+  "navigation": {
+    "NOTE_section": "The navigation menu shown at the top of every page. ONLY change the 'label' text. Do NOT change the 'to' values — those are page addresses the code relies on. Set 'enabled' to false to completely hide a page. The first 4 enabled items appear as quick-tabs on mobile; the rest go into the 'More' drawer.",
+    "items": [
+      { "to": "/",            "label": "Home",          "enabled": true },
+      { "to": "/classes",     "label": "Classes",       "enabled": true },
+      { "to": "/activities",  "label": "Activity Feed", "enabled": true },
+      { "to": "/arc-social",  "label": "Arc Social",    "enabled": true },
+      { "to": "/about",       "label": "About",         "enabled": true },
+      { "to": "/join",        "label": "How to Join",   "enabled": true },
+      { "to": "/news",        "label": "News",          "enabled": true },
+      { "to": "/volunteering","label": "Volunteer",     "enabled": true },
+      { "to": "/contact",     "label": "Contact",       "enabled": true }
+    ]
+  },
 
   "arcSocial": {
+    "NOTE_section": "Content for the Arc Social page (/arc-social). Events are managed in Sanity Studio, not here.",
+    "NOTE_tagline": "Small label above the heading in the Arc Social hero. Shown on: Arc Social page.",
     "tagline": "Sister project",
+    "NOTE_heading": "Main page heading. Shown on: Arc Social page hero.",
     "heading": "The Arches Social",
+    "NOTE_description": "Description paragraph shown in the Arc Social hero panel alongside the logo. Shown on: Arc Social page.",
     "description": "The Arches Social is a new community interest company dedicated to bringing Leeds together. Based at The Arches on Brussels Street, we host events, gatherings, and community activities open to everyone.",
+    "NOTE_upcomingEventsHeading": "Heading above the events grid. Shown on: Arc Social page.",
     "upcomingEventsHeading": "Upcoming Events",
-    "noEventsMessage": "No upcoming events right now — check back soon or follow us on social media for updates.",
-    "events": [
-      {
-        "enabled": false,
-        "title": "Example Event — Edit Me",
-        "date": "Saturday 5 July 2026",
-        "description": "A short sentence or two about the event. What is it, who is it for?",
-        "poster": "",
-        "ticketUrl": ""
-      }
-    ]
+    "NOTE_noEventsMessage": "Message shown when there are no events in Sanity Studio. Shown on: Arc Social page when events list is empty. To add events, go to Sanity Studio → Arc Social Events.",
+    "noEventsMessage": "No upcoming events right now — check back soon or follow us on social media for updates."
   }
 }

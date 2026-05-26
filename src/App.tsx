@@ -12,7 +12,7 @@ import Activities from './pages/Activities'
 import ArcSocial from './pages/ArcSocial'
 import site from '../site.json'
 
-const enabled = (path: string) => site.navigation.find((n) => n.to === path)?.enabled !== false
+const enabled = (path: string) => site.navigation.items.find((n) => n.to === path)?.enabled !== false
 
 export default function App() {
   return (
