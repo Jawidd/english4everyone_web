@@ -203,7 +203,7 @@
       { "to": "/",            "label": "Home",          "enabled": true },
       { "to": "/classes",     "label": "Classes",       "enabled": true },
       { "to": "/activities",  "label": "Activity Feed", "enabled": true },
-      { "to": "/arc-social",  "label": "Arc Social",    "enabled": true },
+      { "to": "/arc-social",  "label": "Arches Social",    "enabled": true },
       { "to": "/about",       "label": "About",         "enabled": true },
       { "to": "/join",        "label": "How to Join",   "enabled": true },
       { "to": "/news",        "label": "News",          "enabled": true },
