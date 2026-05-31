@@ -25,7 +25,7 @@ export default function Classes() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <Reveal>
             <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-              <img src="/images/07-teacher-students.png" alt="Teacher working with students at English4All Leeds"
+              <img src="/images/06-students.png" alt="Students at English4All Leeds"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
             </div>
           </Reveal>
@@ -177,40 +177,24 @@ export default function Classes() {
         </div>
       </Section>
 
-      {/* Three small photos after timetable */}
+      {/* Photos after timetable - using unique photos 7, 8, 9 */}
       <Section className="section-alt">
         <div className="grid grid-cols-4 gap-4">
-          <Reveal>
-            <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-              <img src="/images/06-students.png" alt="Students at English4All Leeds"
+          <Reveal className="col-span-2">
+            <div className="rounded-2xl overflow-hidden shadow-md aspect-[3/2]">
+              <img src="/images/07-teacher-students.png" alt="Teacher working with students"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
             </div>
           </Reveal>
-          <Reveal delay="delay-100" className="col-span-2">
-            <div className="rounded-2xl overflow-hidden shadow-md aspect-[3/2]">
-              <img src="/images/07-teacher-students.png" alt="Teacher working with students"
+          <Reveal delay="delay-100">
+            <div className="rounded-2xl overflow-hidden shadow-md h-full">
+              <img src="/images/08-teacher.png" alt="Teacher at English4All Leeds"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
             </div>
           </Reveal>
           <Reveal delay="delay-200">
             <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
               <img src="/images/09-volunteers.png" alt="Volunteers at English4All Leeds"
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
-            </div>
-          </Reveal>
-        </div>
-        
-        {/* Additional random placement photos */}
-        <div className="grid grid-cols-5 gap-3 mt-6">
-          <Reveal delay="delay-300" className="col-span-3">
-            <div className="rounded-xl overflow-hidden shadow-md aspect-[16/9]">
-              <img src="/images/08-teacher.png" alt="Teacher at English4All Leeds"
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
-            </div>
-          </Reveal>
-          <Reveal delay="delay-400" className="col-span-2">
-            <div className="rounded-xl overflow-hidden shadow-md aspect-[4/5]">
-              <img src="/images/09-volunteers.png" alt="Volunteers helping students"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
             </div>
           </Reveal>
