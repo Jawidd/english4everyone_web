@@ -22,7 +22,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about"        element={enabled('/about')        ? <About />        : <Navigate to="/" replace />} />
           <Route path="/classes"      element={enabled('/classes')      ? <Classes />      : <Navigate to="/" replace />} />
-          <Route path="/join"         element={enabled('/join')         ? <Join />         : <Navigate to="/" replace />} />
+          <Route path="/join"         element={enabled('/join')         ? <Navigate to="/contact" replace /> : <Navigate to="/" replace />} />
           <Route path="/news"         element={enabled('/news')         ? <News />         : <Navigate to="/" replace />} />
           <Route path="/news/:slug"   element={enabled('/news')         ? <NewsPost />     : <Navigate to="/" replace />} />
           <Route path="/contact"      element={enabled('/contact')      ? <Contact />      : <Navigate to="/" replace />} />

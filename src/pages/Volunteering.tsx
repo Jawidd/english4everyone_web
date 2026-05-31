@@ -12,7 +12,7 @@ export default function Volunteering() {
     <>
       <PageHero title={data.title} subtitle={data.intro} />
 
-      {/* Hero photos — three across the top */}
+      {/* Hero photos — large left, full-height right */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-10 grid grid-cols-3 gap-4">
         <Reveal className="col-span-2">
           <div className="rounded-2xl overflow-hidden shadow-md aspect-[16/9]">
@@ -21,7 +21,7 @@ export default function Volunteering() {
           </div>
         </Reveal>
         <Reveal delay="delay-100">
-          <div className="rounded-2xl overflow-hidden shadow-md aspect-[16/9]">
+          <div className="rounded-2xl overflow-hidden shadow-md h-full">
             <img src="/images/teacher1.png" alt="Volunteer teacher"
               className="w-full h-full object-cover" />
           </div>

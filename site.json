@@ -205,10 +205,10 @@
       { "to": "/activities",  "label": "Socials",       "enabled": true },
       { "to": "/arc-social",  "label": "Arches Social",    "enabled": true },
       { "to": "/about",       "label": "About",         "enabled": true },
-      { "to": "/join",        "label": "How to Join",   "enabled": true },
+      { "to": "/join",        "label": "Contact / Join",   "enabled": false },
       { "to": "/news",        "label": "News",          "enabled": true },
       { "to": "/volunteering","label": "Volunteer",     "enabled": true },
-      { "to": "/contact",     "label": "Contact",       "enabled": true }
+      { "to": "/contact",     "label": "Contact / Join",       "enabled": true }
     ]
   },
 

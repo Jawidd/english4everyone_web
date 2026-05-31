@@ -57,39 +57,35 @@ export default function Classes() {
         </div>
       </Section>
 
-      {/* 4-photo masonry grid — fills bottom-left gap */}
+      {/* 4-photo layout: 1 large left, 2 small right, then timetable, then 3 small photos */}
       <Section className="section-alt">
-        <div className="grid grid-cols-3 gap-4">
-          {/* Row 1: large left + small right */}
+        <div className="grid grid-cols-3 gap-4 mb-8">
+          {/* Large photo on left */}
           <Reveal className="col-span-2">
             <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
               <img src="/images/classroom1.jpg" alt="Saturday ESOL class at The Arches"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
             </div>
           </Reveal>
-          <Reveal delay="delay-100">
-            <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-              <img src="/images/classroom2.jpg" alt="Students working in class"
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
-            </div>
-          </Reveal>
-          {/* Row 2: small left (fills bottom-left gap) + large right */}
-          <Reveal delay="delay-150">
-            <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-              <img src="/images/students1.png" alt="Students at English4All Leeds"
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
-            </div>
-          </Reveal>
-          <Reveal delay="delay-200" className="col-span-2">
-            <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-              <img src="/images/classroom3.jpg" alt="Classroom at The Arches"
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
-            </div>
-          </Reveal>
+          {/* Two small photos on right */}
+          <div className="space-y-4">
+            <Reveal delay="delay-100">
+              <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
+                <img src="/images/classroom2.jpg" alt="Students working in class"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+              </div>
+            </Reveal>
+            <Reveal delay="delay-150">
+              <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
+                <img src="/images/students1.png" alt="Students at English4All Leeds"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+              </div>
+            </Reveal>
+          </div>
         </div>
       </Section>
 
-      {/* Timetable + paid classes — shown second */}
+      {/* Timetable + paid classes — now third section */}
       <Section className="bg-white">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           <Reveal>
@@ -171,13 +167,37 @@ export default function Classes() {
                     </div>
                   ))}
                 </div>
-                <Link to="/join" className="inline-flex items-center gap-2 bg-white font-bold text-sm px-5 py-2.5 rounded-xl transition-all hover:scale-105"
+                <Link to="/contact" className="inline-flex items-center gap-2 bg-white font-bold text-sm px-5 py-2.5 rounded-xl transition-all hover:scale-105"
                   style={{ color: BRAND.primary }}>
-                  How to Join <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                  Contact Us <ArrowRight className="w-4 h-4" aria-hidden="true" />
                 </Link>
               </div>
             </Reveal>
           </div>
+        </div>
+      </Section>
+
+      {/* Three small photos after timetable */}
+      <Section className="section-alt">
+        <div className="grid grid-cols-3 gap-4">
+          <Reveal>
+            <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
+              <img src="/images/classroom3.jpg" alt="Classroom at The Arches"
+                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+            </div>
+          </Reveal>
+          <Reveal delay="delay-100">
+            <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
+              <img src="/images/teacher-students2.png" alt="Teacher working with students"
+                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+            </div>
+          </Reveal>
+          <Reveal delay="delay-200">
+            <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
+              <img src="/images/allstudents.png" alt="All students at English4All Leeds"
+                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+            </div>
+          </Reveal>
         </div>
       </Section>
     </>
