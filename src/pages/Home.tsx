@@ -47,7 +47,7 @@ export default function Home() {
               <SocialLinks theme="dark" variant="icon" />
             </div>
             <div className="rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
-              <img src="/images/allstudents-cover.png" alt="Students learning English at English4All Leeds"
+              <img src={SITE.photos.homeHero} alt="Students learning English at English4All Leeds"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
             </div>
           </div>
@@ -165,7 +165,7 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <Reveal>
             <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-              <img src="/images/coffee1.jpg" alt="Coffee and conversation after class"
+              <img src={SITE.photos.homeCoffee} alt="Coffee and conversation after class"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
             </div>
           </Reveal>
@@ -218,7 +218,7 @@ export default function Home() {
           </Reveal>
           <Reveal delay="delay-100">
             <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-              <img src="/images/coffee2.jpg" alt="English4All Leeds community"
+              <img src={SITE.photos.homeAbout} alt="English4All Leeds community"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
             </div>
           </Reveal>

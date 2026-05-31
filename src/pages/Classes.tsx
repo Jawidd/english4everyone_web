@@ -2,7 +2,9 @@ import { Link } from 'react-router-dom'
 import { MapPin, Clock, Award, ArrowRight, MessageCircle } from 'lucide-react'
 import PageHero from '../components/PageHero'
 import { Section, Heading, Reveal } from '../components/ui'
-import { BRAND, CONTACT, CLASS_SESSIONS, PAID_CLASS_FEATURES } from '../config'
+import { BRAND, CONTACT, CLASS_SESSIONS, PAID_CLASS_FEATURES, SITE } from '../config'
+
+const { photos } = SITE
 
 export default function Classes() {
   return (
@@ -25,7 +27,7 @@ export default function Classes() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <Reveal>
             <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-              <img src="/images/06-students.png" alt="Students at English4All Leeds"
+              <img src={photos.classesHero} alt="Students at English4All Leeds"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
             </div>
           </Reveal>
@@ -63,7 +65,7 @@ export default function Classes() {
           {/* Large photo on left */}
           <Reveal className="col-span-2">
             <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-              <img src="/images/03-classroom.jpg" alt="Saturday ESOL class at The Arches"
+              <img src={photos.classesGrid1} alt="Saturday ESOL class at The Arches"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
             </div>
           </Reveal>
@@ -71,13 +73,13 @@ export default function Classes() {
           <div className="space-y-4">
             <Reveal delay="delay-100">
               <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-                <img src="/images/04-classroom.jpg" alt="Students working in class"
+                <img src={photos.classesGrid2} alt="Students working in class"
                   className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
               </div>
             </Reveal>
             <Reveal delay="delay-150">
               <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-                <img src="/images/05-classroom.jpg" alt="Classroom at English4All Leeds"
+                <img src={photos.classesGrid3} alt="Classroom at English4All Leeds"
                   className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
               </div>
             </Reveal>
@@ -183,14 +185,14 @@ export default function Classes() {
           {/* Col 1: large photo */}
           <Reveal className="h-full">
             <div className="rounded-2xl overflow-hidden shadow-md h-full">
-              <img src="/images/07-teacher-students.png" alt="Teacher working with students"
+              <img src={photos.classesBottom1} alt="Teacher working with students"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
             </div>
           </Reveal>
           {/* Col 2: tall portrait photo */}
           <Reveal delay="delay-100" className="h-full">
             <div className="rounded-2xl overflow-hidden shadow-md h-full">
-              <img src="/images/08-teacher.png" alt="Teacher at English4All Leeds"
+              <img src={photos.classesBottom2} alt="Teacher at English4All Leeds"
                 className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105" />
             </div>
           </Reveal>
@@ -198,13 +200,13 @@ export default function Classes() {
           <div className="grid grid-rows-2 gap-4 h-full">
             <Reveal delay="delay-150" className="h-full">
               <div className="rounded-2xl overflow-hidden shadow-md h-full">
-                <img src="/images/09-volunteers.png" alt="Volunteers at English4All Leeds"
+                <img src={photos.classesBottom3} alt="Volunteers at English4All Leeds"
                   className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
               </div>
             </Reveal>
             <Reveal delay="delay-200" className="h-full">
               <div className="rounded-2xl overflow-hidden shadow-md h-full">
-                <img src="/images/students1.png" alt="Students at English4All Leeds"
+                <img src={photos.classesBottom4} alt="Students at English4All Leeds"
                   className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
               </div>
             </Reveal>

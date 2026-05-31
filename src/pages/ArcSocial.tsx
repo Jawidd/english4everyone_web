@@ -1,6 +1,8 @@
 import { ExternalLink, Calendar, Loader2 } from 'lucide-react'
 import { Section, Heading, Reveal } from '../components/ui'
 import { BRAND, SITE } from '../config'
+
+const { photos } = SITE
 import { useArcEvents } from '../hooks/useArcEvents'
 import { urlFor } from '../lib/sanity'
 
@@ -24,7 +26,7 @@ export default function ArcSocial() {
           {/* Photo — left column on desktop, top on mobile */}
           <div className="relative lg:w-1/2 h-64 lg:h-auto overflow-hidden">
             <img
-              src="/images/arches-cover.jpg"
+              src={photos.arcSocialCover}
               alt="The Arches Social community"
               className="absolute inset-0 w-full h-full object-cover object-top"
             />

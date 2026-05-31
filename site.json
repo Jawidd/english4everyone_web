@@ -197,18 +197,72 @@
     ]
   },
 
+  "photos": {
+    "NOTE_section": "Photo file paths used throughout the site. To swap a photo: upload the new file to the 'public/images/' folder, then update the path here. Any format works — .jpg, .jpeg, .png, .webp.",
+
+    "NOTE_homeHero": "Large photo on the right side of the home page hero. Shown on: Home page.",
+    "homeHero": "/images/allstudents-cover.png",
+    "NOTE_homeCoffee": "Photo in the Coffee & Conversation section. Shown on: Home page.",
+    "homeCoffee": "/images/coffee1.jpg",
+    "NOTE_homeAbout": "Photo in the About us section. Shown on: Home page.",
+    "homeAbout": "/images/coffee2.jpg",
+
+    "NOTE_aboutLeft": "Left photo on the About page. Shown on: About page.",
+    "aboutLeft": "/images/01-outsideview.jpg",
+    "NOTE_aboutRight": "Right photo on the About page. Shown on: About page.",
+    "aboutRight": "/images/02-classdoor.jpg",
+
+    "NOTE_contactTop": "Top photo in the left column of the Contact page. Shown on: Contact page.",
+    "contactTop": "/images/01-outsideview.jpg",
+    "NOTE_contactBottom": "Bottom photo in the left column of the Contact page. Shown on: Contact page.",
+    "contactBottom": "/images/02-classdoor.jpg",
+
+    "NOTE_classesHero": "Photo in the 'Everyone welcome' section. Shown on: Classes page.",
+    "classesHero": "/images/06-students.png",
+    "NOTE_classesGrid1": "Top-left large photo in the classroom grid. Shown on: Classes page.",
+    "classesGrid1": "/images/03-classroom.jpg",
+    "NOTE_classesGrid2": "Top-right photo in the classroom grid. Shown on: Classes page.",
+    "classesGrid2": "/images/04-classroom.jpg",
+    "NOTE_classesGrid3": "Bottom-left photo in the classroom grid. Shown on: Classes page.",
+    "classesGrid3": "/images/05-classroom.jpg",
+    "NOTE_classesGrid4": "Bottom-right large photo in the classroom grid. Shown on: Classes page.",
+    "classesGrid4": "/images/students1.png",
+    "NOTE_classesBottom1": "Large left photo in the bottom photo row. Shown on: Classes page.",
+    "classesBottom1": "/images/07-teacher-students.png",
+    "NOTE_classesBottom2": "Portrait (tall) photo in the bottom row — centre column. Shown on: Classes page.",
+    "classesBottom2": "/images/08-teacher.png",
+    "NOTE_classesBottom3": "Top photo of the stacked pair on the right. Shown on: Classes page.",
+    "classesBottom3": "/images/09-volunteers.png",
+    "NOTE_classesBottom4": "Bottom photo of the stacked pair on the right. Shown on: Classes page.",
+    "classesBottom4": "/images/10-teacher-students.png",
+
+    "NOTE_volunteerTopLeft": "Large top-left photo on the Volunteer page. Shown on: Volunteer page.",
+    "volunteerTopLeft": "/images/09-volunteers.png",
+    "NOTE_volunteerTopRight": "Top-right photo on the Volunteer page. Shown on: Volunteer page.",
+    "volunteerTopRight": "/images/08-teacher.png",
+    "NOTE_volunteerMid1": "First photo in the mid-page row. Shown on: Volunteer page.",
+    "volunteerMid1": "/images/03-classroom.jpg",
+    "NOTE_volunteerMid2": "Second photo in the mid-page row. Shown on: Volunteer page.",
+    "volunteerMid2": "/images/10-teacher-students.png",
+    "NOTE_volunteerMid3": "Third photo in the mid-page row. Shown on: Volunteer page.",
+    "volunteerMid3": "/images/11-teacher-students.png",
+
+    "NOTE_arcSocialCover": "Full-width hero photo on the Arches Social page. Shown on: Arches Social page.",
+    "arcSocialCover": "/images/arches-cover.jpg"
+  },
+
   "navigation": {
-    "NOTE_section": "The navigation menu shown at the top of every page. ONLY change the 'label' text. Do NOT change the 'to' values — those are page addresses the code relies on. Set 'enabled' to false to completely hide a page. The first 4 enabled items appear as quick-tabs on mobile; the rest go into the 'More' drawer.",
+    "NOTE_section": "The navigation menu shown at the top of every page. ONLY change the 'label' text. Do NOT change the 'to' values — those are page addresses the code relies on. Set 'enabled' to false to completely hide a page. On mobile the first 5 items in this list (that are enabled) appear as quick-tabs; the rest go into the 'More' drawer.",
     "items": [
-      { "to": "/",            "label": "Home",          "enabled": true },
-      { "to": "/classes",     "label": "Classes",       "enabled": true },
-      { "to": "/activities",  "label": "Socials",       "enabled": true },
-      { "to": "/arc-social",  "label": "Arches Social",    "enabled": true },
-      { "to": "/about",       "label": "About",         "enabled": true },
-      { "to": "/join",        "label": "Contact / Join",   "enabled": false },
-      { "to": "/news",        "label": "News",          "enabled": true },
-      { "to": "/volunteering","label": "Volunteer",     "enabled": true },
-      { "to": "/contact",     "label": "Contact / Join",       "enabled": true }
+      { "to": "/",            "label": "Home",           "enabled": true },
+      { "to": "/classes",     "label": "Classes",        "enabled": true },
+      { "to": "/activities",  "label": "Socials",        "enabled": true },
+      { "to": "/arc-social",  "label": "Arches Social",  "enabled": true },
+      { "to": "/news",        "label": "News",           "enabled": true },
+      { "to": "/about",       "label": "About",          "enabled": true },
+      { "to": "/volunteering","label": "Volunteer",      "enabled": true },
+      { "to": "/contact",     "label": "Contact / Join", "enabled": true },
+      { "to": "/join",        "label": "Contact / Join", "enabled": false }
     ]
   },
 

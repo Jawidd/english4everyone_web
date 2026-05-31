@@ -3,27 +3,28 @@ import { loadPage } from '../utils/content'
 import PageHero from '../components/PageHero'
 import ContactCard from '../components/ContactCard'
 import { Reveal } from '../components/ui'
-import { CONTACT, BRAND } from '../config'
+import { CONTACT, BRAND, SITE } from '../config'
 
 const { data, body } = loadPage('volunteering')
+const { photos } = SITE
 
 export default function Volunteering() {
   return (
     <>
       <PageHero title={data.title} subtitle={data.intro} />
 
-      {/* Hero photos — large left, full-height right */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-10 grid grid-cols-3 gap-4">
-        <Reveal className="col-span-2">
-          <div className="rounded-2xl overflow-hidden shadow-md aspect-[16/9]">
-            <img src="/images/09-volunteers.png" alt="English4All volunteers"
+      {/* Top photos — fixed height so both columns match */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-10 grid grid-cols-3 gap-4 h-56 sm:h-64 md:h-72">
+        <Reveal className="col-span-2 h-full">
+          <div className="rounded-2xl overflow-hidden shadow-md h-full">
+            <img src={photos.volunteerTopLeft} alt="English4All volunteers"
               className="w-full h-full object-cover object-top" />
           </div>
         </Reveal>
-        <Reveal delay="delay-100">
+        <Reveal delay="delay-100" className="h-full">
           <div className="rounded-2xl overflow-hidden shadow-md h-full">
-            <img src="/images/08-teacher.png" alt="Volunteer teacher"
-              className="w-full h-full object-cover" />
+            <img src={photos.volunteerTopRight} alt="Volunteer teacher"
+              className="w-full h-full object-cover object-top" />
           </div>
         </Reveal>
       </div>
@@ -36,25 +37,23 @@ export default function Volunteering() {
           <div className="not-prose mt-8 grid grid-cols-3 gap-4">
             <Reveal>
               <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-                <img src="/images/03-classroom.jpg" alt="Classroom at The Arches"
+                <img src={photos.volunteerMid1} alt="Classroom at The Arches"
                   className="w-full h-full object-cover" />
               </div>
             </Reveal>
             <Reveal delay="delay-100">
               <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-                <img src="/images/10-teacher-students.png" alt="Teacher with students"
+                <img src={photos.volunteerMid2} alt="Teacher with students"
                   className="w-full h-full object-cover" />
               </div>
             </Reveal>
             <Reveal delay="delay-200">
               <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-                <img src="/images/11-teacher-students.png" alt="Volunteer teaching"
+                <img src={photos.volunteerMid3} alt="Volunteer teaching"
                   className="w-full h-full object-cover" />
               </div>
             </Reveal>
           </div>
-
-
         </div>
 
         <aside className="lg:sticky lg:top-24 self-start">

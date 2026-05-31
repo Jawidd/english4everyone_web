@@ -1,8 +1,10 @@
 import ReactMarkdown from 'react-markdown'
 import { loadPage } from '../utils/content'
 import PageHero from '../components/PageHero'
+import { SITE } from '../config'
 
 const { data, body } = loadPage('about')
+const { photos } = SITE
 
 export default function About() {
   return (
@@ -12,18 +14,12 @@ export default function About() {
       {/* Corner photos */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-10 grid grid-cols-2 gap-4">
         <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-          <img
-            src="/images/01-outsideview.jpg"
-            alt="The Arches building exterior"
-            className="w-full h-full object-cover"
-          />
+          <img src={photos.aboutLeft} alt="The Arches building exterior"
+            className="w-full h-full object-cover" />
         </div>
         <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-          <img
-            src="/images/02-classdoor.jpg"
-            alt="The Arches entrance"
-            className="w-full h-full object-cover"
-          />
+          <img src={photos.aboutRight} alt="The Arches entrance"
+            className="w-full h-full object-cover" />
         </div>
       </div>
 

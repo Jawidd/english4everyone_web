@@ -4,7 +4,7 @@ import ContactCard from '../components/ContactCard'
 import { Reveal } from '../components/ui'
 import { BRAND, CONTACT, SITE } from '../config'
 
-const { contactPage } = SITE
+const { contactPage, photos } = SITE
 
 const MAPS_URL = 'https://maps.google.com/maps?q=56-58+Brussels+Street,Leeds,LS9+8AB&output=embed&z=17'
 
@@ -20,13 +20,13 @@ export default function Contact() {
           <div className="flex flex-col gap-4">
             <Reveal>
               <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-                <img src="/images/01-outsideview.jpg" alt="The Arches building exterior"
+                <img src={photos.contactTop} alt="The Arches building exterior"
                   className="w-full h-full object-cover" />
               </div>
             </Reveal>
             <Reveal delay="delay-100">
               <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-                <img src="/images/02-classdoor.jpg" alt="Entrance to The Arches"
+                <img src={photos.contactBottom} alt="Entrance to The Arches"
                   className="w-full h-full object-cover" />
               </div>
             </Reveal>
@@ -54,7 +54,7 @@ export default function Contact() {
                   </li>
                 ))}
               </ol>
-              <ContactCard email={CONTACT.email} phone={CONTACT.phone} />
+              <ContactCard email={CONTACT.email} phone={CONTACT.phone} whatsapp={CONTACT.whatsapp} />
               <p className="text-sm text-gray-400 mt-3">{contactPage.replyNote}</p>
             </Reveal>
 
