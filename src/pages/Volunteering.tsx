@@ -12,15 +12,15 @@ export default function Volunteering() {
     <>
       <PageHero title={data.title} subtitle={data.intro} />
 
-      {/* Hero photos — large left, full-height right */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-10 grid grid-cols-3 gap-4">
-        <Reveal className="col-span-2">
-          <div className="rounded-2xl overflow-hidden shadow-md aspect-[16/9]">
+      {/* Hero photos — both photos same height */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-10 grid grid-cols-3 gap-4 h-64 md:h-80">
+        <Reveal className="col-span-2 h-full">
+          <div className="rounded-2xl overflow-hidden shadow-md h-full">
             <img src="/images/09-volunteers.png" alt="English4All volunteers"
               className="w-full h-full object-cover object-top" />
           </div>
         </Reveal>
-        <Reveal delay="delay-100">
+        <Reveal delay="delay-100" className="h-full">
           <div className="rounded-2xl overflow-hidden shadow-md h-full">
             <img src="/images/08-teacher.png" alt="Volunteer teacher"
               className="w-full h-full object-cover" />
@@ -57,8 +57,8 @@ export default function Volunteering() {
             </div>
           </div>
 
-          {/* Ready to help section - now scrolls normally with page */}
-          <aside className="lg:mt-0">
+          {/* Ready to help section - sticky but scrolls with content */}
+          <aside className="lg:sticky lg:top-24 lg:self-start">
             <h2 className="text-xl font-bold mb-4" style={{ color: BRAND.navy }}>Ready to help?</h2>
             <ContactCard email={CONTACT.email} phone={CONTACT.phone} />
           </aside>
