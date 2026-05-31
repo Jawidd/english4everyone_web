@@ -28,7 +28,7 @@ export default function Volunteering() {
         </Reveal>
       </div>
 
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 py-14">
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 py-14 mt-16">
         {/* Main content area */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2 prose-content">
@@ -57,8 +57,8 @@ export default function Volunteering() {
             </div>
           </div>
 
-          {/* Ready to help section - sticky but scrolls with content */}
-          <aside className="lg:sticky lg:top-24 lg:self-start">
+          {/* Ready to help section - with extra margin to clear photos */}
+          <aside className="lg:sticky lg:top-24 lg:self-start mt-8 lg:mt-16">
             <h2 className="text-xl font-bold mb-4" style={{ color: BRAND.navy }}>Ready to help?</h2>
             <ContactCard email={CONTACT.email} phone={CONTACT.phone} />
           </aside>
