@@ -27,7 +27,7 @@ export default function Activities() {
   return (
     <>
       <PageHero
-        title="Activities & Events"
+        title="Socials"
         subtitle="Community gatherings, trips, social events, and more."
       />
 

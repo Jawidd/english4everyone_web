@@ -8,6 +8,25 @@ export default function About() {
   return (
     <>
       <PageHero title={data.title} subtitle={data.hero} />
+
+      {/* Corner photos */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-10 grid grid-cols-2 gap-4">
+        <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
+          <img
+            src="/images/outsideview.jpg"
+            alt="The Arches building exterior"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
+          <img
+            src="/images/classroom1.jpg"
+            alt="English class in session"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+
       <section className="max-w-3xl mx-auto px-4 sm:px-6 py-14">
         <div className="prose-content"><ReactMarkdown>{body}</ReactMarkdown></div>
       </section>

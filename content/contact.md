@@ -4,7 +4,7 @@ intro: "We are happy to help. Contact us any time."
 email: "enquiries@english4allinleeds.com"
 phone: "+44 7535 867376"
 whatsapp: "+44 7535 867376"
-address: "The Arches, 56–58 Brussels St, Leeds, LS9 8AH"
+address: "The Arches, 56–58 Brussels St, Leeds, LS9 8AB"
 ---
 
 ## Get in touch
@@ -24,4 +24,4 @@ If you have a question, please contact us:
 📍 **The Arches**
 56–58 Brussels St
 Leeds
-LS9 8AH
+LS9 8AB

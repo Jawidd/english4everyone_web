@@ -202,7 +202,7 @@
     "items": [
       { "to": "/",            "label": "Home",          "enabled": true },
       { "to": "/classes",     "label": "Classes",       "enabled": true },
-      { "to": "/activities",  "label": "Activity Feed", "enabled": true },
+      { "to": "/activities",  "label": "Socials",       "enabled": true },
       { "to": "/arc-social",  "label": "Arches Social",    "enabled": true },
       { "to": "/about",       "label": "About",         "enabled": true },
       { "to": "/join",        "label": "How to Join",   "enabled": true },

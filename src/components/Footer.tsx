@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
         <div className="lg:col-span-1">
-          <img src="/images/logo-large.jpg" alt="English4All Leeds" className="h-10 w-auto rounded-lg mb-4" />
+          <img src="/images/logo-large.png" alt="English4All Leeds" className="h-10 w-auto rounded-lg mb-4" />
           <p className="text-sm leading-relaxed mb-4" style={{ color: '#a8aac0' }}>
             Free and paid English classes in Leeds for adult speakers of other languages.
           </p>

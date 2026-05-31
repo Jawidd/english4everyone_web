@@ -15,7 +15,7 @@ export default function Home() {
       <section style={{ backgroundColor: BRAND.navy }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <div className="mb-6">
-            <img src="/images/logo-large.jpg" alt="English4All Leeds" className="h-20 sm:h-24 w-auto rounded-xl shadow-lg" />
+            <img src="/images/logo-large.png" alt="English4All Leeds" className="h-20 sm:h-24 w-auto rounded-xl shadow-lg" />
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div className="text-white">

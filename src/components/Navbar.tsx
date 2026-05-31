@@ -26,7 +26,7 @@ export default function Navbar() {
           {/* Logo and Desktop links grouped on the left */}
           <div className="hidden md:flex items-center gap-8">
             <NavLink to="/" onClick={() => setOpen(false)}>
-              <img src="/images/logo-large.jpg" alt="English4All Leeds" className="h-10 w-auto rounded-lg" />
+              <img src="/images/logo-large.png" alt="English4All Leeds" className="h-10 w-auto rounded-lg" />
             </NavLink>
             <div className="flex items-center gap-5">
               {NAV_LINKS.map((l) => (

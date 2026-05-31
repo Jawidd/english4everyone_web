@@ -112,12 +112,38 @@ export default function Classes() {
         </div>
       </Section>
 
-      {/* Photo + info */}
+      {/* Classroom photo strip */}
       <Section className="bg-white">
+        <div className="grid grid-cols-12 gap-4">
+          <Reveal className="col-span-12 md:col-span-7">
+            <div className="rounded-2xl overflow-hidden shadow-md aspect-[16/9]">
+              <img src="/images/classroom1.jpg" alt="Saturday ESOL class at The Arches"
+                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+            </div>
+          </Reveal>
+          <div className="col-span-12 md:col-span-5 flex flex-col gap-4">
+            <Reveal delay="delay-100" className="flex-1">
+              <div className="rounded-2xl overflow-hidden shadow-md h-full min-h-[140px]">
+                <img src="/images/classroom2.jpg" alt="Students working in class"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+              </div>
+            </Reveal>
+            <Reveal delay="delay-200" className="flex-1">
+              <div className="rounded-2xl overflow-hidden shadow-md h-full min-h-[140px]">
+                <img src="/images/classroom3.jpg" alt="Classroom at The Arches"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </Section>
+
+      {/* Photo + info */}
+      <Section className="section-alt">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <Reveal>
             <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-              <img src="/images/allstudents.png" alt="Students at English4All Leeds"
+              <img src="/images/students1.png" alt="Students at English4All Leeds"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
             </div>
           </Reveal>
@@ -145,6 +171,24 @@ export default function Classes() {
               style={{ backgroundColor: BRAND.primary }}>
               <MessageCircle className="w-4 h-4" aria-hidden="true" /> WhatsApp to join
             </a>
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* Two more photos */}
+      <Section className="bg-white">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <Reveal>
+            <div className="rounded-2xl overflow-hidden shadow-md aspect-[3/2]">
+              <img src="/images/students2.png" alt="Students enjoying class"
+                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+            </div>
+          </Reveal>
+          <Reveal delay="delay-100">
+            <div className="rounded-2xl overflow-hidden shadow-md aspect-[3/2]">
+              <img src="/images/teacher-students2.png" alt="Teacher working with students"
+                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+            </div>
           </Reveal>
         </div>
       </Section>
