@@ -13,7 +13,7 @@ export default function Volunteering() {
       <PageHero title={data.title} subtitle={data.intro} />
 
       {/* Hero photos section - separate container */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-10 pb-16">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-10 pb-24">
         <div className="grid grid-cols-3 gap-4 h-64 md:h-80">
           <Reveal className="col-span-2 h-full">
             <div className="rounded-2xl overflow-hidden shadow-md h-full">
@@ -60,8 +60,8 @@ export default function Volunteering() {
             </div>
           </div>
 
-          {/* Ready to help section - now properly positioned */}
-          <aside className="lg:sticky lg:top-24 lg:self-start">
+          {/* Ready to help section - with extra margin */}
+          <aside className="lg:sticky lg:top-24 lg:self-start mt-16">
             <h2 className="text-xl font-bold mb-4" style={{ color: BRAND.navy }}>Ready to help?</h2>
             <ContactCard email={CONTACT.email} phone={CONTACT.phone} />
           </aside>
