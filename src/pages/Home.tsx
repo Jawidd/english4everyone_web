@@ -1,16 +1,22 @@
 import { Link } from 'react-router-dom'
-import { Phone, Mail, MessageCircle, MapPin, ArrowRight, Clock, Award, Coffee, Handshake, Star } from 'lucide-react'
-import { loadAllNews } from '../utils/content'
+import { Phone, Mail, MessageCircle, MapPin, ArrowRight, Clock, Award, Coffee, Handshake, Star, Loader2, ExternalLink, Calendar } from 'lucide-react'
 import { Section, Heading, Reveal } from '../components/ui'
 import Accordion from '../components/Accordion'
 import SocialLinks from '../components/SocialLinks'
 import { BRAND, CONTACT, CLASS_SESSIONS, PAID_CLASS_FEATURES, ACTIVITIES, SITE } from '../config'
-
-const news = loadAllNews().slice(0, 3)
+import { useLatestNews } from '../hooks/useNews'
+import { useArcEvents } from '../hooks/useArcEvents'
+import { useLatestActivity } from '../hooks/useLatestActivity'
+import { urlFor } from '../lib/sanity'
 
 export default function Home() {
+  const { items: latestNews, loading: newsLoading } = useLatestNews()
+  const { events: arcEvents, loading: arcLoading } = useArcEvents()
+  const { activity: latestActivity, loading: activityLoading } = useLatestActivity()
+  const latestArcEvent = arcEvents[0] ?? null
+
   return (
-    <>
+<>
       {/* ── HERO ── */}
       <section style={{ backgroundColor: BRAND.navy }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
@@ -274,31 +280,127 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* ── NEWS ── */}
-      {news.length > 0 && (
+      {/* ── LATEST SOCIAL ── minimal single photo */}
+      {!activityLoading && latestActivity && latestActivity.photos?.[0] && (
         <Section className="bg-white">
           <Reveal>
-            <div className="flex items-end justify-between mb-8">
-              <Heading label="Latest" title="News" />
-              <Link to="/news" className="text-sm font-semibold hover:opacity-80 transition-opacity mb-8" style={{ color: BRAND.primary }}>See all →</Link>
+            <div className="flex items-center justify-between mb-4">
+              <Heading label="From Socials" title="Latest activity" />
+              <Link to="/activities" className="text-sm font-semibold hover:opacity-80 transition-opacity"
+                style={{ color: BRAND.primary }}>
+                See all <ArrowRight className="w-3 h-3 inline" aria-hidden="true" />
+              </Link>
             </div>
+            <Link to="/activities" className="block group">
+              <div className="relative rounded-2xl overflow-hidden shadow-md" style={{ height: '240px' }}>
+                <img
+                  src={urlFor(latestActivity.photos![0]).width(1200).height(480).fit('crop').url()}
+                  alt={latestActivity.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6">
+                  <div className="text-white">
+                    <p className="text-xs opacity-70 mb-1">
+                      {new Date(latestActivity.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    </p>
+                    <h3 className="text-lg font-bold">{latestActivity.title}</h3>
+                  </div>
+                </div>
+              </div>
+            </Link>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            {news.map((post, i) => (
-              <Reveal key={post.slug} delay={i === 1 ? 'delay-100' : i === 2 ? 'delay-200' : ''}>
-                <Link to={`/news/${post.slug}`}
-                  className="block bg-white rounded-2xl p-5 border border-gray-200 shadow-sm transition-all duration-200 hover:shadow-lg hover:-translate-y-1 group h-full">
-                  <p className="text-xs text-gray-400 mb-2">
-                    {new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
-                  </p>
-                  <h3 className="font-bold mb-2 leading-snug group-hover:opacity-70 transition-opacity" style={{ color: BRAND.navy }}>{post.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{post.summary}</p>
-                  <span className="inline-flex items-center gap-1 text-xs font-semibold mt-3" style={{ color: BRAND.primary }}>
-                    Read more <ArrowRight className="w-3 h-3" aria-hidden="true" />
-                  </span>
+        </Section>
+      )}
+
+      {/* ── ARC SOCIAL + NEWS ── side by side */}
+      {(!arcLoading || !newsLoading) && (latestArcEvent || latestNews.length > 0) && (
+        <Section className="section-alt">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+            {/* Latest Arc Social event */}
+            <Reveal>
+              <div className="flex items-center justify-between mb-6">
+                <Heading label="Arches Social" title="Upcoming event" />
+                <Link to="/arc-social" className="text-sm font-semibold hover:opacity-80 transition-opacity"
+                  style={{ color: BRAND.primary }}>
+                  See all <ArrowRight className="w-3 h-3 inline" aria-hidden="true" />
                 </Link>
-              </Reveal>
-            ))}
+              </div>
+              {arcLoading && <div className="flex items-center gap-2 text-gray-400 text-sm"><Loader2 className="w-4 h-4 animate-spin" /> Loading…</div>}
+              {!arcLoading && !latestArcEvent && (
+                <p className="text-gray-400 text-sm">No upcoming events — check back soon.</p>
+              )}
+              {!arcLoading && latestArcEvent && (
+                <div className="bg-white rounded-2xl overflow-hidden shadow-sm border" style={{ borderColor: BRAND.softBorder }}>
+                  {latestArcEvent.poster && (
+                    <div className="aspect-[2/1] overflow-hidden">
+                      <img src={urlFor(latestArcEvent.poster).width(800).fit('crop').url()}
+                        alt={latestArcEvent.title} className="w-full h-full object-cover" />
+                    </div>
+                  )}
+                  <div className="p-5">
+                    <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest mb-2" style={{ color: BRAND.primary }}>
+                      <Calendar className="w-3.5 h-3.5" aria-hidden="true" />
+                      {new Date(latestArcEvent.date).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' })}
+                    </p>
+                    <h3 className="text-lg font-extrabold mb-2" style={{ color: BRAND.navy }}>{latestArcEvent.title}</h3>
+                    {latestArcEvent.description && (
+                      <p className="text-sm text-gray-600 leading-relaxed mb-4">{latestArcEvent.description}</p>
+                    )}
+                    <div className="flex items-center gap-3">
+                      <Link to="/arc-social"
+                        className="inline-flex items-center gap-1.5 text-sm font-semibold hover:opacity-80 transition-opacity"
+                        style={{ color: BRAND.navy }}>
+                        More details <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                      </Link>
+                      {latestArcEvent.ticketUrl && (
+                        <a href={latestArcEvent.ticketUrl} target="_blank" rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-sm font-bold px-4 py-1.5 rounded-lg text-white transition-all hover:opacity-90"
+                          style={{ backgroundColor: BRAND.primary }}>
+                          Tickets <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </Reveal>
+
+            {/* Latest 2 news items */}
+            <Reveal delay="delay-100">
+              <div className="flex items-center justify-between mb-6">
+                <Heading label="Latest" title="News" />
+                <Link to="/news" className="text-sm font-semibold hover:opacity-80 transition-opacity"
+                  style={{ color: BRAND.primary }}>
+                  See all <ArrowRight className="w-3 h-3 inline" aria-hidden="true" />
+                </Link>
+              </div>
+              {newsLoading && <div className="flex items-center gap-2 text-gray-400 text-sm"><Loader2 className="w-4 h-4 animate-spin" /> Loading…</div>}
+              {!newsLoading && latestNews.length === 0 && (
+                <p className="text-gray-400 text-sm">No news yet — check back soon.</p>
+              )}
+              {!newsLoading && latestNews.length > 0 && (
+                <div className="space-y-4">
+                  {latestNews.map((post) => (
+                    <Link key={post._id} to={`/news/${post.slug}`}
+                      className="block bg-white rounded-2xl p-5 border shadow-sm transition-all duration-200 hover:shadow-md hover:-translate-y-0.5 group"
+                      style={{ borderColor: BRAND.softBorder }}>
+                      <p className="text-xs text-gray-400 mb-1">
+                        {new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+                      </p>
+                      <h3 className="font-bold mb-1 leading-snug group-hover:opacity-70 transition-opacity" style={{ color: BRAND.navy }}>
+                        {post.title}
+                      </h3>
+                      <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">{post.summary}</p>
+                      <span className="inline-flex items-center gap-1 text-xs font-semibold mt-2" style={{ color: BRAND.primary }}>
+                        Read more <ArrowRight className="w-3 h-3" aria-hidden="true" />
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </Reveal>
+
           </div>
         </Section>
       )}

@@ -88,3 +88,18 @@ export interface ArcEvent {
   poster?: SanityImage
   ticketUrl?: string
 }
+
+// ── News ──────────────────────────────────────────────────────────────────────
+
+/** A single news item fetched from Sanity */
+export interface SanityNewsItem {
+  _id: string
+  title: string
+  slug: string
+  date: string
+  summary: string
+  body?: string
+  photo?: SanityImage
+  linkLabel?: string
+  linkUrl?: string
+}
