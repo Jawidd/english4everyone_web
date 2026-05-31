@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom'
-import { Phone, Mail, MessageCircle, MapPin, ArrowRight, Clock, Award, Coffee, Handshake, Star, Loader2, ExternalLink, Calendar } from 'lucide-react'
+import { Phone, Mail, MessageCircle, ArrowRight, Coffee, Handshake, Star, Loader2, ExternalLink, Calendar } from 'lucide-react'
 import { Section, Heading, Reveal } from '../components/ui'
 import Accordion from '../components/Accordion'
 import SocialLinks from '../components/SocialLinks'
-import { BRAND, CONTACT, CLASS_SESSIONS, PAID_CLASS_FEATURES, ACTIVITIES, SITE } from '../config'
+import { BRAND, CONTACT, ACTIVITIES, SITE } from '../config'
+import { loadPage } from '../utils/content'
 import { useLatestNews } from '../hooks/useNews'
 import { useArcEvents } from '../hooks/useArcEvents'
 import { useLatestActivity } from '../hooks/useLatestActivity'
 import { urlFor } from '../lib/sanity'
+
+const aboutPage = loadPage('about')
 
 export default function Home() {
   const { items: latestNews, loading: newsLoading } = useLatestNews()
@@ -39,7 +42,7 @@ export default function Home() {
                 {SITE.hero.tagline}
               </p>
               <div className="flex flex-col sm:flex-row gap-3 mb-6">
-                <Link to="/join"
+                <Link to="/contact"
                   className="inline-flex items-center justify-center gap-2 font-bold text-lg px-7 py-4 rounded-xl text-white shadow-lg transition-all duration-200 hover:scale-105"
                   style={{ backgroundColor: BRAND.primary }}>
                   How to Join <ArrowRight className="w-5 h-5" aria-hidden="true" />
@@ -75,94 +78,34 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ── SATURDAY TIMETABLE ── */}
+      {/* ── CLASSES TEASER ── */}
       <Section className="section-alt">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           <Reveal>
-            <Heading label="Free ESOL classes" title="Saturday Timetable" />
-            <div className="bg-white rounded-2xl shadow-sm overflow-hidden border" style={{ borderColor: BRAND.softBorder }}>
-              {CLASS_SESSIONS.map((session, si) => (
-                <div key={session.label} className={si < CLASS_SESSIONS.length - 1 ? 'border-b p-5' : 'p-5'} style={{ borderColor: BRAND.softBorderLight }}>
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: BRAND.softBg }}>
-                      <Clock className="w-4 h-4" style={{ color: BRAND.primary }} aria-hidden="true" />
-                    </div>
-                    <div>
-                      <p className="font-extrabold" style={{ color: BRAND.navy }}>{session.label}</p>
-                      <p className="text-sm text-gray-500">{session.time}</p>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    {session.levels.map((c) => (
-                      <div key={c.level} className="flex items-center justify-between px-4 py-2.5 rounded-lg" style={{ backgroundColor: BRAND.softBg }}>
-                        <span className="font-semibold text-sm" style={{ color: BRAND.navy }}>{c.level}</span>
-                        <span className="text-xs text-gray-500 bg-white px-2 py-1 rounded-full border border-gray-100">{c.tag}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-              <div className="px-5 py-4 border-t flex items-center gap-2 text-sm text-gray-500"
-                style={{ borderColor: BRAND.softBorderLight, backgroundColor: '#fffaf9' }}>
-                <MapPin className="w-4 h-4 shrink-0" style={{ color: BRAND.primary }} aria-hidden="true" />
-                {CONTACT.address.full}
-              </div>
+            <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
+              <img src={SITE.photos.classesHero} alt="Students at English4All Leeds"
+                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
             </div>
-            <div className="mt-4">
-              <Link to="/classes" className="inline-flex items-center gap-2 font-semibold text-sm hover:opacity-80 transition-opacity" style={{ color: BRAND.primary }}>
-                Full class details <ArrowRight className="w-4 h-4" aria-hidden="true" />
+          </Reveal>
+          <Reveal delay="delay-100">
+            <Heading label="Every Saturday · All levels welcome" title="Free English Classes" />
+            <p className="text-gray-600 leading-relaxed mb-6">
+              Free ESOL classes every Saturday at The Arches in Leeds — morning and afternoon sessions.
+              From ABC beginners to Advanced, we'll find the right level for you. No cost to join.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 font-bold text-white px-6 py-3 rounded-xl transition-all hover:opacity-90 hover:scale-105"
+                style={{ backgroundColor: BRAND.primary }}>
+                <MessageCircle className="w-4 h-4" aria-hidden="true" /> WhatsApp to join
+              </a>
+              <Link to="/classes"
+                className="inline-flex items-center justify-center gap-2 font-semibold px-6 py-3 rounded-xl border-2 transition-all hover:opacity-80"
+                style={{ borderColor: BRAND.navy, color: BRAND.navy }}>
+                More details <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </Link>
             </div>
           </Reveal>
-
-          <div className="space-y-5">
-            <Reveal delay="delay-100">
-              <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: BRAND.navy }}>
-                    <Award className="w-5 h-5 text-white" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <p className="font-extrabold" style={{ color: BRAND.navy }}>Paid Classes</p>
-                    <p className="text-sm text-gray-500">Competitive rates</p>
-                  </div>
-                </div>
-                <ul className="space-y-2 text-sm text-gray-600 mb-4">
-                  {PAID_CLASS_FEATURES.map((t) => (
-                    <li key={t} className="flex items-center gap-2">
-                      <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: BRAND.primary }} aria-hidden="true" />
-                      {t}
-                    </li>
-                  ))}
-                </ul>
-                <Link to="/classes" className="inline-flex items-center gap-2 font-semibold text-sm hover:opacity-80 transition-opacity" style={{ color: BRAND.navy }}>
-                  Learn more <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                </Link>
-              </div>
-            </Reveal>
-
-            <Reveal delay="delay-200">
-              <div className="rounded-2xl p-6 text-white" style={{ background: `linear-gradient(135deg, ${BRAND.navy} 0%, ${BRAND.primary} 100%)` }}>
-                <p className="text-xs font-bold uppercase tracking-widest mb-4 opacity-70">3 easy steps</p>
-                <div className="space-y-3 mb-5">
-                  {SITE.howToJoinSteps.map((s, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <span className="w-7 h-7 rounded-full flex items-center justify-center font-extrabold text-sm shrink-0"
-                        style={{ backgroundColor: 'rgba(255,255,255,0.2)' }}>{i + 1}</span>
-                      <div>
-                        <p className="font-semibold text-sm leading-none">{s.title}</p>
-                        <p className="text-xs opacity-70 mt-0.5">{s.detail}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <Link to="/join" className="inline-flex items-center gap-2 bg-white font-bold text-sm px-5 py-2.5 rounded-xl transition-all hover:scale-105"
-                  style={{ color: BRAND.primary }}>
-                  How to Join <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                </Link>
-              </div>
-            </Reveal>
-          </div>
         </div>
       </Section>
 
@@ -208,7 +151,7 @@ export default function Home() {
           <Reveal>
             <Heading label={SITE.aboutSection.label} title={SITE.aboutSection.title} />
             <p className="text-gray-600 leading-relaxed mb-5">
-              {SITE.aboutSection.description}
+              {aboutPage.data.hero}
             </p>
             <div className="grid grid-cols-2 gap-3 mb-5">
               {SITE.stats.map((s) => (
@@ -255,10 +198,10 @@ export default function Home() {
               {SITE.volunteeringSection.description}
             </p>
             <Accordion multi items={SITE.volunteeringSection.roles} />
-            <Link to="/contact"
+            <Link to="/volunteering"
               className="inline-flex items-center gap-2 font-bold text-white px-6 py-3 rounded-xl mt-6 transition-all hover:opacity-90 hover:scale-105"
               style={{ backgroundColor: BRAND.primary }}>
-              <Handshake className="w-4 h-4" aria-hidden="true" /> Contact us to volunteer
+              <Handshake className="w-4 h-4" aria-hidden="true" /> Volunteer with us
             </Link>
           </Reveal>
 
@@ -273,8 +216,8 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <Link to="/contact" className="inline-flex items-center gap-2 font-semibold text-sm mt-5 hover:opacity-80 transition-opacity" style={{ color: BRAND.primary }}>
-              Find out more <ArrowRight className="w-4 h-4" aria-hidden="true" />
+            <Link to="/activities" className="inline-flex items-center gap-2 font-semibold text-sm mt-5 hover:opacity-80 transition-opacity" style={{ color: BRAND.primary }}>
+              See our socials <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </Link>
           </Reveal>
         </div>
@@ -426,7 +369,7 @@ export default function Home() {
               {SITE.hero.announcement}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <Link to="/join"
+              <Link to="/contact"
                 className="inline-flex items-center justify-center gap-2 bg-white font-bold text-lg px-8 py-4 rounded-xl shadow transition-all hover:scale-105"
                 style={{ color: BRAND.primary }}>
                 How to Join <ArrowRight className="w-5 h-5" aria-hidden="true" />

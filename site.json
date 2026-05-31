@@ -269,9 +269,9 @@
   "contactPage": {
     "NOTE_section": "Content for the Contact / Join page (/contact). Shown on: Contact page.",
     "NOTE_title": "Page hero heading. Shown on: Contact page.",
-    "title": "Contact Us",
+    "title": "Contact Us & How to Join",
     "NOTE_subtitle": "Page hero subtitle. Shown on: Contact page.",
-    "subtitle": "We're happy to help — get in touch any time.",
+    "subtitle": "Join our free classes or ask us anything — we're happy to help.",
     "NOTE_howToJoinHeading": "Heading above the join steps. Shown on: Contact page.",
     "howToJoinHeading": "How to Join",
     "NOTE_findUsHeading": "Heading above the map. Shown on: Contact page.",

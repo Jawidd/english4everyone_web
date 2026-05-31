@@ -33,7 +33,7 @@ export default function Navbar() {
                 <NavLink key={l.to} to={l.to} className={desktopClass} end={l.to === '/'}>{l.label}</NavLink>
               ))}
                     {/* Join Now button on the right */}
-          <NavLink to="/join"
+          <NavLink to="/contact"
             className="hidden md:block bg-brand-500 hover:bg-brand-600 text-white text-sm font-bold px-4 py-2 rounded-lg transition-colors">
             Join Now
           </NavLink>
@@ -77,7 +77,7 @@ export default function Navbar() {
               </NavLink>
             ))}
             <div className="px-4 pt-2">
-              <NavLink to="/join" onClick={() => setOpen(false)}
+              <NavLink to="/contact" onClick={() => setOpen(false)}
                 className="block text-center bg-brand-500 hover:bg-brand-600 text-white font-bold px-4 py-3 rounded-lg transition-colors">
                 Join Now
               </NavLink>
