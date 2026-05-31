@@ -3,7 +3,9 @@
     "allow": [
       "Bash(git pull *)",
       "Bash(npx tsc *)",
-      "Bash(node_modules/.bin/tsc --noEmit)"
+      "Bash(node_modules/.bin/tsc --noEmit)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
     ]
   }
 }
