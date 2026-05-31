@@ -10,7 +10,7 @@ import { CompressedPhotosInput } from '../components/CompressedPhotosInput'
 
 export const activity = defineType({
   name: 'activity',
-  title: 'Activity',
+  title: 'Social Activity',
   type: 'document',
   fields: [
     defineField({

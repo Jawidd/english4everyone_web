@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback } from 'react'
-import { Loader2, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Loader2, ChevronLeft, ChevronRight, WifiOff, RefreshCw, ImageOff } from 'lucide-react'
 import PageHero from '../components/PageHero'
 import ActivityCard from '../components/activity/ActivityCard'
 import { useActivities } from '../hooks/useActivities'
 import { BRAND } from '../config'
 
 export default function Activities() {
-  const { groups, loading, error } = useActivities()
+  const { groups, loading, error, retry } = useActivities()
   const [selectedYear, setSelectedYear] = useState<number | null>(null)
 
   // groups is newest-first; display newest left → oldest right
@@ -62,16 +62,24 @@ export default function Activities() {
           </div>
         )}
 
-        {error && (
-          <div className="text-center py-24">
-            <p className="text-gray-500 mb-2">Could not load activities.</p>
-            <p className="text-sm text-gray-400">{error.message}</p>
+        {!loading && error && (
+          <div className="flex flex-col items-center justify-center py-24 gap-4 text-center">
+            <WifiOff className="w-10 h-10 text-gray-300" aria-hidden="true" />
+            <p className="font-semibold text-gray-600">Couldn't load social activities</p>
+            <p className="text-sm text-gray-400 max-w-xs">Check your internet connection and try again.</p>
+            <button onClick={retry}
+              className="inline-flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-xl border transition-all hover:opacity-80"
+              style={{ borderColor: BRAND.softBorder, color: BRAND.primary }}>
+              <RefreshCw className="w-4 h-4" aria-hidden="true" /> Try again
+            </button>
           </div>
         )}
 
         {!loading && !error && groups.length === 0 && (
-          <div className="text-center py-24 text-gray-400">
-            <p className="text-lg">No activities yet. Check back soon!</p>
+          <div className="flex flex-col items-center justify-center py-24 gap-3 text-center text-gray-400">
+            <ImageOff className="w-12 h-12 opacity-30" aria-hidden="true" />
+            <p className="text-lg font-semibold">No social activities yet</p>
+            <p className="text-sm">We'll post photos and updates here after events. Check back soon!</p>
           </div>
         )}
 

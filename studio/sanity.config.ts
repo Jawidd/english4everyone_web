@@ -17,10 +17,10 @@ export default defineConfig({
           .title('Content')
           .items([
             S.listItem()
-              .title('Activities')
+              .title('Social Activities')
               .child(
                 S.documentTypeList('activity')
-                  .title('Activities')
+                  .title('Social Activities')
                   .defaultOrdering([{ field: 'date', direction: 'desc' }])
               ),
             S.listItem()
@@ -29,6 +29,13 @@ export default defineConfig({
                 S.documentTypeList('arcEvent')
                   .title('Arc Social Events')
                   .defaultOrdering([{ field: 'date', direction: 'asc' }])
+              ),
+            S.listItem()
+              .title('News')
+              .child(
+                S.documentTypeList('news')
+                  .title('News')
+                  .defaultOrdering([{ field: 'date', direction: 'desc' }])
               ),
           ]),
     }),

@@ -1,12 +1,10 @@
-import { ExternalLink, Calendar, Loader2 } from 'lucide-react'
+import { ExternalLink, Calendar, Loader2, WifiOff, RefreshCw } from 'lucide-react'
 import { Section, Heading, Reveal } from '../components/ui'
 import { BRAND, SITE } from '../config'
-
-const { photos } = SITE
 import { useArcEvents } from '../hooks/useArcEvents'
 import { urlFor } from '../lib/sanity'
 
-const { arcSocial } = SITE
+const { arcSocial, photos } = SITE
 
 function formatDate(dateStr: string) {
   return new Date(dateStr).toLocaleDateString('en-GB', {
@@ -15,7 +13,7 @@ function formatDate(dateStr: string) {
 }
 
 export default function ArcSocial() {
-  const { events, loading, error } = useArcEvents()
+  const { events, loading, error, retry } = useArcEvents()
 
   return (
     <>
@@ -60,7 +58,22 @@ export default function ArcSocial() {
           </div>
         )}
 
-        {!loading && (error || events.length === 0) && (
+        {!loading && error && (
+          <Reveal>
+            <div className="flex flex-col items-center justify-center py-16 gap-4 text-center">
+              <WifiOff className="w-10 h-10 text-gray-300" aria-hidden="true" />
+              <p className="font-semibold text-gray-600">Couldn't load events right now</p>
+              <p className="text-sm text-gray-400 max-w-xs">Check your internet connection and try again.</p>
+              <button onClick={retry}
+                className="inline-flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-xl border transition-all hover:opacity-80"
+                style={{ borderColor: BRAND.softBorder, color: BRAND.primary }}>
+                <RefreshCw className="w-4 h-4" aria-hidden="true" /> Try again
+              </button>
+            </div>
+          </Reveal>
+        )}
+
+        {!loading && !error && events.length === 0 && (
           <Reveal>
             <div className="rounded-2xl border-2 border-dashed border-gray-300 bg-white p-12 text-center">
               <Calendar className="w-10 h-10 mx-auto mb-4 text-gray-300" />

@@ -1,20 +1,8 @@
-/**
- * src/hooks/useActivities.ts
- *
- * Fetches all activities from Sanity and groups them by year.
- * Handles loading and error states.
- *
- * Returns:
- *   groups  — ActivityYearGroup[] sorted newest year first
- *   loading — true while fetching
- *   error   — Error | null
- */
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { sanityClient } from '../lib/sanity'
 import { ALL_ACTIVITIES_QUERY } from '../lib/queries'
 import type { Activity, ActivityYearGroup } from '../types'
 
-/** Group a flat list of activities into year buckets, newest year first */
 function groupByYear(activities: Activity[]): ActivityYearGroup[] {
   const map = new Map<number, Activity[]>()
   for (const activity of activities) {
@@ -23,7 +11,7 @@ function groupByYear(activities: Activity[]): ActivityYearGroup[] {
     map.get(year)!.push(activity)
   }
   return Array.from(map.entries())
-    .sort(([a], [b]) => b - a) // newest year first
+    .sort(([a], [b]) => b - a)
     .map(([year, acts]) => ({ year, activities: acts }))
 }
 
@@ -31,20 +19,30 @@ interface UseActivitiesResult {
   groups: ActivityYearGroup[]
   loading: boolean
   error: Error | null
+  retry: () => void
 }
 
 export function useActivities(): UseActivitiesResult {
   const [groups, setGroups] = useState<ActivityYearGroup[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
+  const [tick, setTick] = useState(0)
 
-  useEffect(() => {
-    sanityClient
-      .fetch<Activity[]>(ALL_ACTIVITIES_QUERY)
-      .then((data) => setGroups(groupByYear(data)))
-      .catch((err) => setError(err instanceof Error ? err : new Error(String(err))))
-      .finally(() => setLoading(false))
+  const retry = useCallback(() => {
+    setError(null)
+    setLoading(true)
+    setTick((t) => t + 1)
   }, [])
 
-  return { groups, loading, error }
+  useEffect(() => {
+    let cancelled = false
+    sanityClient
+      .fetch<Activity[]>(ALL_ACTIVITIES_QUERY)
+      .then((data) => { if (!cancelled) setGroups(groupByYear(data)) })
+      .catch((err) => { if (!cancelled) setError(err instanceof Error ? err : new Error(String(err))) })
+      .finally(() => { if (!cancelled) setLoading(false) })
+    return () => { cancelled = true }
+  }, [tick])
+
+  return { groups, loading, error, retry }
 }
