@@ -89,10 +89,18 @@ export default function Home() {
           </Reveal>
           <Reveal delay="delay-100">
             <Heading label="Every Saturday · All levels welcome" title="Free English Classes" />
-            <p className="text-gray-600 leading-relaxed mb-6">
+            <p className="text-gray-600 leading-relaxed mb-5">
               Free ESOL classes every Saturday at The Arches in Leeds — morning and afternoon sessions.
               From ABC beginners to Advanced, we'll find the right level for you. No cost to join.
             </p>
+            <div className="grid grid-cols-2 gap-3 mb-6">
+              {SITE.stats.map((s) => (
+                <div key={s.label} className="rounded-xl p-4 border text-center bg-white" style={{ borderColor: BRAND.softBorder }}>
+                  <p className="text-2xl font-extrabold" style={{ color: BRAND.navy }}>{s.value}</p>
+                  <p className="text-xs text-gray-500 mt-1 leading-snug">{s.label}</p>
+                </div>
+              ))}
+            </div>
             <div className="flex flex-col sm:flex-row gap-3">
               <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 font-bold text-white px-6 py-3 rounded-xl transition-all hover:opacity-90 hover:scale-105"
@@ -153,14 +161,6 @@ export default function Home() {
             <p className="text-gray-600 leading-relaxed mb-5">
               {aboutPage.data.hero}
             </p>
-            <div className="grid grid-cols-2 gap-3 mb-5">
-              {SITE.stats.map((s) => (
-                <div key={s.label} className="rounded-xl p-4 border text-center bg-white" style={{ borderColor: BRAND.softBorder }}>
-                  <p className="text-2xl font-extrabold" style={{ color: BRAND.navy }}>{s.value}</p>
-                  <p className="text-xs text-gray-500 mt-1 leading-snug">{s.label}</p>
-                </div>
-              ))}
-            </div>
             <Link to="/about" className="inline-flex items-center gap-2 font-semibold text-sm hover:opacity-80 transition-opacity" style={{ color: BRAND.primary }}>
               About us <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </Link>
