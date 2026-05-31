@@ -47,7 +47,7 @@ export default function Home() {
               <SocialLinks theme="dark" variant="icon" />
             </div>
             <div className="rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
-              <img src="/images/allstudents.png" alt="Students learning English at English4All Leeds"
+              <img src="/images/allstudents-cover.png" alt="Students learning English at English4All Leeds"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
             </div>
           </div>

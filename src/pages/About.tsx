@@ -13,15 +13,15 @@ export default function About() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-10 grid grid-cols-2 gap-4">
         <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
           <img
-            src="/images/outsideview.jpg"
-            alt="The Arches building exterior"
+            src="/images/students2.png"
+            alt="Students at English4All Leeds"
             className="w-full h-full object-cover"
           />
         </div>
         <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
           <img
-            src="/images/classroom1.jpg"
-            alt="English class in session"
+            src="/images/classdoor.jpg"
+            alt="The Arches entrance"
             className="w-full h-full object-cover"
           />
         </div>

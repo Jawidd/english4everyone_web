@@ -20,8 +20,77 @@ export default function Classes() {
         </span>
       </div>
 
-      {/* Timetable + paid classes */}
+      {/* Everyone welcome + stats — shown first */}
+      <Section className="bg-white">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <Reveal>
+            <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
+              <img src="/images/teacher-students2.png" alt="Teacher working with students at English4All Leeds"
+                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+            </div>
+          </Reveal>
+          <Reveal delay="delay-100">
+            <Heading label="Everyone welcome" title="Free classes for all levels" />
+            <p className="text-gray-600 leading-relaxed mb-4">
+              Our free Saturday ESOL classes are open to all adult speakers of other languages living in Leeds.
+              Whether you are a complete beginner or already have good English, we have a class for you.
+            </p>
+            <div className="grid grid-cols-2 gap-3 mb-5">
+              {[
+                { value: '6', label: 'Classes every Saturday' },
+                { value: 'All', label: 'Levels from ABC to Advanced' },
+                { value: 'Free', label: 'No cost to join Saturday classes' },
+                { value: '100%', label: 'Volunteer-led organisation' },
+              ].map((s) => (
+                <div key={s.label} className="rounded-xl p-4 border text-center" style={{ borderColor: BRAND.softBorder, backgroundColor: BRAND.softBg }}>
+                  <p className="text-2xl font-extrabold" style={{ color: BRAND.navy }}>{s.value}</p>
+                  <p className="text-xs text-gray-500 mt-1 leading-snug">{s.label}</p>
+                </div>
+              ))}
+            </div>
+            <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-bold text-white px-6 py-3 rounded-xl transition-all hover:opacity-90"
+              style={{ backgroundColor: BRAND.primary }}>
+              <MessageCircle className="w-4 h-4" aria-hidden="true" /> WhatsApp to join
+            </a>
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* 4-photo masonry grid — fills bottom-left gap */}
       <Section className="section-alt">
+        <div className="grid grid-cols-3 gap-4">
+          {/* Row 1: large left + small right */}
+          <Reveal className="col-span-2">
+            <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
+              <img src="/images/classroom1.jpg" alt="Saturday ESOL class at The Arches"
+                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+            </div>
+          </Reveal>
+          <Reveal delay="delay-100">
+            <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
+              <img src="/images/classroom2.jpg" alt="Students working in class"
+                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+            </div>
+          </Reveal>
+          {/* Row 2: small left (fills bottom-left gap) + large right */}
+          <Reveal delay="delay-150">
+            <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
+              <img src="/images/students1.png" alt="Students at English4All Leeds"
+                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+            </div>
+          </Reveal>
+          <Reveal delay="delay-200" className="col-span-2">
+            <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
+              <img src="/images/classroom3.jpg" alt="Classroom at The Arches"
+                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+            </div>
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* Timetable + paid classes — shown second */}
+      <Section className="bg-white">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           <Reveal>
             <Heading label="Free ESOL classes" title="Saturday Timetable" />
@@ -109,87 +178,6 @@ export default function Classes() {
               </div>
             </Reveal>
           </div>
-        </div>
-      </Section>
-
-      {/* Classroom photo strip */}
-      <Section className="bg-white">
-        <div className="grid grid-cols-12 gap-4">
-          <Reveal className="col-span-12 md:col-span-7">
-            <div className="rounded-2xl overflow-hidden shadow-md aspect-[16/9]">
-              <img src="/images/classroom1.jpg" alt="Saturday ESOL class at The Arches"
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
-            </div>
-          </Reveal>
-          <div className="col-span-12 md:col-span-5 flex flex-col gap-4">
-            <Reveal delay="delay-100" className="flex-1">
-              <div className="rounded-2xl overflow-hidden shadow-md h-full min-h-[140px]">
-                <img src="/images/classroom2.jpg" alt="Students working in class"
-                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
-              </div>
-            </Reveal>
-            <Reveal delay="delay-200" className="flex-1">
-              <div className="rounded-2xl overflow-hidden shadow-md h-full min-h-[140px]">
-                <img src="/images/classroom3.jpg" alt="Classroom at The Arches"
-                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </Section>
-
-      {/* Photo + info */}
-      <Section className="section-alt">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <Reveal>
-            <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-              <img src="/images/students1.png" alt="Students at English4All Leeds"
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
-            </div>
-          </Reveal>
-          <Reveal delay="delay-100">
-            <Heading label="Everyone welcome" title="Free classes for all levels" />
-            <p className="text-gray-600 leading-relaxed mb-4">
-              Our free Saturday ESOL classes are open to all adult speakers of other languages living in Leeds.
-              Whether you are a complete beginner or already have good English, we have a class for you.
-            </p>
-            <div className="grid grid-cols-2 gap-3 mb-5">
-              {[
-                { value: '6', label: 'Classes every Saturday' },
-                { value: 'All', label: 'Levels from ABC to Advanced' },
-                { value: 'Free', label: 'No cost to join Saturday classes' },
-                { value: '100%', label: 'Volunteer-led organisation' },
-              ].map((s) => (
-                <div key={s.label} className="rounded-xl p-4 border text-center" style={{ borderColor: BRAND.softBorder, backgroundColor: BRAND.softBg }}>
-                  <p className="text-2xl font-extrabold" style={{ color: BRAND.navy }}>{s.value}</p>
-                  <p className="text-xs text-gray-500 mt-1 leading-snug">{s.label}</p>
-                </div>
-              ))}
-            </div>
-            <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 font-bold text-white px-6 py-3 rounded-xl transition-all hover:opacity-90"
-              style={{ backgroundColor: BRAND.primary }}>
-              <MessageCircle className="w-4 h-4" aria-hidden="true" /> WhatsApp to join
-            </a>
-          </Reveal>
-        </div>
-      </Section>
-
-      {/* Two more photos */}
-      <Section className="bg-white">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <Reveal>
-            <div className="rounded-2xl overflow-hidden shadow-md aspect-[3/2]">
-              <img src="/images/students2.png" alt="Students enjoying class"
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
-            </div>
-          </Reveal>
-          <Reveal delay="delay-100">
-            <div className="rounded-2xl overflow-hidden shadow-md aspect-[3/2]">
-              <img src="/images/teacher-students2.png" alt="Teacher working with students"
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
-            </div>
-          </Reveal>
         </div>
       </Section>
     </>

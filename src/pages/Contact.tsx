@@ -20,7 +20,7 @@ export default function Contact() {
               className="w-full h-full object-cover" />
           </div>
           <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-            <img src="/images/classroom1.jpg" alt="English class at The Arches"
+            <img src="/images/arches-cover.jpg" alt="The Arches Social venue"
               className="w-full h-full object-cover" />
           </div>
         </div>

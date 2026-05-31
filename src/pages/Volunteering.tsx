@@ -17,7 +17,7 @@ export default function Volunteering() {
         <Reveal className="col-span-2">
           <div className="rounded-2xl overflow-hidden shadow-md aspect-[16/9]">
             <img src="/images/volunteers1.png" alt="English4All volunteers"
-              className="w-full h-full object-cover" />
+              className="w-full h-full object-cover object-top" />
           </div>
         </Reveal>
         <Reveal delay="delay-100">
@@ -48,13 +48,7 @@ export default function Volunteering() {
             </Reveal>
           </div>
 
-          {/* Bottom wide photo */}
-          <Reveal className="not-prose mt-4">
-            <div className="rounded-2xl overflow-hidden shadow-md aspect-[16/7]">
-              <img src="/images/classroom2.jpg" alt="Classroom at The Arches"
-                className="w-full h-full object-cover" />
-            </div>
-          </Reveal>
+
         </div>
 
         <aside className="lg:sticky lg:top-24 self-start">

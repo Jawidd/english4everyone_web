@@ -24,7 +24,7 @@ export default function ArcSocial() {
           {/* Photo — left column on desktop, top on mobile */}
           <div className="relative lg:w-1/2 h-64 lg:h-auto overflow-hidden">
             <img
-              src="/images/arc-cover.jpg"
+              src="/images/arches-cover.jpg"
               alt="The Arches Social community"
               className="absolute inset-0 w-full h-full object-cover object-top"
             />
@@ -33,7 +33,7 @@ export default function ArcSocial() {
           {/* Info — right column on desktop, below photo on mobile */}
           <div className="lg:w-1/2 flex flex-col justify-center px-8 py-12 lg:px-16 text-white">
             <img
-              src="/images/arc-logo.png"
+              src="/images/arches-logo.png"
               alt="The Arches Social logo"
               className="w-20 h-20 rounded-2xl shadow-lg object-contain bg-white p-1.5 mb-8"
             />
