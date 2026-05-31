@@ -28,7 +28,7 @@ export default function Volunteering() {
         </Reveal>
       </div>
 
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 py-14 grid grid-cols-1 lg:grid-cols-3 gap-10">
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 pt-6 pb-14 grid grid-cols-1 lg:grid-cols-3 gap-10">
         <div className="lg:col-span-2 prose-content">
           <ReactMarkdown>{body}</ReactMarkdown>
 

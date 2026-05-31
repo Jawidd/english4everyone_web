@@ -212,6 +212,20 @@
     ]
   },
 
+  "contactPage": {
+    "NOTE_section": "Content for the Contact / Join page (/contact). Shown on: Contact page.",
+    "NOTE_title": "Page hero heading. Shown on: Contact page.",
+    "title": "Contact Us",
+    "NOTE_subtitle": "Page hero subtitle. Shown on: Contact page.",
+    "subtitle": "We're happy to help — get in touch any time.",
+    "NOTE_howToJoinHeading": "Heading above the join steps. Shown on: Contact page.",
+    "howToJoinHeading": "How to Join",
+    "NOTE_findUsHeading": "Heading above the map. Shown on: Contact page.",
+    "findUsHeading": "Find Us",
+    "NOTE_replyNote": "Small note below the contact card. Shown on: Contact page.",
+    "replyNote": "We reply quickly. Don't worry!"
+  },
+
   "arcSocial": {
     "NOTE_section": "Content for the Arc Social page (/arc-social). Events are managed in Sanity Studio, not here.",
     "NOTE_tagline": "Small label above the heading in the Arc Social hero. Shown on: Arc Social page.",

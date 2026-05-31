@@ -177,27 +177,38 @@ export default function Classes() {
         </div>
       </Section>
 
-      {/* Photos after timetable - using unique photos 7, 8, 9 */}
+      {/* Photos after timetable — fixed-height 3-column grid */}
       <Section className="section-alt">
-        <div className="grid grid-cols-4 gap-4">
-          <Reveal className="col-span-2">
-            <div className="rounded-2xl overflow-hidden shadow-md aspect-[3/2]">
+        <div className="grid grid-cols-3 gap-4 h-[420px] sm:h-[480px]">
+          {/* Col 1: large photo */}
+          <Reveal className="h-full">
+            <div className="rounded-2xl overflow-hidden shadow-md h-full">
               <img src="/images/07-teacher-students.png" alt="Teacher working with students"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
             </div>
           </Reveal>
-          <Reveal delay="delay-100">
+          {/* Col 2: tall portrait photo */}
+          <Reveal delay="delay-100" className="h-full">
             <div className="rounded-2xl overflow-hidden shadow-md h-full">
               <img src="/images/08-teacher.png" alt="Teacher at English4All Leeds"
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+                className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-105" />
             </div>
           </Reveal>
-          <Reveal delay="delay-200">
-            <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-              <img src="/images/09-volunteers.png" alt="Volunteers at English4All Leeds"
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
-            </div>
-          </Reveal>
+          {/* Col 3: two equal photos stacked */}
+          <div className="grid grid-rows-2 gap-4 h-full">
+            <Reveal delay="delay-150" className="h-full">
+              <div className="rounded-2xl overflow-hidden shadow-md h-full">
+                <img src="/images/09-volunteers.png" alt="Volunteers at English4All Leeds"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+              </div>
+            </Reveal>
+            <Reveal delay="delay-200" className="h-full">
+              <div className="rounded-2xl overflow-hidden shadow-md h-full">
+                <img src="/images/students1.png" alt="Students at English4All Leeds"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+              </div>
+            </Reveal>
+          </div>
         </div>
       </Section>
     </>
