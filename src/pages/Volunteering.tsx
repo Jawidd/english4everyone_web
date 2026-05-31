@@ -29,7 +29,7 @@ export default function Volunteering() {
         </Reveal>
       </div>
 
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 pt-6 pb-14 grid grid-cols-1 lg:grid-cols-3 gap-10">
+      <section className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 pt-6 pb-14 grid grid-cols-1 lg:grid-cols-3 gap-10">
         <div className="lg:col-span-2 prose-content">
           <ReactMarkdown>{body}</ReactMarkdown>
 
@@ -56,7 +56,7 @@ export default function Volunteering() {
           </div>
         </div>
 
-        <aside className="lg:sticky lg:top-24 self-start">
+        <aside className="self-start">
           <h2 className="text-xl font-bold mb-4" style={{ color: BRAND.navy }}>Ready to help?</h2>
           <ContactCard email={CONTACT.email} phone={CONTACT.phone} />
         </aside>
