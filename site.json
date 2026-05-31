@@ -2,8 +2,8 @@
   "NOTE_how_to_edit": "INSTRUCTIONS: Edit the values in double quotes after each colon. Keys that start with NOTE_ are instructions for you — do not change them. Do NOT remove any keys.",
 
   "org": {
-    "NOTE_section": "Organisation's legal details — shown in the footer at the bottom of every page.",
-    "NOTE_name": "The official registered charity name. Shown on: Footer copyright line, Footer legal text.",
+    "NOTE_section": "O rganisation's legal details — shown in the footer at the bottom of every page.",
+    "NOTE_name": "The official registered charity name. Shown on: Footer copyright line, Footer legal text. ",
     "name": "English4All in Leeds",
     "NOTE_charityNumber": "Your Charity Commission registration number. Shown on: Footer legal text.",
     "charityNumber": "1175775",
@@ -203,7 +203,7 @@
       { "to": "/",            "label": "Home",          "enabled": true },
       { "to": "/classes",     "label": "Classes",       "enabled": true },
       { "to": "/activities",  "label": "Activity Feed", "enabled": true },
-      { "to": "/arc-social",  "label": "Arc Social",    "enabled": true },
+      { "to": "/arc-social",  "label": "Arches Social",    "enabled": true },
       { "to": "/about",       "label": "About",         "enabled": true },
       { "to": "/join",        "label": "How to Join",   "enabled": true },
       { "to": "/news",        "label": "News",          "enabled": true },
