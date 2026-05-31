@@ -19,7 +19,7 @@ export default function Contact() {
         {/* Left column: photos + contact details */}
         <div className="lg:col-span-1 flex flex-col gap-6">
           <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-            <img src="/images/outsideview.jpg" alt="The Arches building exterior"
+            <img src="/images/01-outsideview.jpg" alt="The Arches building exterior"
               className="w-full h-full object-cover" />
           </div>
           <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">

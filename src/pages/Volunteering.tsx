@@ -16,13 +16,13 @@ export default function Volunteering() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-10 grid grid-cols-3 gap-4">
         <Reveal className="col-span-2">
           <div className="rounded-2xl overflow-hidden shadow-md aspect-[16/9]">
-            <img src="/images/volunteers1.png" alt="English4All volunteers"
+            <img src="/images/09-volunteers.png" alt="English4All volunteers"
               className="w-full h-full object-cover object-top" />
           </div>
         </Reveal>
         <Reveal delay="delay-100">
           <div className="rounded-2xl overflow-hidden shadow-md h-full">
-            <img src="/images/teacher1.png" alt="Volunteer teacher"
+            <img src="/images/08-teacher.png" alt="Volunteer teacher"
               className="w-full h-full object-cover" />
           </div>
         </Reveal>
@@ -33,16 +33,22 @@ export default function Volunteering() {
           <ReactMarkdown>{body}</ReactMarkdown>
 
           {/* Mid-page photos */}
-          <div className="not-prose mt-8 grid grid-cols-2 gap-4">
+          <div className="not-prose mt-8 grid grid-cols-3 gap-4">
             <Reveal>
               <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-                <img src="/images/teacher-students1.png" alt="Teacher with students"
+                <img src="/images/03-classroom.jpg" alt="Classroom at The Arches"
                   className="w-full h-full object-cover" />
               </div>
             </Reveal>
             <Reveal delay="delay-100">
               <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
-                <img src="/images/teacher-students3.png" alt="Volunteer teaching"
+                <img src="/images/10-teacher-students.png" alt="Teacher with students"
+                  className="w-full h-full object-cover" />
+              </div>
+            </Reveal>
+            <Reveal delay="delay-200">
+              <div className="rounded-2xl overflow-hidden shadow-md aspect-[4/3]">
+                <img src="/images/11-teacher-students.png" alt="Volunteer teaching"
                   className="w-full h-full object-cover" />
               </div>
             </Reveal>
