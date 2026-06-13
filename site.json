@@ -248,7 +248,14 @@
     "volunteerMid3": "/images/11-teacher-students.png",
 
     "NOTE_arcSocialCover": "Full-width hero photo on the Arches Social page. Shown on: Arches Social page.",
-    "arcSocialCover": "/images/arches-cover.jpg"
+    "arcSocialCover": "/images/arches-cover.jpg",
+
+    "NOTE_gettingHereTrain": "Photo for the 'By Train' card on the Contact page Getting Here section.",
+    "gettingHereTrain": "/images/getting-here/train.jpg",
+    "NOTE_gettingHereBus": "Photo for the 'By Bus' card on the Contact page Getting Here section.",
+    "gettingHereBus": "/images/getting-here/bus.jpg",
+    "NOTE_gettingHereParking": "Photo for the 'By Car & Parking' card on the Contact page Getting Here section.",
+    "gettingHereParking": "/images/getting-here/parking.jpg"
   },
 
   "navigation": {

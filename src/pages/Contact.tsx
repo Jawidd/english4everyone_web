@@ -90,61 +90,76 @@ export default function Contact() {
 
           {/* By Train */}
           <Reveal>
-            <div className="rounded-2xl border border-gray-100 bg-white shadow-sm p-6 h-full">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
-                style={{ backgroundColor: BRAND.softBg }}>
-                <Train className="w-5 h-5" style={{ color: BRAND.primary }} aria-hidden="true" />
+            <div className="rounded-2xl border border-gray-100 bg-white shadow-sm overflow-hidden h-full flex flex-col">
+              <div className="aspect-[3/2] overflow-hidden">
+                <img src={photos.gettingHereTrain} alt="Train platform"
+                  className="w-full h-full object-cover" />
               </div>
-              <h3 className="font-extrabold text-base mb-1" style={{ color: BRAND.navy }}>
-                {gettingHere.train.heading}
-              </h3>
-              <p className="text-sm font-semibold text-gray-700 mb-2">
-                {gettingHere.train.station}
-                <span className="font-normal text-gray-400 ml-2">
-                  · {gettingHere.train.walkTime} ({gettingHere.train.walkDistance})
-                </span>
-              </p>
-              <p className="text-sm text-gray-500 leading-relaxed">
-                {gettingHere.train.directions}
-              </p>
+              <div className="p-6 flex flex-col flex-1">
+                <div className="flex items-center gap-2 mb-2">
+                  <Train className="w-4 h-4 shrink-0" style={{ color: BRAND.primary }} aria-hidden="true" />
+                  <h3 className="font-extrabold text-base" style={{ color: BRAND.navy }}>
+                    {gettingHere.train.heading}
+                  </h3>
+                </div>
+                <p className="text-sm font-semibold text-gray-700 mb-2">
+                  {gettingHere.train.station}
+                  <span className="font-normal text-gray-400 ml-2">
+                    · {gettingHere.train.walkTime} ({gettingHere.train.walkDistance})
+                  </span>
+                </p>
+                <p className="text-sm text-gray-500 leading-relaxed">
+                  {gettingHere.train.directions}
+                </p>
+              </div>
             </div>
           </Reveal>
 
           {/* By Bus */}
           <Reveal delay="delay-100">
-            <div className="rounded-2xl border border-gray-100 bg-white shadow-sm p-6 h-full">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
-                style={{ backgroundColor: BRAND.softBg }}>
-                <Bus className="w-5 h-5" style={{ color: BRAND.primary }} aria-hidden="true" />
+            <div className="rounded-2xl border border-gray-100 bg-white shadow-sm overflow-hidden h-full flex flex-col">
+              <div className="aspect-[3/2] overflow-hidden">
+                <img src={photos.gettingHereBus} alt="Bus"
+                  className="w-full h-full object-cover" />
               </div>
-              <h3 className="font-extrabold text-base mb-2" style={{ color: BRAND.navy }}>
-                {gettingHere.bus.heading}
-              </h3>
-              <p className="text-sm text-gray-500 leading-relaxed mb-3">
-                {gettingHere.bus.description}
-              </p>
-              <a href={JOURNEY_PLANNER_URL} target="_blank" rel="noopener noreferrer"
-                className="text-sm font-semibold underline underline-offset-2"
-                style={{ color: BRAND.primary }}>
-                {gettingHere.bus.plannerLabel}
-              </a>
-              <p className="text-xs text-gray-400 mt-2">{gettingHere.bus.note}</p>
+              <div className="p-6 flex flex-col flex-1">
+                <div className="flex items-center gap-2 mb-2">
+                  <Bus className="w-4 h-4 shrink-0" style={{ color: BRAND.primary }} aria-hidden="true" />
+                  <h3 className="font-extrabold text-base" style={{ color: BRAND.navy }}>
+                    {gettingHere.bus.heading}
+                  </h3>
+                </div>
+                <p className="text-sm text-gray-500 leading-relaxed mb-3">
+                  {gettingHere.bus.description}
+                </p>
+                <a href={JOURNEY_PLANNER_URL} target="_blank" rel="noopener noreferrer"
+                  className="text-sm font-semibold underline underline-offset-2 mt-auto"
+                  style={{ color: BRAND.primary }}>
+                  {gettingHere.bus.plannerLabel}
+                </a>
+                <p className="text-xs text-gray-400 mt-2">{gettingHere.bus.note}</p>
+              </div>
             </div>
           </Reveal>
 
           {/* By Car & Parking */}
           <Reveal delay="delay-200">
-            <div className="rounded-2xl border border-gray-100 bg-white shadow-sm p-6 h-full">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
-                style={{ backgroundColor: BRAND.softBg }}>
-                <Car className="w-5 h-5" style={{ color: BRAND.primary }} aria-hidden="true" />
+            <div className="rounded-2xl border border-gray-100 bg-white shadow-sm overflow-hidden h-full flex flex-col">
+              <div className="aspect-[3/2] overflow-hidden">
+                <img src={photos.gettingHereParking} alt="Parking"
+                  className="w-full h-full object-cover" />
               </div>
-              <h3 className="font-extrabold text-base mb-2" style={{ color: BRAND.navy }}>
-                {gettingHere.parking.heading}
-              </h3>
-              <p className="text-sm text-gray-500 leading-relaxed">
-                {gettingHere.parking.description}
-              </p>
+              <div className="p-6 flex flex-col flex-1">
+                <div className="flex items-center gap-2 mb-2">
+                  <Car className="w-4 h-4 shrink-0" style={{ color: BRAND.primary }} aria-hidden="true" />
+                  <h3 className="font-extrabold text-base" style={{ color: BRAND.navy }}>
+                    {gettingHere.parking.heading}
+                  </h3>
+                </div>
+                <p className="text-sm text-gray-500 leading-relaxed">
+                  {gettingHere.parking.description}
+                </p>
+              </div>
             </div>
           </Reveal>
 
