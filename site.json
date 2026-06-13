@@ -277,7 +277,47 @@
     "NOTE_findUsHeading": "Heading above the map. Shown on: Contact page.",
     "findUsHeading": "Find Us",
     "NOTE_replyNote": "Small note below the contact card. Shown on: Contact page.",
-    "replyNote": "We reply quickly. Don't worry!"
+    "replyNote": "We reply quickly. Don't worry!",
+    "NOTE_gettingHereHeading": "Heading for the Getting Here transport section. Shown on: Contact page.",
+    "gettingHereHeading": "Getting Here"
+  },
+
+  "gettingHere": {
+    "NOTE_section": "Transport and parking information for the venue. Shown on: Contact page in the 'Getting Here' section.",
+
+    "NOTE_train": "Directions for visitors arriving by train.",
+    "train": {
+      "NOTE_heading": "Card heading. Shown on: Contact page, Getting Here section.",
+      "heading": "By Train",
+      "NOTE_station": "Name of the nearest train station.",
+      "station": "Leeds City Station",
+      "NOTE_walkTime": "Approximate walking time from the station to the venue.",
+      "walkTime": "12 min walk",
+      "NOTE_walkDistance": "Approximate walking distance from the station.",
+      "walkDistance": "0.6 miles",
+      "NOTE_directions": "Step-by-step walking directions from the station. Keep simple — students may be new to the city.",
+      "directions": "Exit Leeds City Station and head east along New York Street. Continue along Marsh Lane (A653) — Brussels Street will be on your right."
+    },
+
+    "NOTE_bus": "Directions for visitors arriving by bus.",
+    "bus": {
+      "NOTE_heading": "Card heading. Shown on: Contact page, Getting Here section.",
+      "heading": "By Bus",
+      "NOTE_description": "Short description of bus access to the venue.",
+      "description": "Several buses run along York Road and Marsh Lane, both a short walk from The Arches.",
+      "NOTE_plannerLabel": "Clickable link label for the journey planner.",
+      "plannerLabel": "Plan your journey",
+      "NOTE_note": "Secondary hint shown below the main text.",
+      "note": "Use postcode LS9 8AB on the journey planner for door-to-door directions."
+    },
+
+    "NOTE_parking": "Parking information for visitors arriving by car.",
+    "parking": {
+      "NOTE_heading": "Card heading. Shown on: Contact page, Getting Here section.",
+      "heading": "By Car & Parking",
+      "NOTE_description": "Parking details near the venue.",
+      "description": "Free on-street parking is available on Brussels Street and nearby side streets, usually unrestricted on Saturdays. The Arches also has a small car park at the front entrance."
+    }
   },
 
   "arcSocial": {

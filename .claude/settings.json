@@ -9,7 +9,14 @@
       "Bash(bash deploy-studio.sh)",
       "Read(//home/jawid/Desktop/del/galleryall/Gallery_files/**)",
       "Bash(grep -oP '\"text\"\\\\s*:\\\\s*\"[^\"]{5,100}\"')",
-      "Bash(git mv *)"
+      "Bash(git mv *)",
+      "WebSearch",
+      "WebFetch(domain:moovitapp.com)",
+      "WebFetch(domain:www.streetlist.co.uk)",
+      "Bash(git -C /home/jawid/workspace/english4everyone_web status)",
+      "Bash(git -C /home/jawid/workspace/english4everyone_web diff HEAD)",
+      "Bash(git -C /home/jawid/workspace/english4everyone_web add .claude/settings.json)",
+      "Bash(git -C /home/jawid/workspace/english4everyone_web commit -m \"feat\\(contact\\): add Getting Here section with train, bus and parking info\")"
     ]
   }
 }
