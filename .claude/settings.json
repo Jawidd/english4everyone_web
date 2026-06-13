@@ -6,7 +6,10 @@
       "Bash(node_modules/.bin/tsc --noEmit)",
       "Bash(git add *)",
       "Bash(git commit *)",
-      "Bash(bash deploy-studio.sh)"
+      "Bash(bash deploy-studio.sh)",
+      "Read(//home/jawid/Desktop/del/galleryall/Gallery_files/**)",
+      "Bash(grep -oP '\"text\"\\\\s*:\\\\s*\"[^\"]{5,100}\"')",
+      "Bash(git mv *)"
     ]
   }
 }
