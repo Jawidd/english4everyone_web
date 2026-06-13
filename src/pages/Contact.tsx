@@ -7,7 +7,6 @@ import { BRAND, CONTACT, SITE } from '../config'
 const { contactPage, gettingHere, photos } = SITE
 
 const MAPS_URL = 'https://maps.google.com/maps?q=56-58+Brussels+Street,Leeds,LS9+8AB&output=embed&z=17'
-const JOURNEY_PLANNER_URL = 'https://www.wymetro.com/'
 
 export default function Contact() {
   return (
@@ -129,15 +128,9 @@ export default function Contact() {
                     {gettingHere.bus.heading}
                   </h3>
                 </div>
-                <p className="text-sm text-gray-500 leading-relaxed mb-3">
+                <p className="text-sm text-gray-500 leading-relaxed">
                   {gettingHere.bus.description}
                 </p>
-                <a href={JOURNEY_PLANNER_URL} target="_blank" rel="noopener noreferrer"
-                  className="text-sm font-semibold underline underline-offset-2 mt-auto"
-                  style={{ color: BRAND.primary }}>
-                  {gettingHere.bus.plannerLabel}
-                </a>
-                <p className="text-xs text-gray-400 mt-2">{gettingHere.bus.note}</p>
               </div>
             </div>
           </Reveal>

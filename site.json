@@ -311,11 +311,7 @@
       "NOTE_heading": "Card heading. Shown on: Contact page, Getting Here section.",
       "heading": "By Bus",
       "NOTE_description": "Short description of bus access to the venue.",
-      "description": "Leeds City Bus Station is just a 5-minute walk (0.3 miles) from The Arches. Many routes stop there from across the city.",
-      "NOTE_plannerLabel": "Clickable link label for the journey planner.",
-      "plannerLabel": "Plan your journey",
-      "NOTE_note": "Secondary hint shown below the main text.",
-      "note": "Use postcode LS9 8AB on the West Yorkshire Metro planner for door-to-door directions."
+      "description": "Leeds City Bus Station is just a 5-minute walk (0.3 miles) from The Arches. Many routes stop there from across the city."
     },
 
     "NOTE_parking": "Parking information for visitors arriving by car.",
