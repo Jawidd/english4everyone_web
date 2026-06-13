@@ -6,7 +6,7 @@ import { BRAND, CONTACT, SITE } from '../config'
 
 const { contactPage, gettingHere, photos } = SITE
 
-const MAPS_URL = 'https://maps.google.com/maps?q=56-58+Brussels+Street,Leeds,LS9+8AB&output=embed&z=17'
+const MAPS_URL = 'https://www.openstreetmap.org/export/embed.html?bbox=-1.5400%2C53.7924%2C-1.5250%2C53.8004&layer=mapnik&marker=53.7964%2C-1.5325'
 const JOURNEY_PLANNER_URL = 'https://www.wymetro.com/'
 
 export default function Contact() {
@@ -69,7 +69,7 @@ export default function Contact() {
                 {CONTACT.address.full}
               </p>
               <div className="rounded-2xl overflow-hidden shadow-md border border-gray-100" style={{ height: '320px' }}>
-                <iframe title="English4All Leeds location map" src={MAPS_URL}
+                <iframe title="OpenStreetMap: The Arches, 56 Brussels Street, Leeds LS9 8AB" src={MAPS_URL}
                   width="100%" height="100%" style={{ border: 0 }}
                   allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
               </div>
@@ -92,8 +92,8 @@ export default function Contact() {
           <Reveal>
             <div className="rounded-2xl border border-gray-100 bg-white shadow-sm overflow-hidden h-full flex flex-col">
               <div className="aspect-[3/2] overflow-hidden">
-                <img src={photos.gettingHereTrain} alt="Train platform"
-                  className="w-full h-full object-cover" />
+                <img src={photos.gettingHereTrain} alt="Walking route from Leeds City Station to The Arches"
+                  className="w-full h-full object-cover object-top" />
               </div>
               <div className="p-6 flex flex-col flex-1">
                 <div className="flex items-center gap-2 mb-2">
@@ -146,8 +146,8 @@ export default function Contact() {
           <Reveal delay="delay-200">
             <div className="rounded-2xl border border-gray-100 bg-white shadow-sm overflow-hidden h-full flex flex-col">
               <div className="aspect-[3/2] overflow-hidden">
-                <img src={photos.gettingHereParking} alt="Parking"
-                  className="w-full h-full object-cover" />
+                <img src={photos.gettingHereParking} alt="Parking near 56 Brussels Street"
+                  className="w-full h-full object-cover object-center" />
               </div>
               <div className="p-6 flex flex-col flex-1">
                 <div className="flex items-center gap-2 mb-2">

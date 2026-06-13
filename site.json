@@ -250,12 +250,12 @@
     "NOTE_arcSocialCover": "Full-width hero photo on the Arches Social page. Shown on: Arches Social page.",
     "arcSocialCover": "/images/arches-cover.jpg",
 
-    "NOTE_gettingHereTrain": "Photo for the 'By Train' card on the Contact page Getting Here section.",
-    "gettingHereTrain": "/images/getting-here/train.jpg",
-    "NOTE_gettingHereBus": "Photo for the 'By Bus' card on the Contact page Getting Here section. Currently a walking map from Leeds City Bus Station to the venue.",
+    "NOTE_gettingHereTrain": "Photo for the 'By Train' card on the Contact page Getting Here section. Apple Maps walking route from Leeds City Station.",
+    "gettingHereTrain": "/images/getting-here/walking-from-trainstation.png",
+    "NOTE_gettingHereBus": "Photo for the 'By Bus' card on the Contact page Getting Here section. Apple Maps walking route from Leeds City Bus Station.",
     "gettingHereBus": "/images/getting-here/walking-from-bus-station.png",
-    "NOTE_gettingHereParking": "Photo for the 'By Car & Parking' card on the Contact page Getting Here section.",
-    "gettingHereParking": "/images/getting-here/parking.jpg"
+    "NOTE_gettingHereParking": "Photo for the 'By Car & Parking' card on the Contact page Getting Here section. Satellite view of parking near 56 Brussels Street.",
+    "gettingHereParking": "/images/getting-here/parking-spaces.png"
   },
 
   "navigation": {
@@ -299,11 +299,11 @@
       "NOTE_station": "Name of the nearest train station.",
       "station": "Leeds City Station",
       "NOTE_walkTime": "Approximate walking time from the station to the venue.",
-      "walkTime": "12 min walk",
+      "walkTime": "~15 min walk",
       "NOTE_walkDistance": "Approximate walking distance from the station.",
       "walkDistance": "0.6 miles",
-      "NOTE_directions": "Step-by-step walking directions from the station. Keep simple — students may be new to the city.",
-      "directions": "Exit Leeds City Station and head east along New York Street. Continue along Marsh Lane (A653) — Brussels Street will be on your right."
+      "NOTE_directions": "Step-by-step directions from the station. Keep simple — students may be new to the city.",
+      "directions": "Take bus 4F or 16A from outside the station for a quick ride, or walk east along New York Street and Marsh Lane — about 15 minutes on foot."
     },
 
     "NOTE_bus": "Directions for visitors arriving by bus.",
