@@ -119,8 +119,8 @@ export default function Contact() {
           <Reveal delay="delay-100">
             <div className="rounded-2xl border border-gray-100 bg-white shadow-sm overflow-hidden h-full flex flex-col">
               <div className="aspect-[3/2] overflow-hidden">
-                <img src={photos.gettingHereBus} alt="Bus"
-                  className="w-full h-full object-cover" />
+                <img src={photos.gettingHereBus} alt="Walking route from Leeds City Bus Station to The Arches"
+                  className="w-full h-full object-cover object-top" />
               </div>
               <div className="p-6 flex flex-col flex-1">
                 <div className="flex items-center gap-2 mb-2">
